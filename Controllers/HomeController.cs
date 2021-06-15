@@ -136,6 +136,52 @@ namespace BongDa.Controllers
                 return mes.Error(e.Message);
             }
         }
-      
-    }
+
+        [HttpPost]
+        public ActionResult AddSubmit(FormCollection data)
+        {
+            try
+            {
+                int _chooseA = Convert.ToInt32(data["_chooseA"]);
+                int _chooseB = Convert.ToInt32(data["_chooseB"]);
+                string _numberA = data["_numberA"];
+                string _numberB = data["_numberB"];
+                string _ngaythidau = data["_ngaythidau"]; 
+                string _ghichu = data["_ghichu"];
+                string sql = "";
+                sql += "INSERT INTO [wcweb].[dbo].[M_MATCH] ";
+                sql += "([MTCH_DATE] ";
+                sql += ",[TEAM_1] ";
+                sql += ",[TEAM_2] ";
+                sql += ",[TYSO_1] ";
+                sql += " ,[TYSO_2] ";
+                sql += ",[KEO_1] ";
+                sql += " ,[KEO_2] ";
+                sql += " ,[MTCH_NOTE] ";
+                sql += " ,[FLAG_ACTIVE]) ";
+                sql += "VALUES ";
+                sql += "('" +_ngaythidau + "'";
+                sql += " ,"+ _chooseA ;
+                sql += " ," + _chooseB;
+                sql += " ,0 ";
+                sql += " ,0 ";
+                sql += " ,'"+ _numberA + "'";
+                sql += " ,'" + _numberB + "'";
+                sql += " ,'" + _ghichu + "'";
+                sql += " ,1) ";
+                DBHelper.ExecuteQuery(sql);
+
+
+
+                return mes.Success();
+            }
+            catch (Exception e)
+            {
+                return mes.Error(e.Message);
+            }
+        }
+
+
+
+        }
 }
