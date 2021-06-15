@@ -77,10 +77,16 @@ namespace BongDa.Controllers
             CookieHelper.ClearCookie();
             return RedirectToAction("Wellcome", "Home");
         }
-        public ActionResult Index()
+        public ActionResult Index(string id)
         {
-            string _sql = "SELECT [FBT_ID],[FBT_NAME],[FBT_FLAG] FROM [wcweb].[dbo].[M_FCT] WHERE FLAG_ACTIVE = 1";
+            int MatchId = 0;
+            if(id != "" && id != null)
+            {
+                MatchId = Convert.ToInt32(id);
+            }
             ViewBag.Team = bongda._062021_bongda_Get_All_FCTeam().ToList();
+            ViewBag.Match = bongda._062021_bongda_Get_Match("ALL", MatchId).ToList();
+            ViewBag.MatchDetails = bongda._062021_bongda_Get_Match_Details("ALL", MatchId).ToList();
             return View();
         }
 

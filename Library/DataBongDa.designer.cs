@@ -68,6 +68,20 @@ namespace Library
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<_062021_bongda_Get_All_FCTeamResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_062021_bongda_Get_Match]")]
+		public ISingleResult<_062021_bongda_Get_MatchResult> _062021_bongda_Get_Match([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Mode", DbType="NVarChar(100)")] string mode, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MacthId", DbType="Int")] System.Nullable<int> macthId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), mode, macthId);
+			return ((ISingleResult<_062021_bongda_Get_MatchResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_062021_bongda_Get_Match_Details]")]
+		public ISingleResult<_062021_bongda_Get_Match_DetailsResult> _062021_bongda_Get_Match_Details([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Mode", DbType="NVarChar(100)")] string mode, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MacthId", DbType="Int")] System.Nullable<int> macthId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), mode, macthId);
+			return ((ISingleResult<_062021_bongda_Get_Match_DetailsResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class _062021_bongda_Get_All_FCTeamResult
@@ -163,6 +177,634 @@ namespace Library
 				if ((this._FLAG_ACTIVE != value))
 				{
 					this._FLAG_ACTIVE = value;
+				}
+			}
+		}
+	}
+	
+	public partial class _062021_bongda_Get_MatchResult
+	{
+		
+		private int _MTCH_ID;
+		
+		private string _MTCH_DATE;
+		
+		private int _TEAM_1;
+		
+		private int _TEAM_2;
+		
+		private int _TYSO_1;
+		
+		private int _TYSO_2;
+		
+		private string _KEO_1;
+		
+		private string _KEO_2;
+		
+		private string _MTCH_NOTE;
+		
+		private System.Nullable<int> _FLAG_ACTIVE;
+		
+		public _062021_bongda_Get_MatchResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MTCH_ID", DbType="Int NOT NULL")]
+		public int MTCH_ID
+		{
+			get
+			{
+				return this._MTCH_ID;
+			}
+			set
+			{
+				if ((this._MTCH_ID != value))
+				{
+					this._MTCH_ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MTCH_DATE", DbType="NVarChar(200)")]
+		public string MTCH_DATE
+		{
+			get
+			{
+				return this._MTCH_DATE;
+			}
+			set
+			{
+				if ((this._MTCH_DATE != value))
+				{
+					this._MTCH_DATE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TEAM_1", DbType="Int NOT NULL")]
+		public int TEAM_1
+		{
+			get
+			{
+				return this._TEAM_1;
+			}
+			set
+			{
+				if ((this._TEAM_1 != value))
+				{
+					this._TEAM_1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TEAM_2", DbType="Int NOT NULL")]
+		public int TEAM_2
+		{
+			get
+			{
+				return this._TEAM_2;
+			}
+			set
+			{
+				if ((this._TEAM_2 != value))
+				{
+					this._TEAM_2 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TYSO_1", DbType="Int NOT NULL")]
+		public int TYSO_1
+		{
+			get
+			{
+				return this._TYSO_1;
+			}
+			set
+			{
+				if ((this._TYSO_1 != value))
+				{
+					this._TYSO_1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TYSO_2", DbType="Int NOT NULL")]
+		public int TYSO_2
+		{
+			get
+			{
+				return this._TYSO_2;
+			}
+			set
+			{
+				if ((this._TYSO_2 != value))
+				{
+					this._TYSO_2 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KEO_1", DbType="NVarChar(50)")]
+		public string KEO_1
+		{
+			get
+			{
+				return this._KEO_1;
+			}
+			set
+			{
+				if ((this._KEO_1 != value))
+				{
+					this._KEO_1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KEO_2", DbType="NVarChar(50)")]
+		public string KEO_2
+		{
+			get
+			{
+				return this._KEO_2;
+			}
+			set
+			{
+				if ((this._KEO_2 != value))
+				{
+					this._KEO_2 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MTCH_NOTE", DbType="NVarChar(MAX)")]
+		public string MTCH_NOTE
+		{
+			get
+			{
+				return this._MTCH_NOTE;
+			}
+			set
+			{
+				if ((this._MTCH_NOTE != value))
+				{
+					this._MTCH_NOTE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FLAG_ACTIVE", DbType="Int")]
+		public System.Nullable<int> FLAG_ACTIVE
+		{
+			get
+			{
+				return this._FLAG_ACTIVE;
+			}
+			set
+			{
+				if ((this._FLAG_ACTIVE != value))
+				{
+					this._FLAG_ACTIVE = value;
+				}
+			}
+		}
+	}
+	
+	public partial class _062021_bongda_Get_Match_DetailsResult
+	{
+		
+		private int _MTCH_ID;
+		
+		private string _MTCH_DATE;
+		
+		private int _TEAM_1;
+		
+		private int _TEAM_2;
+		
+		private int _TYSO_1;
+		
+		private int _TYSO_2;
+		
+		private string _KEO_1;
+		
+		private string _KEO_2;
+		
+		private string _MTCH_NOTE;
+		
+		private System.Nullable<int> _FLAG_ACTIVE;
+		
+		private int _MTCHD_ID;
+		
+		private int _MTCH_ID1;
+		
+		private string _USER_EMAIL;
+		
+		private System.Nullable<int> _TEAM_ID;
+		
+		private string _MTCHD_NOTE;
+		
+		private System.Nullable<int> _FLAG_ACTIVE1;
+		
+		private string _Voted;
+		
+		private int _USER_ID;
+		
+		private string _USER_NAME;
+		
+		private string _USER_EMAIL1;
+		
+		private string _USER_PASS;
+		
+		private string _USER_MONEY;
+		
+		private System.Nullable<int> _FLAG_ACTIVE2;
+		
+		private string _NOTE1;
+		
+		public _062021_bongda_Get_Match_DetailsResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MTCH_ID", DbType="Int NOT NULL")]
+		public int MTCH_ID
+		{
+			get
+			{
+				return this._MTCH_ID;
+			}
+			set
+			{
+				if ((this._MTCH_ID != value))
+				{
+					this._MTCH_ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MTCH_DATE", DbType="NVarChar(200)")]
+		public string MTCH_DATE
+		{
+			get
+			{
+				return this._MTCH_DATE;
+			}
+			set
+			{
+				if ((this._MTCH_DATE != value))
+				{
+					this._MTCH_DATE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TEAM_1", DbType="Int NOT NULL")]
+		public int TEAM_1
+		{
+			get
+			{
+				return this._TEAM_1;
+			}
+			set
+			{
+				if ((this._TEAM_1 != value))
+				{
+					this._TEAM_1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TEAM_2", DbType="Int NOT NULL")]
+		public int TEAM_2
+		{
+			get
+			{
+				return this._TEAM_2;
+			}
+			set
+			{
+				if ((this._TEAM_2 != value))
+				{
+					this._TEAM_2 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TYSO_1", DbType="Int NOT NULL")]
+		public int TYSO_1
+		{
+			get
+			{
+				return this._TYSO_1;
+			}
+			set
+			{
+				if ((this._TYSO_1 != value))
+				{
+					this._TYSO_1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TYSO_2", DbType="Int NOT NULL")]
+		public int TYSO_2
+		{
+			get
+			{
+				return this._TYSO_2;
+			}
+			set
+			{
+				if ((this._TYSO_2 != value))
+				{
+					this._TYSO_2 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KEO_1", DbType="NVarChar(50)")]
+		public string KEO_1
+		{
+			get
+			{
+				return this._KEO_1;
+			}
+			set
+			{
+				if ((this._KEO_1 != value))
+				{
+					this._KEO_1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KEO_2", DbType="NVarChar(50)")]
+		public string KEO_2
+		{
+			get
+			{
+				return this._KEO_2;
+			}
+			set
+			{
+				if ((this._KEO_2 != value))
+				{
+					this._KEO_2 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MTCH_NOTE", DbType="NVarChar(MAX)")]
+		public string MTCH_NOTE
+		{
+			get
+			{
+				return this._MTCH_NOTE;
+			}
+			set
+			{
+				if ((this._MTCH_NOTE != value))
+				{
+					this._MTCH_NOTE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FLAG_ACTIVE", DbType="Int")]
+		public System.Nullable<int> FLAG_ACTIVE
+		{
+			get
+			{
+				return this._FLAG_ACTIVE;
+			}
+			set
+			{
+				if ((this._FLAG_ACTIVE != value))
+				{
+					this._FLAG_ACTIVE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MTCHD_ID", DbType="Int NOT NULL")]
+		public int MTCHD_ID
+		{
+			get
+			{
+				return this._MTCHD_ID;
+			}
+			set
+			{
+				if ((this._MTCHD_ID != value))
+				{
+					this._MTCHD_ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MTCH_ID1", DbType="Int NOT NULL")]
+		public int MTCH_ID1
+		{
+			get
+			{
+				return this._MTCH_ID1;
+			}
+			set
+			{
+				if ((this._MTCH_ID1 != value))
+				{
+					this._MTCH_ID1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_USER_EMAIL", DbType="NVarChar(MAX)")]
+		public string USER_EMAIL
+		{
+			get
+			{
+				return this._USER_EMAIL;
+			}
+			set
+			{
+				if ((this._USER_EMAIL != value))
+				{
+					this._USER_EMAIL = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TEAM_ID", DbType="Int")]
+		public System.Nullable<int> TEAM_ID
+		{
+			get
+			{
+				return this._TEAM_ID;
+			}
+			set
+			{
+				if ((this._TEAM_ID != value))
+				{
+					this._TEAM_ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MTCHD_NOTE", DbType="NVarChar(200)")]
+		public string MTCHD_NOTE
+		{
+			get
+			{
+				return this._MTCHD_NOTE;
+			}
+			set
+			{
+				if ((this._MTCHD_NOTE != value))
+				{
+					this._MTCHD_NOTE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FLAG_ACTIVE1", DbType="Int")]
+		public System.Nullable<int> FLAG_ACTIVE1
+		{
+			get
+			{
+				return this._FLAG_ACTIVE1;
+			}
+			set
+			{
+				if ((this._FLAG_ACTIVE1 != value))
+				{
+					this._FLAG_ACTIVE1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Voted", DbType="NVarChar(50)")]
+		public string Voted
+		{
+			get
+			{
+				return this._Voted;
+			}
+			set
+			{
+				if ((this._Voted != value))
+				{
+					this._Voted = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_USER_ID", DbType="Int NOT NULL")]
+		public int USER_ID
+		{
+			get
+			{
+				return this._USER_ID;
+			}
+			set
+			{
+				if ((this._USER_ID != value))
+				{
+					this._USER_ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_USER_NAME", DbType="NVarChar(200)")]
+		public string USER_NAME
+		{
+			get
+			{
+				return this._USER_NAME;
+			}
+			set
+			{
+				if ((this._USER_NAME != value))
+				{
+					this._USER_NAME = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_USER_EMAIL1", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string USER_EMAIL1
+		{
+			get
+			{
+				return this._USER_EMAIL1;
+			}
+			set
+			{
+				if ((this._USER_EMAIL1 != value))
+				{
+					this._USER_EMAIL1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_USER_PASS", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string USER_PASS
+		{
+			get
+			{
+				return this._USER_PASS;
+			}
+			set
+			{
+				if ((this._USER_PASS != value))
+				{
+					this._USER_PASS = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_USER_MONEY", DbType="NVarChar(150)")]
+		public string USER_MONEY
+		{
+			get
+			{
+				return this._USER_MONEY;
+			}
+			set
+			{
+				if ((this._USER_MONEY != value))
+				{
+					this._USER_MONEY = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FLAG_ACTIVE2", DbType="Int")]
+		public System.Nullable<int> FLAG_ACTIVE2
+		{
+			get
+			{
+				return this._FLAG_ACTIVE2;
+			}
+			set
+			{
+				if ((this._FLAG_ACTIVE2 != value))
+				{
+					this._FLAG_ACTIVE2 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NOTE1", DbType="NVarChar(MAX)")]
+		public string NOTE1
+		{
+			get
+			{
+				return this._NOTE1;
+			}
+			set
+			{
+				if ((this._NOTE1 != value))
+				{
+					this._NOTE1 = value;
 				}
 			}
 		}

@@ -64,7 +64,9 @@
         .navbar-fixed-top{
             z-index:10;
         }
-
+        .display-0{
+            display:none;
+        }
         @@media (min-width: 576px) and (max-width: 640px) {
             .fix-center {
                 padding-top: 2rem;
@@ -184,63 +186,58 @@
 <div class="fix-hieght animated fadeInDown">
     <div class="fix-center">
         <div class="row m-0">
+            @foreach (var match in ViewBag.Match)
+            {             
+                <div class="col-md-5 text-center">
+                    <div class="flag-card">
+                        <img src="~/Content/img/flags/64/@match.flagTeam1" alt="flag">
+                    </div>
+                    <div class="my-5">
+                        <p class="small">
+                            @match.nameTeam1
+                        </p>
+                        <div class="user-friends">
+                            @foreach (var md1 in ViewBag.MatchDetails)
+                            {
+                                if (md1.TEAM_ID = match.idTeam1)
+                                {
+                                    <a href=""><img alt="image" class="rounded-circle" src="~/Content/img/avatar/@md1.NOTE1.jpg"></a>
+                                }
 
-            <div class="col-md-5 text-center">
-                <div class="flag-card">
-                    <img src="https://immgroup.com/wp-content/uploads/bo-dao-nha-flag.png">
-
-                </div>
-                <div class="my-5">
-                    <p class="small">
-                        If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't
-                        anything embarrassing
-                    </p>
-                    <div class="user-friends">
-                        <a href=""><img alt="image" class="rounded-circle" src="img/a3.jpg"></a>
-                        <a href=""><img alt="image" class="rounded-circle" src="img/a1.jpg"></a>
-                        <a href=""><img alt="image" class="rounded-circle" src="img/a2.jpg"></a>
-                        <a href=""><img alt="image" class="rounded-circle" src="img/a4.jpg"></a>
-                        <a href=""><img alt="image" class="rounded-circle" src="img/a5.jpg"></a>
-                        <a href=""><img alt="image" class="rounded-circle" src="img/a6.jpg"></a>
-                        <a href=""><img alt="image" class="rounded-circle" src="img/a7.jpg"></a>
-                        <a href=""><img alt="image" class="rounded-circle" src="img/a8.jpg"></a>
-                        <a href=""><img alt="image" class="rounded-circle" src="img/a2.jpg"></a>
-                        <a href=""><img alt="image" class="rounded-circle" src="img/a1.jpg"></a>
+                            }
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-2">
-                <div class="fix-nation">
-                    <div class="number-nation">0<span class="label label-primary">+0.5</span></div>
-                    <div class="number-nation mb-4">:</div>
-                    <div class="number-nation">0<span class="label label-primary d-none">0</span></div>
-                </div>
-            </div>
-            <div class="col-md-5 text-center">
-                <div class="flag-card">
-                    <img src="https://immgroup.com/wp-content/uploads/bo-dao-nha-flag.png">
-                </div>
-                <div class="my-5">
-                    <p class="small">
-                        If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't
-                        anything embarrassing
-                    </p>
-                    <div class="user-friends">
-                        <a href=""><img alt="image" class="rounded-circle" src="img/a3.jpg"></a>
-                        <a href=""><img alt="image" class="rounded-circle" src="img/a1.jpg"></a>
-                        <a href=""><img alt="image" class="rounded-circle" src="img/a2.jpg"></a>
-                        <a href=""><img alt="image" class="rounded-circle" src="img/a4.jpg"></a>
-                        <a href=""><img alt="image" class="rounded-circle" src="img/a5.jpg"></a>
-                        <a href=""><img alt="image" class="rounded-circle" src="img/a6.jpg"></a>
-                        <a href=""><img alt="image" class="rounded-circle" src="img/a7.jpg"></a>
-                        <a href=""><img alt="image" class="rounded-circle" src="img/a8.jpg"></a>
-                        <a href=""><img alt="image" class="rounded-circle" src="img/a2.jpg"></a>
-                        <a href=""><img alt="image" class="rounded-circle" src="img/a1.jpg"></a>
+                <div class="col-md-2">
+                    <div class="fix-nation">
+                        <div class="number-nation">@match.TYSO_1<span class="label label-primary display-@match.KEO_1">@match.KEO_1</span></div>
+                        <div class="number-nation mb-4">:</div>
+                        <div class="number-nation">@match.TYSO_2<span class="label label-primary display-@match.KEO_2">@match.KEO_2</span></div>
                     </div>
                 </div>
-            </div>
+                <div class="col-md-5 text-center">
+                    <div class="flag-card">
+                        <img src="~/Content/img/flags/64/@match.flagTeam2" alt="flag">
+                    </div>
+                    <div class="my-5">
+                        <p class="small">
+                            @match.nameTeam2
+                        </p>
+                        <div class="user-friends">
+                            @foreach (var md2 in ViewBag.MatchDetails)
+                            {
+                                if (md2.TEAM_ID = match.idTeam2)
+                                {
+                                    <a href=""><img alt="image" class="rounded-circle" src="~/Content/img/avatar/@md2.NOTE1.jpg"></a>
+                                }
 
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
+            
     </div>
 
 </div>

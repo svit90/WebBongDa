@@ -9,4 +9,50 @@
       <Column Name="FLAG_ACTIVE" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.[_062021_bongda_Get_Match]" Method="_062021_bongda_Get_Match">
+    <Parameter Name="Mode" Parameter="mode" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="MacthId" Parameter="macthId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="_062021_bongda_Get_MatchResult">
+      <Column Name="MTCH_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MTCH_DATE" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="TEAM_1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TEAM_2" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TYSO_1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TYSO_2" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="KEO_1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="KEO_2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MTCH_NOTE" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="FLAG_ACTIVE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.[_062021_bongda_Get_Match_Details]" Method="_062021_bongda_Get_Match_Details">
+    <Parameter Name="Mode" Parameter="mode" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="MacthId" Parameter="macthId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="_062021_bongda_Get_Match_DetailsResult">
+      <Column Name="MTCH_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MTCH_DATE" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="TEAM_1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TEAM_2" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TYSO_1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TYSO_2" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="KEO_1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="KEO_2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MTCH_NOTE" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="FLAG_ACTIVE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MTCHD_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MTCH_ID1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="USER_EMAIL" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TEAM_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MTCHD_NOTE" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="FLAG_ACTIVE1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Voted" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="USER_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="USER_NAME" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="USER_EMAIL1" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="USER_PASS" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="USER_MONEY" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="FLAG_ACTIVE2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NOTE1" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>
