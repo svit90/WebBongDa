@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using Library;
@@ -11,6 +13,7 @@ namespace BongDa.Controllers
     public class HomeController : Controller
     {
         LinQtoSqlClassDataContext db = new LinQtoSqlClassDataContext();
+        DataBongDaDataContext bongda = new DataBongDaDataContext();
         Library.Message mes = new Library.Message();
         Function fc = new Function();
         Res res = new Res();
@@ -76,6 +79,8 @@ namespace BongDa.Controllers
         }
         public ActionResult Index()
         {
+            string _sql = "SELECT [FBT_ID],[FBT_NAME],[FBT_FLAG] FROM [wcweb].[dbo].[M_FCT] WHERE FLAG_ACTIVE = 1";
+            ViewBag.Team = bongda._062021_bongda_Get_All_FCTeam().ToList();
             return View();
         }
 
@@ -131,5 +136,6 @@ namespace BongDa.Controllers
                 return mes.Error(e.Message);
             }
         }
+      
     }
 }

@@ -98,8 +98,11 @@
                     <div class="row no-gutters">
                         <div class="col-md-10">
                             <select name="chooseA" id="chooseA" data-placeholder="Chọn sản phẩm" class="input-type form-control chosen-select">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
+                               @foreach (var team in ViewBag.Team)
+                                {
+                                    <option value="@team.FBT_ID.">@team.FBT_NAME</option>
+
+                                }
                             </select>
                         </div>
                         <div class="col-md-2">
@@ -113,8 +116,11 @@
                     <div class="row no-gutters">
                         <div class="col-md-10">
                             <select name="chooseB" id="chooseB" data-placeholder="Chọn sản phẩm" class="input-type form-control chosen-select">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
+                               @foreach (var team in ViewBag.Team)
+                                {
+                                    <option value="@team.FBT_ID.">@team.FBT_NAME</option>
+
+                                }
                             </select>
                         </div>
                         <div class="col-md-2">
