@@ -56,7 +56,7 @@
                     var res = xhr.response;
                     var j_res = JSON.parse(res);
                     if (j_res.type === "success") {
-                        window.location.href = j_res.url;
+                        swal({ title: j_res.header, text: j_res.mess, type: j_res.type });
                     }
                     else {
                         swal({ title: j_res.header, text: j_res.mess, type: j_res.type });

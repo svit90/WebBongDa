@@ -10,9 +10,10 @@ namespace BongDa.Controllers
 {
     public class HomeController : Controller
     {
-        Function fc = new Function();
         LinQtoSqlClassDataContext db = new LinQtoSqlClassDataContext();
-        Message mes = Message();
+        Library.Message mes = new Library.Message();
+        Function fc = new Function();
+        Res res = new Res();
         public ActionResult Wellcome()
         {
             if (CookieHelper.CookieExist("Token") == true)
@@ -107,12 +108,7 @@ namespace BongDa.Controllers
                         string _body = "Vui lòng <a href='"+_url+"'>Click vào đây</a> để xác nhận đăng nhập";
                         fc.SendMessageMailKit(row.EMAIL_HEADER,row.STAFF_EMAIL,fc.DecryptString(row.STAFF_PASS_EMAIL),row.STAFF_EMAIL,"","paul@immgroup.com", "[FC] Xác nhận truy cập web bóng đá của IMM GROUP", _body);
 
-                        response.Data = new
-                        {
-                            type = "success",
-                            url = _url
-                        };
-                        return response;
+                        return mes.Success("Vui lòng kiểm tra email để xác nhận đăng nhập");
                     }
                     if (_url == "")
                     {
