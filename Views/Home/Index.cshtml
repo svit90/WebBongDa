@@ -17,21 +17,29 @@
             justify-content: center;
             font-family: 'Righteous', cursive;
         }
+        .flag-card img {
+            border-radius: 50%;
+            border: 5px solid transparent;
+        }
 
+        .flag-card img:hover {
+            border-color: #ff7533;
+            cursor: pointer;
+        }
         .number-nation {
-            font-size: 6rem;
+            font-size: 7rem;
             padding: 20px;
             position: relative;
         }
 
-            .number-nation span {
-                content: "";
-                position: absolute;
-                top: 35px;
-                left: 50%;
-                font-size: 12px;
-                transform: translate(-50%);
-            }
+        .number-nation span {
+            content: "";
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            font-size: 12px;
+            transform: translate(-50%);
+        }
 
         .fix-center {
             padding-top: 10rem;
@@ -39,9 +47,9 @@
 
         .add-vs {
             position: fixed;
-            top: 0;
+            top: -2px;
             left: 0;
-            z-index: 9999;
+            z-index: 1;
         }
         .navbar-fixed-top{
             z-index:10;
@@ -62,13 +70,13 @@
 }
 
 <div class="add-vs">
-    <button class="btn btn-info btn-circle btn-lg m-2" type="button" data-toggle="modal" data-target="#viewvs"><i class="fa  fa-plus"></i></button>
+    <button class="btn btn-info btn-circle btn-lg m-2" type="button" data-toggle="modal" data-backdrop="static" data-target="#viewvs"><i class="fa  fa-plus"></i></button>
 </div>
 
 
 
 <div class="modal inmodal" id="viewvs">
-    <div class="modal-dialog modal-xl">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Thêm trận đấu</h5>
