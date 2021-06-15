@@ -1,8 +1,75 @@
-﻿
-@{
-    ViewBag.Title = "Wellcome";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+﻿@{
+    Layout = null;
 }
 
-<h2>Tài khoản chưa được xác minh</h2>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://immgroup.com/wp-content/uploads/2021/03/63x63.imm_.png" sizes="32x32" />
+    <title>Đăng nhập</title>
+    @Styles.Render("~/Content/css/bootstrap.min.css")
+    @Styles.Render("~/Content/fonts/font-awesome/css/font-awesome.css")
+    @Styles.Render("~/Content/css/plugins/sweetalert/sweetalert.css")
+    @Styles.Render("~/Content/css/style.css")
+    @Styles.Render("~/Content/css/animate.css")
+</head>
+
+<body class="" style="background-color: #ffffff;">
+
+    <div class="middle-box text-center p-3 p-md-0 animated fadeInDown">
+        <div>
+            <form id="nextlogin" class="m-t" role="form" method="post">
+                <div class="mb-1 m-md-5">
+                    <a href="https://immgroup.com/" title="Về website"><img class="mt-2" src="~/Content/img/bg/bongda.jpg" alt="Logo" style="height: 300px;padding: 5px;"></a>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" class="form-control" placeholder="Email của bạn" required="">
+                </div>
+
+                <button type="submit" class="btn btn-success block full-width m-b">Đăng nhập</button>
+
+            </form>
+           
+        </div>
+        
+    </div>
+
+
+    @Scripts.Render("~/Scripts/jquery-3.1.1.min.js")
+    @Scripts.Render("~/Scripts/popper.min.js")
+    @Scripts.Render("~/Scripts/bootstrap.js")
+    @Scripts.Render("~/Scripts/plugins/sweetalert/sweetalert.min.js")
+    <script type="text/javascript">
+
+        $("#nextlogin").submit(function (event) {
+            var form = new FormData();
+            var _email = $("#email").val();
+            form.append("_e", _email);          
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/login/", true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var res = xhr.response;
+                    var j_res = JSON.parse(res);
+                    if (j_res.type === "success") {
+                        window.location.href = j_res.url;
+                    }
+                    else {
+                        swal({ title: j_res.header, text: j_res.mess, type: j_res.type });
+                    }
+                }
+            };
+            xhr.send(form);
+            event.preventDefault();
+        });
+
+
+    </script>
+</body>
+
+</html>
 

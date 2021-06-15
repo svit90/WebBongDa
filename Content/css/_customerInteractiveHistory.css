@@ -1,0 +1,57 @@
+﻿.chat-discussion.customer-interactive-history {
+    height: auto
+}
+
+.chat-message.left .message.chatwcus {
+    border-left-color: #A00404
+}
+
+.chat-message.left .message.chatwpart {
+    border-left-color: #ffc107
+}
+
+.chat-message.left .message.chatwstaff {
+    border-left-color: #20568C
+}
+
+.chat-message.right .message.chatwcus, .chat-message.right .message.chatwstaff.Public {
+    border-right-color: #A00404
+}
+
+.chat-message.right .message.chatwpart {
+    border-right-color: #ffc107
+}
+
+.chat-message.right .message.chatwstaff {
+    border-right-color: #20568C
+}
+
+.chat-message.left .message {
+    border-left: 3px solid
+}
+
+.chat-message.right .message {
+    border-right: 3px solid
+}
+
+.chatContent .note-editor.note-frame {
+    border: 1px solid #dad8d8;
+}
+
+.chat-message.right {
+    text-align: right;
+}
+
+.message {
+    display: inline-block !important;
+    text-align: left;
+}
+
+.chat-message.right .message-content {
+    text-align: left;
+}
+
+.chat-message.left {
+    text-align: left;
+    display: flex;
+}

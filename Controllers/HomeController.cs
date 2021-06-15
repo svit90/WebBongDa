@@ -12,6 +12,7 @@ namespace BongDa.Controllers
     {
         Function fc = new Function();
         LinQtoSqlClassDataContext db = new LinQtoSqlClassDataContext();
+        Message mes = Message();
         public ActionResult Wellcome()
         {
             if (CookieHelper.CookieExist("Token") == true)
@@ -84,6 +85,50 @@ namespace BongDa.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult LoginDefine(FormCollection data)
+        {
+            Function fc = new Function();
+            JsonResult response = new JsonResult();
+            string _roleUser = "";
+            try
+            {
+                string _email = data["_e"];
+              
+                string _url = "";
+                if (_email != "")
+                {
+                    foreach (var row in db._0620_Workbase_GetStaff_byEmail(_email))
+                    {
+                        _url = "https://bongda.immgroup.com/verify/" + row.ROWID;
+                        string _body = "Vui lòng <a href='"+_url+"'>Click vào đây</a> để xác nhận đăng nhập";
+                        fc.SendMessageMailKit(row.EMAIL_HEADER,row.STAFF_EMAIL,fc.DecryptString(row.STAFF_PASS_EMAIL),row.STAFF_EMAIL,"","paul@immgroup.com", "[FC] Xác nhận truy cập web bóng đá của IMM GROUP", _body);
+
+                        response.Data = new
+                        {
+                            type = "success",
+                            url = _url
+                        };
+                        return response;
+                    }
+                    if (_url == "")
+                    {
+                        return mes.Error("Email không tồn tại trên hệ thống.");
+                    }
+                }
+                else
+                {
+                    return mes.Error(Library.Message.Content.MES001);
+                }
+                return mes.Error(Library.Message.Content.MES001);
+            }
+            catch (Exception e)
+            {
+                return mes.Error(e.Message);
+            }
         }
     }
 }

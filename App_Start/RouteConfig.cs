@@ -29,6 +29,13 @@ namespace BongDa
                 url: "home/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            //login/define/
+            routes.MapRoute(
+                name: "Define",
+                url: "login",
+                defaults: new { controller = "Home", action = "LoginDefine" }
+            );
         }
     }
 }

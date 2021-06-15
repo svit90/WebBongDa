@@ -1,0 +1,59 @@
+﻿.avatar{
+    width:120px;
+    height:120px;
+    position:relative;
+}
+.avatar img{
+    width:100%;
+    height:100%;
+}
+.avatar-edit {
+    position: relative;
+}
+.filetype {
+    position: absolute;
+    min-height: 80%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    z-index: 1;
+}
+.avatar-edit:after {
+    content: "\f030";
+    font-family: 'FontAwesome';
+    color: #e2e3e3;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    font-size: 40px;
+}
+.avatar-view {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+}
+.avatar-view canvas {
+    text-align: center;
+    width: 100%;
+}
+.jcrop-keymgr{
+    opacity:0;
+}
+.clt-name .input-group .input-group-append {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 3;
+    height: 35px;
+}
+.clt-name{
+    cursor:pointer;
+}
+.info-top {
+    position: absolute;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+}

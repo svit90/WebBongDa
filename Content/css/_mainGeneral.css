@@ -1,0 +1,65 @@
+﻿body {
+    color: #333;
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: normal;
+}
+input, select {
+    font: normal normal 14px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.text-default {
+    color: #1ab394
+}
+a {
+    color: #1ab394;
+}
+a:hover, a:focus, a:active {
+    color: #18a689
+}
+#inputToSearch {
+    min-width: 370px;
+}
+table.dataTable thead .sorting:after, 
+table.dataTable thead .sorting_asc:after, 
+table.dataTable thead .sorting_desc:after, 
+table.dataTable thead .sorting_asc_disabled:after, 
+table.dataTable thead .sorting_desc_disabled:after{
+    top:8px;
+    bottom:auto
+}
+/*Multiselect Custom*/
+select.form-control:not([size]):not([multiple]) {
+    height: 35px;
+}
+
+.chosen-container-multi .chosen-choices li.search-choice {
+    margin: 6px 0 4px 5px;
+}
+
+.chosen-container-multi .chosen-choices {
+    padding: 0 8px;
+    min-height: 35px;
+    border-radius: 0;
+}
+
+.chosen-container-single .chosen-single {
+    min-height: 35px;
+}
+
+.chosen-container-active .chosen-choices {
+    border-radius: 0 !important;
+}
+
+.chosen-container {
+    font-size: 14px;
+}
+.chosen-choices input{
+    width:100% !important;
+}
+.table-responsive .i-checks label {
+    margin-bottom: 0
+}
+.table-responsive .name{
+    white-space:nowrap
+}

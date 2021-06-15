@@ -1,0 +1,18 @@
+﻿
+
+.iradio_square-green {
+    margin-right: 5px;
+}
+
+.i-checks label {
+    margin-bottom: .7rem;
+}
+
+.i-checks label:hover {
+    cursor: pointer
+}
+
+.i-checks label span {
+    display: inline-block;
+    vertical-align: bottom;
+}
