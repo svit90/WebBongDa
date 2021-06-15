@@ -12,10 +12,21 @@ namespace BongDa
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.MapRoute(
+               name: "Homee",
+               url: "",
+               defaults: new { controller = "Home", action = "Wellcome"}
+           );
+
+            routes.MapRoute(
+               name: "Login",
+               url: "verify/{code}",
+               defaults: new { controller = "Home", action = "Verify", code = UrlParameter.Optional }
+           );
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
+                url: "home/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
         }
