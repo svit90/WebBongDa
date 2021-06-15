@@ -14,42 +14,47 @@
         .form-control {
             font-size: 1.4rem;
         }
+
         #ngaythidau, #ghichu {
             max-width: inherit;
         }
+
         .chosen-single {
             padding: 4px 10px !important;
             border-radius: 0 !important;
         }
+
         .fix-nation {
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: 'Righteous', cursive;
         }
+
         .flag-card img {
             border-radius: 50%;
             border: 5px solid transparent;
         }
 
-        .flag-card img:hover {
-            border-color: #ff7533;
-            cursor: pointer;
-        }
+            .flag-card img:hover {
+                border-color: #ff7533;
+                cursor: pointer;
+            }
+
         .number-nation {
             font-size: 7rem;
             padding: 20px;
             position: relative;
         }
 
-        .number-nation span {
-            content: "";
-            position: absolute;
-            top: 20px;
-            left: 50%;
-            font-size: 12px;
-            transform: translate(-50%);
-        }
+            .number-nation span {
+                content: "";
+                position: absolute;
+                top: 20px;
+                left: 50%;
+                font-size: 12px;
+                transform: translate(-50%);
+            }
 
         .fix-center {
             padding-top: 10rem;
@@ -61,8 +66,9 @@
             left: 0;
             z-index: 1;
         }
-        .navbar-fixed-top{
-            z-index:10;
+
+        .navbar-fixed-top {
+            z-index: 10;
         }
         .display-0{
             display:none;
@@ -90,62 +96,64 @@
 <div class="modal inmodal" id="viewvs">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Thêm trận đấu</h5>
+            <form class="frmsb">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Thêm trận đấu</h5>
 
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label class="col-form-label">Đội A</label>
-                    <div class="row no-gutters">
-                        <div class="col-md-10">
-                            <select name="chooseA" id="chooseA" data-placeholder="Chọn sản phẩm" class="input-type form-control chosen-select">
-                               @foreach (var team in ViewBag.Team)
-                                {
-                                    <option value="@team.FBT_ID.">@team.FBT_NAME</option>
+                </div>
+                <div class="modal-body">
 
-                                }
-                            </select>
+                    <div class="form-group">
+                        <label class="col-form-label">Đội A</label>
+                        <div class="row no-gutters">
+                            <div class="col-md-10">
+                                <select name="chooseA" id="chooseA" data-placeholder="Chọn sản phẩm" class="input-type form-control chosen-select">
+                                    @foreach (var team in ViewBag.Team)
+                                    {
+                                        <option value="@team.FBT_ID">@team.FBT_NAME</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="number" id="numberA" name="numberA" class="form-control" min="-5" max="5" step="0.5" value="0">
+                            </div>
                         </div>
-                        <div class="col-md-2">
-                            <input type="number" id="numberA" name="numberA" class="form-control" min="-5" max="5" value="0">
+
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Đội B</label>
+                        <div class="row no-gutters">
+                            <div class="col-md-10">
+                                <select name="chooseB" id="chooseB" data-placeholder="Chọn sản phẩm" class="input-type form-control chosen-select">
+                                    @foreach (var team in ViewBag.Team)
+                                    {
+                                        <option value="@team.FBT_ID">@team.FBT_NAME</option>
+
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="number" id="numberB" name="numberB" class="form-control" min="-5" max="5" step="0.5" value="0">
+                            </div>
                         </div>
                     </div>
 
-                </div>
-                <div class="form-group">
-                    <label class="col-form-label">Đội B</label>
-                    <div class="row no-gutters">
-                        <div class="col-md-10">
-                            <select name="chooseB" id="chooseB" data-placeholder="Chọn sản phẩm" class="input-type form-control chosen-select">
-                               @foreach (var team in ViewBag.Team)
-                                {
-                                    <option value="@team.FBT_ID.">@team.FBT_NAME</option>
-
-                                }
-                            </select>
-                        </div>
-                        <div class="col-md-2">
-                            <input type="number" id="numberB" name="numberB" class="form-control" min="-5" max="5" value="0">
-                        </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Ngày</label>
+                        <input type="text" id="ngaythidau" name="ngaythidau" placeholder="Ngày thi đấu" class="form-control required " >
                     </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-form-label">Ngày</label>
-                    <input type="text" id="ngaythidau" name="ngaythidau" placeholder="Ngày thi đấu" class="form-control ">
-                </div>
-                <div class="form-group">
-                    <label class="col-form-label">Ngày</label>
-                    <textarea id="ghichu" name="ghichu" rows="4" placeholder="Ghi chú" class="form-control "></textarea>
+                    <div class="form-group">
+                        <label class="col-form-label">Ngày</label>
+                        <textarea id="ghichu" name="ghichu" rows="4" placeholder="Ghi chú" class="form-control "></textarea>
+                    </div>
 
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
         </div>
     </div>
 </div>
@@ -250,13 +258,49 @@
     <script src="https://system.immgroup.com/Scripts/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="https://system.immgroup.com/Scripts/plugins/slimscroll/jquery.slimscroll.min.js"></script>
     <script src="https://system.immgroup.com/Scripts/plugins/chosen/chosen.jquery.js"></script>
+    <script src="https://system.immgroup.com/Scripts/plugins/validate/jquery.validate.min.js"></script>
     <script>
         $(document).ready(function () {
             $('.chosen-select').chosen({ width: "100%" });
             $(".spin-icon").click(function () {
                 $(".theme-config-box").toggleClass("show");
             });
+            $(".frmsb").validate({
+                lang: 'vi',
+                ignore: [],
+                submitHandler: function (form) {
+                    AddVS();
+                }
+            });
         });
+
+        function AddVS() {
+            var form = new FormData();
+            form.append("_chooseA", $('#chooseA').val());  
+            form.append("_chooseB", $('#chooseB').val());
+            form.append("_numberA", $("#numberA").val());
+            form.append("_numberB", $("#numberB").val());
+            form.append("_ngaythidau", $("#ngaythidau").val());
+            form.append("_ghichu", $("#ghichu").val());
+        
+            //AJAX REQUEST
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/home/add/submit", true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var res = xhr.responseText;
+                    var j_res = JSON.parse(res);
+
+                    if (j_res.mess !== "") {
+                        swal({ title: "Đã tạo thành công!", text: "", type: "success" });
+                    } else {
+                        swal({ title: j_res.header, text: j_res.mess, type: j_res.type });
+                    }
+                }
+            };
+            xhr.send(form);
+        }
+
     </script>
 
 

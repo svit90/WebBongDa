@@ -41,6 +41,13 @@ namespace BongDa
                url: "logout",
                defaults: new { controller = "Home", action = "Logout" }
            );
+
+
+            routes.MapRoute(
+             name: "sb_formadd",
+             url: "home/add/submit",
+             defaults: new { controller = "Home", action = "AddSubmit" }
+         );
         }
     }
 }
