@@ -11,9 +11,10 @@
     <title>@ViewBag.Title - Dự đoán vui mùa dịch</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("csslib_head", false)
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+<body class="gray-bg p-0">
+    <div class="navbar navbar-inverse ">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -21,7 +22,6 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Dự đoán vui mùa dịch", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -31,20 +31,10 @@
             </div>
         </div>
     </div>
-    <div class="container body-content">
+    <div class=" body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Dự đoán vui mùa dịch</p>
-        </footer>
     </div>
+    @RenderSection("jslib_footer", false)
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
-
-    <script type="text/javascript">
-
-    </script>
 </body>
 </html>

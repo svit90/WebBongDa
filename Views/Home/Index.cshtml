@@ -2,3 +2,225 @@
     ViewBag.Title = "Home Page";
 }
 
+@section csslib_head{
+    <link href="https://system.immgroup.com/Content/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://system.immgroup.com/Content/fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="https://system.immgroup.com/Content/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="https://system.immgroup.com/Content/css/animate.css" rel="stylesheet">
+    <link href="https://system.immgroup.com/Content/css/style.css" rel="stylesheet">
+    <link href="https://system.immgroup.com/Content/css/plugins/chosen/bootstrap-chosen.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Staatliches&display=swap" rel="stylesheet">
+    <style>
+        .fix-nation {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Righteous', cursive;
+        }
+
+        .number-nation {
+            font-size: 6rem;
+            padding: 20px;
+            position: relative;
+        }
+
+            .number-nation span {
+                content: "";
+                position: absolute;
+                top: 35px;
+                left: 50%;
+                font-size: 12px;
+                transform: translate(-50%);
+            }
+
+        .fix-center {
+            padding-top: 10rem;
+        }
+
+        .add-vs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 9999;
+        }
+        .navbar-fixed-top{
+            z-index:10;
+        }
+
+        @@media (min-width: 576px) and (max-width: 640px) {
+            .fix-center {
+                padding-top: 2rem;
+            }
+        }
+
+        @@media (max-width: 575.98px) {
+            .fix-center {
+                padding-top: 2rem;
+            }
+        }
+    </style>
+}
+
+<div class="add-vs">
+    <button class="btn btn-info btn-circle btn-lg m-2" type="button" data-toggle="modal" data-target="#viewvs"><i class="fa  fa-plus"></i></button>
+</div>
+
+
+
+<div class="modal inmodal" id="viewvs">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thêm trận đấu</h5>
+
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="col-form-label">Đội A</label>
+                    <select name="chooseA" id="chooseA" data-placeholder="Chọn sản phẩm" class="input-type form-control chosen-select">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <div class="form-group">
+                        <label class="col-form-label">Đội B</label>
+                        <select name="chooseB" id="chooseB" data-placeholder="Chọn sản phẩm" class="input-type form-control chosen-select">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-group">
+                        <label class="col-form-label">Tỷ lệ kèo</label>
+                        <input type="text" id="c_name" name="c_name" placeholder="Thứ tự Đội A - Đội B" class="form-control ">
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="theme-config">
+    <div class="theme-config-box show">
+        <div class="spin-icon">
+            <i class="fa fa-cogs fa-spin"></i>
+        </div>
+        <div class="skin-settings">
+            <div class="title">Trận đấu kế tiếp</div>
+            <div>
+                <ul class="list-group clear-list p-2 border">
+                    <li class="list-group-item ">
+                        <a href="#">
+                            <span class="float-right mt-2">Kèo 1.5:00 </span>
+                            <div class="choose-flag">
+                                <img src="img/flags/32/Abkhazia.png" alt="flag">
+                                <span> 0 - 0 </span>
+                                <img src="img/flags/32/Abkhazia.png" alt="flag">
+                            </div>
+                        </a>
+                    </li>
+                    <li class="list-group-item ">
+                        <span class="float-right mt-2">Kèo 1.5:00 </span>
+                        <div>
+                            <img src="img/flags/32/Abkhazia.png" alt="flag">
+                            <span> 0 - 0 </span>
+                            <img src="img/flags/32/Abkhazia.png" alt="flag">
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="fix-hieght animated fadeInDown">
+    <div class="fix-center">
+        <div class="row m-0">
+
+            <div class="col-md-5 text-center">
+                <div class="flag-card">
+                    <img src="https://immgroup.com/wp-content/uploads/bo-dao-nha-flag.png">
+
+                </div>
+                <div class="my-5">
+                    <p class="small">
+                        If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't
+                        anything embarrassing
+                    </p>
+                    <div class="user-friends">
+                        <a href=""><img alt="image" class="rounded-circle" src="img/a3.jpg"></a>
+                        <a href=""><img alt="image" class="rounded-circle" src="img/a1.jpg"></a>
+                        <a href=""><img alt="image" class="rounded-circle" src="img/a2.jpg"></a>
+                        <a href=""><img alt="image" class="rounded-circle" src="img/a4.jpg"></a>
+                        <a href=""><img alt="image" class="rounded-circle" src="img/a5.jpg"></a>
+                        <a href=""><img alt="image" class="rounded-circle" src="img/a6.jpg"></a>
+                        <a href=""><img alt="image" class="rounded-circle" src="img/a7.jpg"></a>
+                        <a href=""><img alt="image" class="rounded-circle" src="img/a8.jpg"></a>
+                        <a href=""><img alt="image" class="rounded-circle" src="img/a2.jpg"></a>
+                        <a href=""><img alt="image" class="rounded-circle" src="img/a1.jpg"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="fix-nation">
+                    <div class="number-nation">0<span class="label label-primary">+0.5</span></div>
+                    <div class="number-nation mb-4">:</div>
+                    <div class="number-nation">0<span class="label label-primary d-none">0</span></div>
+                </div>
+            </div>
+            <div class="col-md-5 text-center">
+                <div class="flag-card">
+                    <img src="https://immgroup.com/wp-content/uploads/bo-dao-nha-flag.png">
+                </div>
+                <div class="my-5">
+                    <p class="small">
+                        If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't
+                        anything embarrassing
+                    </p>
+                    <div class="user-friends">
+                        <a href=""><img alt="image" class="rounded-circle" src="img/a3.jpg"></a>
+                        <a href=""><img alt="image" class="rounded-circle" src="img/a1.jpg"></a>
+                        <a href=""><img alt="image" class="rounded-circle" src="img/a2.jpg"></a>
+                        <a href=""><img alt="image" class="rounded-circle" src="img/a4.jpg"></a>
+                        <a href=""><img alt="image" class="rounded-circle" src="img/a5.jpg"></a>
+                        <a href=""><img alt="image" class="rounded-circle" src="img/a6.jpg"></a>
+                        <a href=""><img alt="image" class="rounded-circle" src="img/a7.jpg"></a>
+                        <a href=""><img alt="image" class="rounded-circle" src="img/a8.jpg"></a>
+                        <a href=""><img alt="image" class="rounded-circle" src="img/a2.jpg"></a>
+                        <a href=""><img alt="image" class="rounded-circle" src="img/a1.jpg"></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+@section jslib_footer {
+
+    <script src="https://system.immgroup.com/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="https://system.immgroup.com/Scripts/popper.min.js"></script>
+    <script src="https://system.immgroup.com/Scripts/bootstrap.js"></script>
+    <script src="https://system.immgroup.com/Scripts/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="https://system.immgroup.com/Scripts/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="https://system.immgroup.com/Scripts/plugins/chosen/chosen.jquery.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.chosen-select').chosen({ width: "100%" });
+            $(".spin-icon").click(function () {
+                $(".theme-config-box").toggleClass("show");
+            });
+        });
+    </script>
+
+
+}
