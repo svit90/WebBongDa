@@ -78,16 +78,22 @@
                 <div class="form-group">
                     <label class="col-form-label">Đội A</label>
                     <select name="chooseA" id="chooseA" data-placeholder="Chọn sản phẩm" class="input-type form-control chosen-select">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
+                        @foreach (var team in ViewBag.Team)
+                        {
+                            <option value="@team.FBT_ID.">@team.FBT_NAME</option>
+
+                        }
                     </select>
                 </div>
                 <div class="form-group">
                     <div class="form-group">
                         <label class="col-form-label">Đội B</label>
                         <select name="chooseB" id="chooseB" data-placeholder="Chọn sản phẩm" class="input-type form-control chosen-select">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
+                            @foreach (var team in ViewBag.Team)
+                            {
+                                <option value="@team.FBT_ID">@team.FBT_NAME</option>
+
+                            }
                         </select>
                     </div>
                 </div>
