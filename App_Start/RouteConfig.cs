@@ -36,6 +36,11 @@ namespace BongDa
                 url: "login",
                 defaults: new { controller = "Home", action = "LoginDefine" }
             );
+            routes.MapRoute(
+               name: "Log out",
+               url: "logout",
+               defaults: new { controller = "Home", action = "Logout" }
+           );
         }
     }
 }

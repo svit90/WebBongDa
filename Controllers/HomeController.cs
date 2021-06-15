@@ -63,12 +63,17 @@ namespace BongDa.Controllers
                     sql += ",'" + u.ROWID + "')";
                     DBHelper.ExecuteQuery(sql);
                     CookieHelper.CreateCookie("Token", u.ROWID.ToString(), DateTime.Now.AddDays(90));
+                    CookieHelper.CreateCookie("UserName", u.STAFF_NAME, DateTime.Now.AddDays(90));
                     return RedirectToAction("Index", "Home");
                 }
             }
             return RedirectToAction("Index", "Home");
         }
-
+        public ActionResult Logout()
+        {
+            CookieHelper.ClearCookie();
+            return RedirectToAction("Wellcome", "Home");
+        }
         public ActionResult Index()
         {
             return View();
@@ -106,7 +111,7 @@ namespace BongDa.Controllers
                     {
                         _url = "https://bongda.immgroup.com/verify/" + row.ROWID;
                         string _body = "Vui lòng <a href='"+_url+"'>Click vào đây</a> để xác nhận đăng nhập. tesst";
-                        fc.SendMessageMailKit("[FC]", "crm@immgroup.com", "xnmpyehltkznxedc", _email, "","paul@immgroup.com", " Xác nhận truy cập web bóng đá của IMM GROUP", _body);
+                        fc.SendMessageMailKit("[Football Match]", "crm@immgroup.com", "xnmpyehltkznxedc", _email, "","paul@immgroup.com", " Xác nhận truy cập web bóng đá của IMM GROUP", _body);
 
                         return mes.Success("Vui lòng kiểm tra email để xác nhận đăng nhập");
                     }
