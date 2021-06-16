@@ -29,7 +29,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li id="username" name="username"><a href="#">Xin chào, @ViewBag.UserName</a></li>
-                    <li><a href="#">Số dư tài khoản của bạn: @ViewBag.UserMoney đ</a></li>
+                    <li><a id="youraccount" name="youraccount" href="#">@ViewBag.UserMoney</a></li>
                     <li>@Html.ActionLink("Thoát", "Logout", "Home")</li>
                 </ul>
             </div>

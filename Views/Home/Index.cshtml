@@ -1,4 +1,8 @@
-﻿@section csslib_head{
+﻿@using Library;
+@{ 
+    Function fc = new Function();
+} 
+@section csslib_head{
     <link href="https://system.immgroup.com/Content/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://system.immgroup.com/Content/fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="https://system.immgroup.com/Content/css/plugins/iCheck/custom.css" rel="stylesheet">
@@ -9,6 +13,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Staatliches&display=swap" rel="stylesheet">
     <link href="https://system.immgroup.com/Content/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
     <style>
+        select.form-control:not([size]):not([multiple]) {
+            height: 3.55rem!important;
+        }
+        .endvs, .beginvs {
+            min-height: 100px;
+            max-height: 200px;
+            overflow: scroll;
+        }
+        
         .list-group-item a {
             color: #3c3c3c;
         }
@@ -31,7 +44,15 @@
             left: 45px;
         }
 
-       
+        .endvs .team-left {
+            left: 58px;
+        }
+        .endvs .team-right {
+            left: 121px;
+        }
+        .bg-picked {
+            background: #d2d2d2 !important;
+        }
 
         .form-control {
             font-size: 1.4rem !important;
@@ -60,11 +81,11 @@
             transition-duration: 0.1s;
         }
 
-            .flag-card img:hover {
-                cursor: pointer;
-                transform: scale(1.1);
-                transition: all ease 500ms;
-            }
+        .flag-card img:hover {
+            cursor: pointer;
+            transform: scale(1.1);
+            transition: all ease 500ms;
+        }
 
         .number-nation {
             font-size: 7rem;
@@ -72,14 +93,14 @@
             position: relative;
         }
 
-            .number-nation span {
-                content: "";
-                position: absolute;
-                top: 20px;
-                left: 50%;
-                font-size: 12px;
-                transform: translate(-50%);
-            }
+        .number-nation span {
+            content: "";
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            font-size: 12px;
+            transform: translate(-50%);
+        }
 
         .fix-center {
             padding-top: 10rem;
@@ -104,11 +125,35 @@
             .fix-center {
                 padding-top: 2rem;
             }
+            .flag-card img {
+                width: 58px;
+            }
+            .number-nation {
+                font-size: 2rem;
+                padding: 5px;
+                margin-top: 10px;
+            }
+            .number-nation span {
+                font-size: 10px;
+                top: -11px;
+            }
         }
 
         @@media (max-width: 575.98px) {
             .fix-center {
                 padding-top: 2rem;
+            }
+            .flag-card img {
+                width: 58px;
+            }
+            .number-nation {
+                font-size: 2rem;
+                padding: 5px;
+                margin-top: 10px;
+            }
+            .number-nation span {
+                font-size: 10px;
+                top: -11px;
             }
         }
     </style>
@@ -133,7 +178,7 @@
                     <div class="form-group">
                         <label class="col-form-label">Đội A</label>
                         <div class="row no-gutters">
-                            <div class="col-md-10">
+                            <div class="col-10 col-md-10">
                                 <select name="chooseA" id="chooseA" data-placeholder="Chọn đội" class="input-type form-control chosen-select">
                                     @foreach (var team in ViewBag.Team)
                                     {
@@ -141,7 +186,7 @@
                                     }
                                 </select>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-2 col-md-2">
                                 <input type="number" id="numberA" name="numberA" class="form-control" min="0" max="5" step="0.5" value="0">
                             </div>
                         </div>
@@ -150,7 +195,7 @@
                     <div class="form-group">
                         <label class="col-form-label">Đội B</label>
                         <div class="row no-gutters">
-                            <div class="col-md-10">
+                            <div class="col-10 col-md-10">
                                 <select name="chooseB" id="chooseB" data-placeholder="Chọn đội" class="input-type form-control chosen-select">
                                     @foreach (var team in ViewBag.Team)
                                     {
@@ -159,7 +204,7 @@
                                     }
                                 </select>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-2 col-md-2">
                                 <input type="number" id="numberB" name="numberB" class="form-control" min="0" max="5" step="0.5" value="0">
                             </div>
                         </div>
@@ -175,10 +220,11 @@
                     <div class="form-group">
                         <label class="col-form-label">Lúc</label>
                         <div class="row no-gutters">
-                            <div class="col-md-5">
+                            <div class="col-5 col-md-5">
                                 <input type="text" id="giothidau" name="giothidau" placeholder="HH" class="form-control required ">
-                            </div><strong>:</strong>
-                            <div class="col-md-5">
+                            </div>
+                            <div class="col-2 text-center"> <strong>:</strong></div>
+                            <div class="col-5 col-md-5">
                                 <input type="text" id="phutthidau" name="phutthidau" placeholder="mm" class="form-control required ">
                             </div>
                         </div>
@@ -210,14 +256,14 @@
                 <div class="modal-body">
 
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-6 col-md-6">
                             <div class="form-group">
                                 <label id="namedoiA" name="namedoiA" class="col-form-label"></label>
                                 <img id="flagdoiA" name="flagdoiA" src="~/Content/img/flags/32/Abkhazia.png" alt="flag">
                                 <input type="text" id="ketquaA" name="ketquaA" class="form-control" placeholder="0" />
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-6 col-md-6">
                             <div class="form-group">
                                 <label id="namedoiB" name="namedoiB" class="col-form-label"></label>
                                 <img id="flagdoiB" name="flagdoiB" src="~/Content/img/flags/32/Abkhazia.png" " alt="flag">
@@ -295,13 +341,14 @@
         </div>
         <div class="skin-settings">
             <div class="title">Trận đấu kế tiếp</div>
-            <div>
+            <div class="beginvs">
                 <ul class="list-group clear-list p-2 border">
                     @foreach (var m in ViewBag.MatchNext)
                     {
                         string flagi1 = @m.flagTeam1 + ".png";
                         string flagi2 = @m.flagTeam2 + ".png";
-                        <li class="list-group-item">
+                        string flagticked = fc.CheckPicked(@m.MTCH_ID);
+                        <li class="list-group-item @flagticked">
                             <a href="/home/@m.MTCH_ID">
                                 <span class="mt-2 float-right">@m.MTCH_DATE  @m.MTCH_HH : @m.MTCH_MM</span>
                                 <div class="choose-flag">
@@ -310,6 +357,28 @@
                                     -
                                     <span class="team-right display-@m.KEO_2">+ @m.KEO_2</span>
                                     <img title="@m.nameTeam2" src="~/Content/img/flags/32/@flagi2" alt="flag">
+                                </div>
+                            </a>
+                        </li>
+
+                    }
+                </ul>
+            </div>
+            <div class="title">Trận đấu đã kết thúc</div>
+            <div class="endvs">
+                <ul class="list-group clear-list p-2 border">
+                    @foreach (var m in ViewBag.MatchDone)
+                    {
+                        string flagi1 = @m.flagTeam1 + ".png";
+                        string flagi2 = @m.flagTeam2 + ".png";
+                        <li class="list-group-item text-center">
+                            <a href="/home/@m.MTCH_ID">                                
+                                <div class="choose-flag">
+                                    <img title="@m.nameTeam1" src="~/Content/img/flags/32/@flagi1" alt="flag"> @m.TYSO_1
+                                    <span class="team-left display-@m.KEO_1">+ @m.KEO_1</span>
+                                    -
+                                    <span class="team-right display-@m.KEO_2">+ @m.KEO_2</span>
+                                    @m.TYSO_2 <img title="@m.nameTeam2" src="~/Content/img/flags/32/@flagi2" alt="flag">
                                 </div>
                             </a>
                         </li>
@@ -330,8 +399,13 @@
                 string flagimg1 = @match.flagTeam1 + ".png";
                 string flagimg2 = @match.flagTeam2 + ".png";
                 string avatar1 = ""; string avatar2 = "";
-            <div class="col-md-5 text-center">               
-                <div class="flag-card" data-toggle="modal" data-backdrop="static" data-target="#datcuoc" onclick="pickteamfirst('@match.FLAG_ACTIVE','@match.idTeam1','@match.nameTeam1')">
+            <div class="col-12">
+                <div class="text-center">
+                    <button class="btn btn-success btn-lg m-2 display-@match.FLAG_ACTIVE" type="button" onclick="nhapketqua('@match.MTCH_ID','@match.nameTeam1','@flagimg1','@match.nameTeam2','@flagimg2');">Nhập kết quả</button>
+                </div>
+            </div>
+            <div class="col-5 col-md-5 text-center">               
+                <div class="flag-card" onclick="pickteamfirst('@match.FLAG_ACTIVE','@match.idTeam1','@match.nameTeam1')">
                     <img src="~/Content/img/flags/64/@flagimg1" alt="flag">
                 </div>
                 <div class="my-5">
@@ -344,29 +418,27 @@
                         }
                         @foreach (var md1 in ViewBag.MatchDetails)
                         {
-                            total1 += Convert.ToInt32(md1.MTCHD_NOTE);
                             avatar1 = md1.NOTE1 + ".jpg";
                             if (md1.TEAM_ID == match.idTeam1)
                             {
+                                total1 += Convert.ToInt32(md1.MTCHD_NOTE);
                                 <a href="#" title="@md1.USER_NAME"><img alt="image" class="rounded-circle" src="~/Content/img/avatar/@avatar1"></a>
                             }
                         }
                     </div>
-                    <div id="totaltienA" name="totaltienA">Total: @total1 đ </div>
+                    <div id="totaltienA" name="totaltienA">@total1</div>
                 </div>
             </div>
-                <div class="col-md-2">
+                <div class="col-2 col-md-2">
                     <div class="fix-nation">
                         <div class="number-nation">@match.TYSO_1<span class="label label-danger display-@match.KEO_1">+ @match.KEO_1</span></div>
                         <div class="number-nation mb-4">:</div>
                         <div class="number-nation">@match.TYSO_2<span class="label label-danger display-@match.KEO_2">@match.KEO_2</span></div>
                     </div>
-                    <div class="text-center">
-                        <button class="btn btn-success btn-lg m-2 display-@match.FLAG_ACTIVE" type="button" onclick="nhapketqua('@match.MTCH_ID','@match.nameTeam1','@flagimg1','@match.nameTeam2','@flagimg2');">Nhập kết quả</button>
-                    </div>
+                   
                 </div>
-                <div class="col-md-5 text-center">
-                    <div class="flag-card" data-toggle="modal" data-backdrop="static" data-target="#datcuoc" onclick="pickteamfirst('@match.FLAG_ACTIVE','@match.idTeam2','@match.nameTeam2')">
+                <div class="col-5 col-md-5 text-center">
+                    <div class="flag-card" onclick="pickteamfirst('@match.FLAG_ACTIVE','@match.idTeam2','@match.nameTeam2')">
                         <img src="~/Content/img/flags/64/@flagimg2" alt="flag">
                     </div>
                     <div class="my-5">
@@ -379,17 +451,17 @@
                             }
                             @foreach (var md2 in ViewBag.MatchDetails)
                             {
-                                total2 += Convert.ToInt32(md2.MTCHD_NOTE);
                                 avatar2 = md2.NOTE1 + ".jpg";
                                 if (md2.TEAM_ID == match.idTeam2)
                                 {
+                                    total2 += Convert.ToInt32(md2.MTCHD_NOTE);
                                     <a href="#" title="@md2.USER_NAME"><img alt="image" class="rounded-circle" src="~/Content/img/avatar/@avatar2"></a>
                                 }
 
                             }
                         </div>
                     </div>
-                    <div id="totaltienB" name="totaltienB">Total: @total2 đ </div>
+                    <div id="totaltienB" name="totaltienB">@total2</div>
                 </div>
             }
         </div>
@@ -432,6 +504,13 @@
                     AddVS();
                 }
             });
+            //totaltienB
+            var tien1 = $('#totaltienA').text();
+            var tien2 = $('#totaltienB').text();
+            var yourtien = $("#youraccount").text();
+            $('#totaltienA').text(formatNumber(tien1) + " đ");
+            $('#totaltienB').text(formatNumber(tien2) + " đ");
+            $("#youraccount").text("Số dư tài khoản của bạn là : " + formatNumber(yourtien) + " đ");
         });
 
         function AddVS() {
@@ -471,8 +550,10 @@
             if (flag !== "0") {
                 $('#nameteam_pick').attr('value', nameteam_1);
                 $('#idteam_pick').attr('value', idteam_1);
+                $('#datcuoc').modal("show"); 
             } else {
                 swal("Lỗi", "Trận đấu đã kết thúc rồi!.", "error");
+                $('#datcuoc').modal("hide"); 
             }
             
         }
@@ -581,7 +662,10 @@
                 swal("Lỗi", "Sai ở chỗ nào rồi", "error");
             }           
         }
-
+        function formatNumber(n) {
+            // format number 1000000 to 1,234,567
+            return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+        }
     </script>
 
 

@@ -173,6 +173,12 @@ namespace Library
     public class Function
     {
 
+        public string CheckPicked(int matchId)
+        {
+            string email = CookieHelper.GetCookie("Email");
+            string flag = DBHelper.GetColumnVal("SELECT 'bg-picked' AS ClassPicked FROM [wcweb].[dbo].M_MATCH_D WHERE M_MATCH_D.MTCH_ID = " + matchId + " AND M_MATCH_D.USER_EMAIL = '" + email + "';", "ClassPicked");           
+            return flag;
+        }
         /// Encrypt - Decrypt String Function
         public string Encrypt(string text)
         {
