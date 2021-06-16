@@ -1,8 +1,4 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
-
-@section csslib_head{
+﻿@section csslib_head{
     <link href="https://system.immgroup.com/Content/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://system.immgroup.com/Content/fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="https://system.immgroup.com/Content/css/plugins/iCheck/custom.css" rel="stylesheet">
@@ -32,8 +28,9 @@
         }
 
         .flag-card img {
-            border-radius: 50%;
+            border-radius: 0%;
             border: 5px solid transparent;
+            width:150px;
         }
 
             .flag-card img:hover {
@@ -88,7 +85,7 @@
 }
 
 <div class="add-vs">
-    <button class="btn btn-info btn-circle btn-lg m-2" type="button" data-toggle="modal" data-backdrop="static" data-target="#viewvs"><i class="fa  fa-plus"></i></button>
+    <button class="btn btn-success btn-circle btn-lg m-2" type="button" data-toggle="modal" data-backdrop="static" data-target="#viewvs"><i class="fa  fa-plus"></i></button>
 </div>
 
 
@@ -140,18 +137,29 @@
 
                     <div class="form-group">
                         <label class="col-form-label">Ngày</label>
-                        <input type="text" id="ngaythidau" name="ngaythidau" placeholder="Ngày thi đấu" class="form-control required " >
+                        <input type="text" id="ngaythidau" name="ngaythidau" placeholder="DD/MM/YYYY" class="form-control required ">
                     </div>
                     <div class="form-group">
-                        <label class="col-form-label">Ngày</label>
+                        <label class="col-form-label">Lúc</label>
+                        <div class="row no-gutters">
+                            <div class="col-md-5">
+                                <input type="text" id="giothidau" name="giothidau" placeholder="HH" class="form-control required ">
+                            </div><strong>:</strong>
+                            <div class="col-md-5">
+                                <input type="text" id="phutthidau" name="phutthidau" placeholder="mm" class="form-control required ">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Ghi chú</label>
                         <textarea id="ghichu" name="ghichu" rows="4" placeholder="Ghi chú" class="form-control "></textarea>
                     </div>
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>            
             </form>
 
         </div>
@@ -166,26 +174,24 @@
             <div class="title">Trận đấu kế tiếp</div>
             <div>
                 <ul class="list-group clear-list p-2 border">
-                    <li class="list-group-item ">
-                        <a href="#">
-                            <span class="float-right mt-2">Kèo 1.5:00 </span>
-                            <div class="choose-flag">
-                                <img src="img/flags/32/Abkhazia.png" alt="flag">
-                                <span> 0 - 0 </span>
-                                <img src="img/flags/32/Abkhazia.png" alt="flag">
-                            </div>
-                        </a>
-                    </li>
-                    <li class="list-group-item ">
-                        <span class="float-right mt-2">Kèo 1.5:00 </span>
-                        <div>
-                            <img src="img/flags/32/Abkhazia.png" alt="flag">
-                            <span> 0 - 0 </span>
-                            <img src="img/flags/32/Abkhazia.png" alt="flag">
-                        </div>
-                    </li>
-
-                </ul>
+                    @foreach (var m in ViewBag.Match)
+                    {
+                        string flagi1 = @m.flagTeam1 + ".png";
+                        string flagi2 = @m.flagTeam2 + ".png";
+                        <li class="list-group-item ">
+                            <a href="/home/@m.MTCH_ID">
+                                <span class="mt-2">@m.MTCH_DATE lúc @m.MTCH_HH : @m.MTCH_MM</span>
+                                <div class="choose-flag">
+                                    <img src="~/Content/img/flags/32/@flagi1" alt="flag">
+                                    <span class="display-@m.KEO_1">+ @m.KEO_1</span>
+                                    -
+                                    <span class="display-@m.KEO_2">+ @m.KEO_2</span>
+                                    <img src="~/Content/img/flags/32/@flagi2" alt="flag">
+                                </div>
+                            </a>
+                        </li>                     
+                    }
+                    </ul>
             </div>
 
         </div>
@@ -195,10 +201,14 @@
     <div class="fix-center">
         <div class="row m-0">
             @foreach (var match in ViewBag.Match)
-            {             
+            {
+
+                string flagimg1 = @match.flagTeam1 +".png";
+                string flagimg2 = @match.flagTeam2 + ".png";
+                string avatar1 = ""; string avatar2 = "";
                 <div class="col-md-5 text-center">
-                    <div class="flag-card">
-                        <img src="~/Content/img/flags/64/@match.flagTeam1" alt="flag">
+                    <div class="flag-card" onclick="pickteam('@match.MTCH_ID','@match.idTeam1','@match.nameTeam1')">
+                        <img src="~/Content/img/flags/64/@flagimg1" alt="flag">
                     </div>
                     <div class="my-5">
                         <p class="small">
@@ -207,25 +217,25 @@
                         <div class="user-friends">
                             @foreach (var md1 in ViewBag.MatchDetails)
                             {
-                                if (md1.TEAM_ID = match.idTeam1)
+                                avatar1 = md1.NOTE1 + ".jpg";
+                                if (md1.TEAM_ID == match.idTeam1)
                                 {
-                                    <a href=""><img alt="image" class="rounded-circle" src="~/Content/img/avatar/@md1.NOTE1.jpg"></a>
+                                    <a href="#" title="@md1.USER_NAME"><img alt="image" class="rounded-circle" src="~/Content/img/avatar/@avatar1"></a>
                                 }
-
                             }
                         </div>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="fix-nation">
-                        <div class="number-nation">@match.TYSO_1<span class="label label-primary display-@match.KEO_1">@match.KEO_1</span></div>
+                        <div class="number-nation">@match.TYSO_1<span class="label label-danger display-@match.KEO_1">+ @match.KEO_1</span></div>
                         <div class="number-nation mb-4">:</div>
-                        <div class="number-nation">@match.TYSO_2<span class="label label-primary display-@match.KEO_2">@match.KEO_2</span></div>
+                        <div class="number-nation">@match.TYSO_2<span class="label label-danger display-@match.KEO_2">@match.KEO_2</span></div>
                     </div>
                 </div>
                 <div class="col-md-5 text-center">
-                    <div class="flag-card">
-                        <img src="~/Content/img/flags/64/@match.flagTeam2" alt="flag">
+                    <div class="flag-card" onclick="pickteam('@match.MTCH_ID','@match.idTeam2','@match.nameTeam2')">
+                        <img src="~/Content/img/flags/64/@flagimg2" alt="flag">
                     </div>
                     <div class="my-5">
                         <p class="small">
@@ -234,9 +244,10 @@
                         <div class="user-friends">
                             @foreach (var md2 in ViewBag.MatchDetails)
                             {
-                                if (md2.TEAM_ID = match.idTeam2)
+                                avatar2 = md2.NOTE1 + ".jpg";
+                                if (md2.TEAM_ID == match.idTeam2)
                                 {
-                                    <a href=""><img alt="image" class="rounded-circle" src="~/Content/img/avatar/@md2.NOTE1.jpg"></a>
+                                    <a href="#" title="@md2.USER_NAME"><img alt="image" class="rounded-circle" src="~/Content/img/avatar/@avatar2"></a>
                                 }
 
                             }
@@ -281,6 +292,8 @@
             form.append("_numberA", $("#numberA").val());
             form.append("_numberB", $("#numberB").val());
             form.append("_ngaythidau", $("#ngaythidau").val());
+            form.append("_giothidau", $("#giothidau").val());
+            form.append("_phutthidau", $("#phutthidau").val());
             form.append("_ghichu", $("#ghichu").val());
         
             //AJAX REQUEST
@@ -290,9 +303,12 @@
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     var res = xhr.responseText;
                     var j_res = JSON.parse(res);
-
                     if (j_res.mess !== "") {
-                        swal({ title: "Đã tạo thành công!", text: "", type: "success" });
+                        swal({ title: "Đã tạo thành công!", text: "", type: "success" },
+                            function () {
+                                location.reload();
+                            }
+                        );
                     } else {
                         swal({ title: j_res.header, text: j_res.mess, type: j_res.type });
                     }
@@ -301,6 +317,47 @@
             xhr.send(form);
         }
 
+        function pickteam(mtchid, idteam, nameteam) {
+            swal({
+                title: "Xác nhận!",
+                text: "Bạn chắc chắn chọn đội " + nameteam + ".",                    
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Chắc rồi!",
+                cancelButtonText: "Để coi lại",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+                function (isConfirm) {
+                    if (isConfirm) {
+                        var form = new FormData();
+                        form.append("_idteam", idteam);  
+                        form.append("_mtchid", mtchid); 
+                        //AJAX REQUEST
+                        var xhr = new XMLHttpRequest();
+                        xhr.open("POST", "/home/pickteam/submit", true);
+                        xhr.onreadystatechange = function () {
+                            if (xhr.readyState == 4 && xhr.status == 200) {
+                                var res = xhr.responseText;
+                                var j_res = JSON.parse(res);
+                                if (j_res.type === "success") {                                   
+                                    swal({ title: "Thông báo", text: "Bạn vừa chọn đội " + nameteam, type: "success" },
+                                        function () {
+                                            location.reload();
+                                        }
+                                    );
+                                } else {
+                                    swal({ title: j_res.header, text: j_res.mess, type: j_res.type });
+                                }
+
+                            }
+                        };
+                        xhr.send(form);
+                    } else {
+                        swal("Huỷ", "Chọn sai mất tiền đó", "error");
+                    }
+                });        
+        }
     </script>
 
 

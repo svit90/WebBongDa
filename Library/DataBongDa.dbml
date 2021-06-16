@@ -9,20 +9,44 @@
       <Column Name="FLAG_ACTIVE" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.[_062021_bongda_Get_Match]" Method="_062021_bongda_Get_Match">
-    <Parameter Name="Mode" Parameter="mode" Type="System.String" DbType="NVarChar(100)" />
-    <Parameter Name="MacthId" Parameter="macthId" Type="System.Int32" DbType="Int" />
-    <ElementType Name="_062021_bongda_Get_MatchResult">
-      <Column Name="MTCH_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="MTCH_DATE" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="TEAM_1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="TEAM_2" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="TYSO_1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="TYSO_2" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="KEO_1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="KEO_2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="MTCH_NOTE" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+  <Function Name="dbo.[_0620_wc_GetStaff_ByRowId]" Method="_0620_wc_GetStaff_ByRowId">
+    <Parameter Name="StaffRowId" Parameter="staffRowId" Type="System.String" DbType="VarChar(MAX)" />
+    <ElementType Name="_0620_wc_GetStaff_ByRowIdResult">
+      <Column Name="STAFF_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="STAFF_NAME" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="STAFF_NAME_OTHER" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="STAFF_BIRTH" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="STAFF_EMAIL" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="STAFF_PASS_CRM" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="STAFF_PASS_EMAIL" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="STAFF_PERMISSION" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="STAFF_AVATAR_LINK" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="STAFF_PHONE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="STAFF_NOTE" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="STAFF_POSITION" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="EMAIL_HEADER" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SIGNATURE_EMAIL" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="STAFF_OFFICE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="STAFF_GROUP" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="STAFF_GROUP_ON" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="FLAG_ACTIVE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="INSERT_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UPDATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="PRODUCT_SALE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="STAFF_TEAM" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ROWID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="RE_LINK" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="APP_PASS" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TWOSTEP_ENROLL" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="STAFF_GENDER" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="DATE_SYNC" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="USER_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="USER_NAME" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="USER_EMAIL" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="USER_PASS" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="USER_MONEY" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="FLAG_ACTIVE1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NOTE1" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </ElementType>
   </Function>
   <Function Name="dbo.[_062021_bongda_Get_Match_Details]" Method="_062021_bongda_Get_Match_Details">
@@ -31,6 +55,8 @@
     <ElementType Name="_062021_bongda_Get_Match_DetailsResult">
       <Column Name="MTCH_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="MTCH_DATE" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="MTCH_HH" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="MTCH_MM" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
       <Column Name="TEAM_1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="TEAM_2" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="TYSO_1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -53,6 +79,30 @@
       <Column Name="USER_MONEY" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
       <Column Name="FLAG_ACTIVE2" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="NOTE1" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.[_062021_bongda_Get_Match]" Method="_062021_bongda_Get_Match">
+    <Parameter Name="Mode" Parameter="mode" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="MacthId" Parameter="macthId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="_062021_bongda_Get_MatchResult">
+      <Column Name="MTCH_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MTCH_DATE" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="MTCH_HH" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="MTCH_MM" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="TEAM_1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TEAM_2" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TYSO_1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TYSO_2" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="KEO_1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="KEO_2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MTCH_NOTE" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="FLAG_ACTIVE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="idTeam1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="nameTeam1" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="flagTeam1" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="idTeam2" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="nameTeam2" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="flagTeam2" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
 </Database>

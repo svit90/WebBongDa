@@ -1,8 +1,5 @@
 ﻿@using Library;
-@{
-    string _token = CookieHelper.GetCookie("Token");
-    string _name = CookieHelper.GetCookie("UserName");
-}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +8,13 @@
     <title>@ViewBag.Title - Dự đoán vui mùa dịch</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/fonts/font-awesome/css/font-awesome.css")
+    @Styles.Render("~/Content/css/bootstrap.min.css")
+    @Styles.Render("~/Content/css/plugins/sweetalert/sweetalert.css")
     @RenderSection("csslib_head", false)
+    @Styles.Render("~/Content/css/animate.css")
+    @Styles.Render("~/Content/css/plugins/toastr/toastr.min.css")
+    @Styles.Render("~/Content/css/style.css")
 </head>
 <body class="gray-bg p-0">
     <div class="navbar navbar-inverse rounded-0">
@@ -25,7 +28,8 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li id="username" name="username">Xin chào, @_name</li>
+                    <li id="username" name="username"><a href="#">Xin chào, @ViewBag.UserName</a></li>
+                    <li><a href="#">Số dư tài khoản của bạn: @ViewBag.UserMoney đ</a></li>
                     <li>@Html.ActionLink("Thoát", "Logout", "Home")</li>
                 </ul>
             </div>
@@ -34,6 +38,13 @@
     <div class=" body-content">
         @RenderBody()
     </div>
+
+    @Scripts.Render("~/Scripts/jquery-3.1.1.min.js")
+    @Scripts.Render("~/Scripts/popper.min.js")
+    @Scripts.Render("~/Scripts/bootstrap.js")
+    @Scripts.Render("~/Scripts/plugins/metisMenu/jquery.metisMenu.js")
+    @Scripts.Render("~/Scripts/plugins/slimscroll/jquery.slimscroll.min.js")
+    @Scripts.Render("~/Scripts/plugins/sweetalert/sweetalert.min.js")
     @RenderSection("jslib_footer", false)
 
 </body>

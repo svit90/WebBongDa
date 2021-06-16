@@ -11,7 +11,6 @@ namespace BongDa
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.MapRoute(
                name: "Homee",
                url: "",
@@ -42,12 +41,18 @@ namespace BongDa
                defaults: new { controller = "Home", action = "Logout" }
            );
 
-
             routes.MapRoute(
              name: "sb_formadd",
              url: "home/add/submit",
              defaults: new { controller = "Home", action = "AddSubmit" }
-         );
+            );
+            ///home/pickteam/" + idteam +"/submit
+            ///routes.MapRoute(
+            routes.MapRoute(
+            name: "sb_pickteam",
+             url: "home/pickteam/submit",
+             defaults: new { controller = "Home", action = "PickteamSubmit"}
+            );
         }
     }
 }

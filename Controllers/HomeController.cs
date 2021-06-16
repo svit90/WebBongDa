@@ -42,7 +42,14 @@ namespace BongDa.Controllers
                 }
                 else
                 {
-                    CookieHelper.CreateCookie("Token", userid, DateTime.Now.AddDays(90));
+                    foreach (var u in db._0620_Workbase_Api_GetStaff_ByRowId(code))
+                    {
+                        CookieHelper.ClearCookie();
+                        CookieHelper.CreateCookie("Token", u.ROWID.ToString(), DateTime.Now.AddDays(90));
+                        CookieHelper.CreateCookie("Email", u.STAFF_EMAIL, DateTime.Now.AddDays(90));
+                        CookieHelper.CreateCookie("UserName", u.STAFF_NAME, DateTime.Now.AddDays(90));
+                        return RedirectToAction("Index", "Home");
+                    }
                     return RedirectToAction("Index", "Home");
                 }
             }
@@ -65,7 +72,9 @@ namespace BongDa.Controllers
                     sql += ",1 ";
                     sql += ",'" + u.ROWID + "')";
                     DBHelper.ExecuteQuery(sql);
+                    CookieHelper.ClearCookie();
                     CookieHelper.CreateCookie("Token", u.ROWID.ToString(), DateTime.Now.AddDays(90));
+                    CookieHelper.CreateCookie("Email", u.STAFF_EMAIL, DateTime.Now.AddDays(90));
                     CookieHelper.CreateCookie("UserName", u.STAFF_NAME, DateTime.Now.AddDays(90));
                     return RedirectToAction("Index", "Home");
                 }
@@ -79,14 +88,27 @@ namespace BongDa.Controllers
         }
         public ActionResult Index(string id)
         {
+            string _token = CookieHelper.GetCookie("Token");           
             int MatchId = 0;
+            string Mode = "ID";
             if(id != "" && id != null)
             {
                 MatchId = Convert.ToInt32(id);
             }
+            else
+            {
+                string _id = DBHelper.GetColumnVal("SELECT TOP 1 MTCH_ID FROM [wcweb].[dbo].M_MATCH WHERE FLAG_ACTIVE = 1 ORDER BY MTCH_ID ASC" , "MTCH_ID");
+                MatchId = Convert.ToInt32(_id);
+            }
+            foreach(var item in bongda._0620_wc_GetStaff_ByRowId(_token))
+            {
+                ViewBag.UserName = item.STAFF_NAME;
+                ViewBag.UserMoney = item.USER_MONEY;
+            }
+            
             ViewBag.Team = bongda._062021_bongda_Get_All_FCTeam().ToList();
-            ViewBag.Match = bongda._062021_bongda_Get_Match("ALL", MatchId).ToList();
-            ViewBag.MatchDetails = bongda._062021_bongda_Get_Match_Details("ALL", MatchId).ToList();
+            ViewBag.Match = bongda._062021_bongda_Get_Match(Mode, MatchId).ToList();
+            ViewBag.MatchDetails = bongda._062021_bongda_Get_Match_Details(Mode, MatchId).ToList();
             return View();
         }
 
@@ -152,11 +174,15 @@ namespace BongDa.Controllers
                 int _chooseB = Convert.ToInt32(data["_chooseB"]);
                 string _numberA = data["_numberA"];
                 string _numberB = data["_numberB"];
-                string _ngaythidau = data["_ngaythidau"]; 
+                string _ngaythidau = data["_ngaythidau"];
+                string _giothidau = data["_giothidau"];
+                string _phutthidau = data["_phutthidau"];
                 string _ghichu = data["_ghichu"];
                 string sql = "";
                 sql += "INSERT INTO [wcweb].[dbo].[M_MATCH] ";
                 sql += "([MTCH_DATE] ";
+                sql += ",[MTCH_HH] ";
+                sql += ",[MTCH_MM] ";
                 sql += ",[TEAM_1] ";
                 sql += ",[TEAM_2] ";
                 sql += ",[TYSO_1] ";
@@ -167,13 +193,15 @@ namespace BongDa.Controllers
                 sql += " ,[FLAG_ACTIVE]) ";
                 sql += "VALUES ";
                 sql += "('" +_ngaythidau + "'";
+                sql += ",'" + _giothidau + "'";
+                sql += ",'" + _phutthidau + "'";
                 sql += " ,"+ _chooseA ;
                 sql += " ," + _chooseB;
                 sql += " ,0 ";
                 sql += " ,0 ";
                 sql += " ,'"+ _numberA + "'";
                 sql += " ,'" + _numberB + "'";
-                sql += " ,'" + _ghichu + "'";
+                sql += " ,N'" + _ghichu + "'";
                 sql += " ,1) ";
                 DBHelper.ExecuteQuery(sql);
 
@@ -187,7 +215,55 @@ namespace BongDa.Controllers
             }
         }
 
-
-
+        [HttpPost]
+        public ActionResult PickteamSubmit(FormCollection data)
+        {
+            try
+            {
+                string _email = CookieHelper.GetCookie("Email");               
+                string _idteam = data["_idteam"];
+                string _mtchid = data["_mtchid"];
+                int hh = Convert.ToInt32(DateTime.Now.Hour.ToString());
+                int mm = Convert.ToInt32(DateTime.Now.Minute.ToString());
+                bool _flag = true;
+                foreach (var m in bongda._062021_bongda_Get_Match("ID",Convert.ToInt32(_mtchid)))
+                {
+                    if (hh >= Convert.ToInt32(m.MTCH_HH) && ((mm - Convert.ToInt32(m.MTCH_MM)) < 30))
+                    {
+                        _flag = false;
+                    }
+                }
+                if(_flag == true)
+                {
+                    string sql = "DELETE [wcweb].[dbo].[M_MATCH_D] WHERE USER_EMAIL ='" + _email + "' AND MTCH_ID = " + _mtchid + " ;";
+                    sql += "INSERT INTO [wcweb].[dbo].[M_MATCH_D] ";
+                    sql += "([MTCH_ID] ";
+                    sql += ",[USER_EMAIL] ";
+                    sql += ",[TEAM_ID] ";
+                    sql += ",[MTCHD_NOTE] ";
+                    sql += ",[FLAG_ACTIVE] ";
+                    sql += ",[Voted]) ";
+                    sql += "VALUES ";
+                    sql += "(" + _mtchid;
+                    sql += ",'" + _email + "'";
+                    sql += "," + _idteam;
+                    sql += ",'' ";
+                    sql += ",1";
+                    sql += ",'') ";
+                    DBHelper.ExecuteQuery(sql);
+                    return mes.Success();
+                }
+                else
+                {
+                    return mes.Error("Đã hết thời gian chọn.");
+                }
+                
+            }
+            catch (Exception e)
+            {
+                return mes.Error(e.Message);
+            }
         }
+
+    }
 }
