@@ -121,7 +121,7 @@
 
 
 <div class="modal inmodal" id="viewvs">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <form class="frmsb">
                 <div class="modal-header">
@@ -200,7 +200,7 @@
 </div>
 
 <div class="modal inmodal" id="nhapketqua">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <form class="frmnhapketqua">
                 <div class="modal-header">
@@ -240,7 +240,7 @@
 </div>
 
 <div class="modal inmodal" id="datcuoc">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <form class="frmnhapketqua">
                 <div class="modal-header">
@@ -488,7 +488,7 @@
                                 var res = xhr.responseText;
                                 var j_res = JSON.parse(res);
                                 if (j_res.type === "success") {
-                                    swal({ title: "Thông báo", text: "Bạn vừa chọn đội " + $("#nameteam_pick").val(), type: "success" },
+                                    swal({ title: "Thông báo", text: "Bạn vừa đặt cược đội " + $("#nameteam_pick").val() + " với số tiền là " + $("input[name='radio_datcuoc']:checked").val() + "VND. Nhà cái sẽ thua tan nát.", type: "success" },
                                         function () {
                                             location.reload();
                                         }
@@ -501,7 +501,7 @@
                         };
                         xhr.send(form);
                     } else {
-                        swal("Huỷ", "Chọn sai mất tiền đó", "error");
+                        swal("Huỷ", "Chính xác, Đừng làm giàu cho nhà cái.", "error");
                     }
                 });
         }
