@@ -122,4 +122,11 @@
       <Column Name="WLMONEY" Type="System.String" DbType="NVarChar(201)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.[_0620_wc_Get_All_BXH]" Method="_0620_wc_Get_All_BXH">
+    <ElementType Name="_0620_wc_Get_All_BXHResult">
+      <Column Name="STAFF_NAME" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Avatar" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TOTALMONEY" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

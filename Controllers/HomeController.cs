@@ -115,7 +115,7 @@ namespace BongDa.Controllers
                 }
                 
             }
-            
+            ViewBag.BXH = bongda._0620_wc_Get_All_BXH().ToList();
             ViewBag.Team = bongda._062021_bongda_Get_All_FCTeam().ToList();
             ViewBag.Match = bongda._062021_bongda_Get_Match(Mode, MatchId).ToList();
             ViewBag.MatchNext = bongda._062021_bongda_Get_Match("ALL", MatchId).ToList();
@@ -155,7 +155,7 @@ namespace BongDa.Controllers
                     foreach (var row in db._0620_Workbase_GetStaff_byEmail(_email))
                     {
                         _url = "https://bongda.immgroup.com/verify/" + row.ROWID;
-                        string _body = "Vui lòng <a href='"+_url+"'>Click vào đây</a> để xác nhận đăng nhập. tesst";
+                        string _body = "Xin chào " + row.STAFF_NAME + ", Vui lòng <a href='"+_url+"'>Click vào đây</a> để xác nhận đăng nhập.";
                         fc.SendMessageMailKit("[Football Match]", "crm@immgroup.com", "xnmpyehltkznxedc", _email, "","paul@immgroup.com", " Xác nhận truy cập web bóng đá của IMM GROUP", _body);
 
                         return mes.Success("Vui lòng kiểm tra email để xác nhận đăng nhập");
@@ -186,6 +186,14 @@ namespace BongDa.Controllers
                 int _chooseB = Convert.ToInt32(data["_chooseB"]);
                 string _numberA = data["_numberA"];
                 string _numberB = data["_numberB"];
+                if(_numberA == "" || _numberA == null)
+                {
+                    _numberA = "0";
+                }
+                if (_numberB == "" || _numberB == null)
+                {
+                    _numberB = "0";
+                }
                 string _ngaythidau = data["_ngaythidau"];
                 string _giothidau = data["_giothidau"];
                 string _phutthidau = data["_phutthidau"];
@@ -246,9 +254,12 @@ namespace BongDa.Controllers
                     DateTime dtnow = DateTime.ParseExact(day, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                     DateTime dtmatch = DateTime.ParseExact(m.MTCH_DATE, "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
-                    if (dtnow <= dtmatch) {
-                        if (hh >= Convert.ToInt32(m.MTCH_HH) && ((mm - Convert.ToInt32(m.MTCH_MM)) < 30))
-                        {
+                    if (dtnow < dtmatch ) {
+                        _flag = true;
+                    }
+                    else if (dtnow == dtmatch)
+                    {
+                        if (hh >= Convert.ToInt32(m.MTCH_HH)){
                             _flag = false;
                         }
                     }

@@ -96,6 +96,13 @@ namespace Library
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), macthId);
 			return ((ISingleResult<_062021_bongda_Get_After_MatchResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_0620_wc_Get_All_BXH]")]
+		public ISingleResult<_0620_wc_Get_All_BXHResult> _0620_wc_Get_All_BXH()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<_0620_wc_Get_All_BXHResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class _062021_bongda_Get_All_FCTeamResult
@@ -1861,6 +1868,68 @@ namespace Library
 				if ((this._WLMONEY != value))
 				{
 					this._WLMONEY = value;
+				}
+			}
+		}
+	}
+	
+	public partial class _0620_wc_Get_All_BXHResult
+	{
+		
+		private string _STAFF_NAME;
+		
+		private string _Avatar;
+		
+		private System.Nullable<double> _TOTALMONEY;
+		
+		public _0620_wc_Get_All_BXHResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STAFF_NAME", DbType="NVarChar(200)")]
+		public string STAFF_NAME
+		{
+			get
+			{
+				return this._STAFF_NAME;
+			}
+			set
+			{
+				if ((this._STAFF_NAME != value))
+				{
+					this._STAFF_NAME = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Avatar", DbType="NVarChar(MAX)")]
+		public string Avatar
+		{
+			get
+			{
+				return this._Avatar;
+			}
+			set
+			{
+				if ((this._Avatar != value))
+				{
+					this._Avatar = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TOTALMONEY", DbType="Float")]
+		public System.Nullable<double> TOTALMONEY
+		{
+			get
+			{
+				return this._TOTALMONEY;
+			}
+			set
+			{
+				if ((this._TOTALMONEY != value))
+				{
+					this._TOTALMONEY = value;
 				}
 			}
 		}
