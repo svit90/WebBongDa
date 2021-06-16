@@ -219,7 +219,6 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="col-form-label">Đội B</label>
                                 <label id="namedoiB" name="namedoiB" class="col-form-label"></label>
                                 <img id="flagdoiB" name="flagdoiB" src="~/Content/img/flags/32/Abkhazia.png" " alt="flag">
                                 <input type="text" id="ketquaB" name="ketquaB" class="form-control" placeholder="0" />
@@ -306,11 +305,11 @@
                             <a href="/home/@m.MTCH_ID">
                                 <span class="mt-2 float-right">@m.MTCH_DATE  @m.MTCH_HH : @m.MTCH_MM</span>
                                 <div class="choose-flag">
-                                    <img src="~/Content/img/flags/32/@flagi1" alt="flag">
+                                    <img title="@m.nameTeam1" src="~/Content/img/flags/32/@flagi1" alt="flag">
                                     <span class="team-left display-@m.KEO_1">+ @m.KEO_1</span>
                                     -
                                     <span class="team-right display-@m.KEO_2">+ @m.KEO_2</span>
-                                    <img src="~/Content/img/flags/32/@flagi2" alt="flag">
+                                    <img title="@m.nameTeam2" src="~/Content/img/flags/32/@flagi2" alt="flag">
                                 </div>
                             </a>
                         </li>
@@ -336,9 +335,9 @@
                         <img src="~/Content/img/flags/64/@flagimg1" alt="flag">
                     </div>
                     <div class="my-5">
-                        <p class="small">
+                        <h4>
                             @match.nameTeam1
-                        </p>
+                        </h4>
                         <div class="user-friends">
                             @foreach (var md1 in ViewBag.MatchDetails)
                             {
@@ -366,9 +365,9 @@
                         <img src="~/Content/img/flags/64/@flagimg2" alt="flag">
                     </div>
                     <div class="my-5">
-                        <p class="small">
+                        <h4>
                             @match.nameTeam2
-                        </p>
+                        </h4>
                         <div class="user-friends">
                             @foreach (var md2 in ViewBag.MatchDetails)
                             {
