@@ -119,6 +119,7 @@ namespace BongDa.Controllers
             ViewBag.Team = bongda._062021_bongda_Get_All_FCTeam().ToList();
             ViewBag.Match = bongda._062021_bongda_Get_Match(Mode, MatchId).ToList();
             ViewBag.MatchNext = bongda._062021_bongda_Get_Match("ALL", MatchId).ToList();
+            ViewBag.MatchDone = bongda._062021_bongda_Get_Match("DONE", MatchId).ToList();
             ViewBag.MatchDetails = bongda._062021_bongda_Get_Match_Details(Mode, MatchId).ToList();
             return View();
         }
