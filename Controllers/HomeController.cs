@@ -238,6 +238,7 @@ namespace BongDa.Controllers
                 string _email = CookieHelper.GetCookie("Email");               
                 string _idteam = data["_idteam"];
                 string _mtchid = data["_mtchid"];
+                string _datcuoc = data["_datcuoc"];
                 int hh = Convert.ToInt32(DateTime.Now.Hour.ToString());
                 int mm = Convert.ToInt32(DateTime.Now.Minute.ToString());
                 bool _flag = true;
@@ -270,7 +271,7 @@ namespace BongDa.Controllers
                     sql += "(" + _mtchid;
                     sql += ",'" + _email + "'";
                     sql += "," + _idteam;
-                    sql += ",'' ";
+                    sql += ",'" + _datcuoc + "'";
                     sql += ",1";
                     sql += ",'') ";
                     DBHelper.ExecuteQuery(sql);
