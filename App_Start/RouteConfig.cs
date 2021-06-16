@@ -53,6 +53,11 @@ namespace BongDa
              url: "home/pickteam/submit",
              defaults: new { controller = "Home", action = "PickteamSubmit"}
             );
+            routes.MapRoute(
+            name: "sb_endmatch",
+             url: "home/endmatch/submit",
+             defaults: new { controller = "Home", action = "EndmatchSubmit" }
+            );
         }
     }
 }

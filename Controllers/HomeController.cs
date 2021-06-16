@@ -21,7 +21,7 @@ namespace BongDa.Controllers
         public ActionResult Wellcome()
         {
             if (CookieHelper.CookieExist("Token") == true)
-            {
+            {                
                 return RedirectToAction("Index", "Home");
             }
             else
@@ -102,11 +102,7 @@ namespace BongDa.Controllers
                 MatchId = Convert.ToInt32(_id);
             }
             foreach(var item in bongda._0620_wc_GetStaff_ByRowId(_token))
-            {
-                CookieHelper.ClearCookie();
-                CookieHelper.CreateCookie("Token", item.ROWID.ToString(), DateTime.Now.AddDays(90));
-                CookieHelper.CreateCookie("Email", item.STAFF_EMAIL, DateTime.Now.AddDays(90));
-                CookieHelper.CreateCookie("UserName", item.STAFF_NAME, DateTime.Now.AddDays(90));
+            {               
                 ViewBag.UserName = item.STAFF_NAME;
                 ViewBag.UserMoney = item.USER_MONEY;
                 if(item.STAFF_ID != 84 && item.STAFF_ID != 55 && item.STAFF_ID != 57)
@@ -122,6 +118,7 @@ namespace BongDa.Controllers
             
             ViewBag.Team = bongda._062021_bongda_Get_All_FCTeam().ToList();
             ViewBag.Match = bongda._062021_bongda_Get_Match(Mode, MatchId).ToList();
+            ViewBag.MatchNext = bongda._062021_bongda_Get_Match("ALL", MatchId).ToList();
             ViewBag.MatchDetails = bongda._062021_bongda_Get_Match_Details(Mode, MatchId).ToList();
             return View();
         }
@@ -289,5 +286,39 @@ namespace BongDa.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult EndmatchSubmit(FormCollection data)
+        {
+            try
+            {               
+                string _tysot1 = data["_tysot1"];
+                string _tysot2 = data["_tysot2"];
+                string _mtchid = data["_mtchid"];
+                string sql = "";
+                sql += " UPDATE [wcweb].[dbo].[M_MATCH] ";
+                sql += " SET ";
+                sql += " [TYSO_1] = " + _tysot1;
+                sql += " ,[TYSO_2] = " + _tysot2;
+                sql += " ,[FLAG_ACTIVE] = 0 ";
+                sql += " WHERE MTCH_ID = " + _mtchid + "; ";
+                DBHelper.ExecuteQuery(sql);
+                sql = "";
+                foreach (var m in bongda._062021_bongda_Get_After_Match(Convert.ToInt32(_mtchid)))
+                {
+                    int user = m.USER_ID;
+                    int curmoney = Convert.ToInt32(m.USER_MONEY);
+                    int wlmoney = Convert.ToInt32(m.WLMONEY);
+                    int totalmoney = curmoney + wlmoney;
+                    sql += " UPDATE [wcweb].[dbo].[M_USER] SET USER_MONEY = " + totalmoney + " WHERE USER_ID = " + user + " ; ";
+                }
+                DBHelper.ExecuteQuery(sql);
+                return mes.Success();
+
+            }
+            catch (Exception e)
+            {
+                return mes.Error(e.Message);
+            }
+        }
     }
 }

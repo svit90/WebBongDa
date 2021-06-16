@@ -105,4 +105,21 @@
       <Column Name="flagTeam2" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
+  <Function Name="dbo.[_062021_bongda_Get_After_Match]" Method="_062021_bongda_Get_After_Match">
+    <Parameter Name="MacthId" Parameter="macthId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="_062021_bongda_Get_After_MatchResult">
+      <Column Name="USER_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="USER_NAME" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="USER_MONEY" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="USER_EMAIL" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="KQCC1" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="KQCC2" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="MTCHD_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MTCH_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TIENCUOC" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="KETQUAATRUB" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="TEAMDACHON" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="WLMONEY" Type="System.String" DbType="NVarChar(201)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

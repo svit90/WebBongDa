@@ -134,7 +134,7 @@
                         <label class="col-form-label">Đội A</label>
                         <div class="row no-gutters">
                             <div class="col-md-10">
-                                <select name="chooseA" id="chooseA" data-placeholder="Chọn sản phẩm" class="input-type form-control chosen-select">
+                                <select name="chooseA" id="chooseA" data-placeholder="Chọn đội" class="input-type form-control chosen-select">
                                     @foreach (var team in ViewBag.Team)
                                     {
                                         <option value="@team.FBT_ID">@team.FBT_NAME</option>
@@ -151,7 +151,7 @@
                         <label class="col-form-label">Đội B</label>
                         <div class="row no-gutters">
                             <div class="col-md-10">
-                                <select name="chooseB" id="chooseB" data-placeholder="Chọn sản phẩm" class="input-type form-control chosen-select">
+                                <select name="chooseB" id="chooseB" data-placeholder="Chọn đội" class="input-type form-control chosen-select">
                                     @foreach (var team in ViewBag.Team)
                                     {
                                         <option value="@team.FBT_ID">@team.FBT_NAME</option>
@@ -205,20 +205,23 @@
             <form class="frmnhapketqua">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Cập nhật tỷ số</h5>
-
+                    <label id="mtchid" name="mtchid" class="col-form-label"></label>
                 </div>
                 <div class="modal-body">
 
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="col-form-label">Đội A</label>
+                                <label id="namedoiA" name="namedoiA" class="col-form-label"></label>
+                                <img id="flagdoiA" name="flagdoiA" src="~/Content/img/flags/32/Abkhazia.png" alt="flag">
                                 <input type="text" id="ketquaA" name="ketquaA" class="form-control" placeholder="0" />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="col-form-label">Đội B</label>
+                                <label id="namedoiB" name="namedoiB" class="col-form-label"></label>
+                                <img id="flagdoiB" name="flagdoiB" src="~/Content/img/flags/32/Abkhazia.png" " alt="flag">
                                 <input type="text" id="ketquaB" name="ketquaB" class="form-control" placeholder="0" />
                             </div>
                         </div>
@@ -227,7 +230,7 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-primary" onclick="Capnhattyso();">Save changes</button>
                     </div>
                 </div>
             </form>
@@ -295,7 +298,7 @@
             <div class="title">Trận đấu kế tiếp</div>
             <div>
                 <ul class="list-group clear-list p-2 border">
-                    @foreach (var m in ViewBag.Match)
+                    @foreach (var m in ViewBag.MatchNext)
                     {
                         string flagi1 = @m.flagTeam1 + ".png";
                         string flagi2 = @m.flagTeam2 + ".png";
@@ -355,7 +358,7 @@
                         <div class="number-nation">@match.TYSO_2<span class="label label-danger display-@match.KEO_2">@match.KEO_2</span></div>
                     </div>
                     <div class="text-center">
-                        <button class="btn btn-success btn-lg m-2" type="button" data-toggle="modal" data-backdrop="static" data-target="#nhapketqua">Nhập kết quả</button>
+                        <button class="btn btn-success btn-lg m-2" type="button" onclick="nhapketqua('@match.MTCH_ID','@match.nameTeam1','@flagimg1','@match.nameTeam2','@flagimg2');">Nhập kết quả</button>
                     </div>
                 </div>
                 <div class="col-md-5 text-center">
@@ -502,6 +505,69 @@
                     }
                 });
         }
+
+        function nhapketqua(mtchid,team1, fteam1,team2, fteam2) {
+            $('#nhapketqua').modal("show");           
+            $("#flagdoiA").attr("src", "/Content/img/flags/32/" + fteam1);
+            $("#flagdoiB").attr("src", "/Content/img/flags/32/" + fteam2);
+            $('#namedoiA').text(team1);
+            $('#namedoiB').text(team2);
+            $('#mtchid').text(mtchid);
+
+        }
+        function Capnhattyso() {
+            var matchId = $('#mtchid').text();
+            var tysot1 = $('#ketquaA').val();
+            var tysot2 = $('#ketquaB').val();
+            var namedoiA = $('#namedoiA').text();
+            var namedoiB = $('#namedoiB').text();
+
+            if (matchId != "") {
+                swal({
+                    title: "Xác nhận!",
+                    text: "Cập nhật tỷ số " + namedoiA + " : " + tysot1 + " - " + tysot2 + " : " + namedoiB,
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Chắc rồi!",
+                    cancelButtonText: "Để coi lại",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                },
+                    function (isConfirm) {
+                        if (isConfirm) {
+                            var form = new FormData();
+                            form.append("_tysot1", tysot1);
+                            form.append("_tysot2", tysot2);
+                            form.append("_mtchid", matchId);
+                            //AJAX REQUEST
+                            var xhr = new XMLHttpRequest();
+                            xhr.open("POST", "/home/endmatch/submit", true);
+                            xhr.onreadystatechange = function () {
+                                if (xhr.readyState == 4 && xhr.status == 200) {
+                                    var res = xhr.responseText;
+                                    var j_res = JSON.parse(res);
+                                    if (j_res.type === "success") {
+                                        swal({ title: "Thông báo", text: "Xong rồi", type: "success" },
+                                            function () {
+                                                location.reload();
+                                            }
+                                        );
+                                    } else {
+                                        swal({ title: j_res.header, text: j_res.mess, type: j_res.type });
+                                    }
+
+                                }
+                            };
+                            xhr.send(form);
+                        } else {
+                            swal("Huỷ", "Chỉnh bậy ngta mất tiền ngta chửi đó", "error");
+                        }
+                    });
+            } else {
+                swal("Lỗi", "Sai ở chỗ nào rồi", "error");
+            }           
+        }
+
     </script>
 
 
