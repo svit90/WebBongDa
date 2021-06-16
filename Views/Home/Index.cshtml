@@ -5,10 +5,39 @@
     <link href="https://system.immgroup.com/Content/css/animate.css" rel="stylesheet">
     <link href="https://system.immgroup.com/Content/css/style.css" rel="stylesheet">
     <link href="https://system.immgroup.com/Content/css/plugins/chosen/bootstrap-chosen.css" rel="stylesheet">
+    <link href="https://system.immgroup.com/Content/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Staatliches&display=swap" rel="stylesheet">
     <style>
+        .list-group-item a {
+            color: #3c3c3c;
+        }
+        .choose-flag {
+            position: relative
+        }
+        .team-left, .team-right {
+            position: absolute;
+            top: -8px;
+            left: 4px;
+            color: #fb1b1b;
+            font-weight: bold;
+            padding: 0px 3px;
+            font-size: 10px !important;
+        }
+        .team-right {
+            left: 45px;
+        }
+       
+        .skin-settings {
+            width: 255px !important;
+        }
+        .theme-config-box.show {
+            margin-right: 0 !important;
+        }
+        .theme-config-box {
+            margin-right: -255px !important;
+        }
         .form-control {
-            font-size: 1.4rem;
+            font-size: 1.4rem !important;
         }
 
         #ngaythidau, #ghichu {
@@ -30,13 +59,15 @@
         .flag-card img {
             border-radius: 0%;
             border: 5px solid transparent;
-            width:150px;
+            width: 150px;
+            transition-duration: 0.1s;
         }
 
-            .flag-card img:hover {
-                border-color: #ff7533;
-                cursor: pointer;
-            }
+        .flag-card img:hover {
+            cursor: pointer;
+            transform: scale(1.1);
+            transition: all ease 500ms;
+        }
 
         .number-nation {
             font-size: 7rem;
@@ -44,14 +75,14 @@
             position: relative;
         }
 
-            .number-nation span {
-                content: "";
-                position: absolute;
-                top: 20px;
-                left: 50%;
-                font-size: 12px;
-                transform: translate(-50%);
-            }
+        .number-nation span {
+            content: "";
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            font-size: 12px;
+            transform: translate(-50%);
+        }
 
         .fix-center {
             padding-top: 10rem;
@@ -67,9 +98,11 @@
         .navbar-fixed-top {
             z-index: 10;
         }
-        .display-0{
-            display:none;
+
+        .display-0 {
+            display: none;
         }
+
         @@media (min-width: 576px) and (max-width: 640px) {
             .fix-center {
                 padding-top: 2rem;
@@ -112,7 +145,7 @@
                                 </select>
                             </div>
                             <div class="col-md-2">
-                                <input type="number" id="numberA" name="numberA" class="form-control" min="-5" max="5" step="0.5" value="0">
+                                <input type="number" id="numberA" name="numberA" class="form-control" min="0" max="5" step="0.5" value="0">
                             </div>
                         </div>
 
@@ -130,14 +163,17 @@
                                 </select>
                             </div>
                             <div class="col-md-2">
-                                <input type="number" id="numberB" name="numberB" class="form-control" min="-5" max="5" step="0.5" value="0">
+                                <input type="number" id="numberB" name="numberB" class="form-control" min="0" max="5" step="0.5" value="0">
                             </div>
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" id="data_5">
                         <label class="col-form-label">Ngày</label>
-                        <input type="text" id="ngaythidau" name="ngaythidau" placeholder="DD/MM/YYYY" class="form-control required ">
+                        <div class="input-daterange input-group" id="datepicker">
+                            <input type="text" id="ngaythidau" name="ngaythidau" placeholder="DD/MM/YYYY" class="form-control required ">
+                        </div>
+
                     </div>
                     <div class="form-group">
                         <label class="col-form-label">Lúc</label>
@@ -159,12 +195,50 @@
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Save changes</button>
                     </div>
-                </div>            
+                </div>
             </form>
 
         </div>
     </div>
 </div>
+
+<div class="modal inmodal" id="nhapketqua">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form class="frmnhapketqua">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cập nhật tỷ số</h5>
+
+                </div>
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-form-label">Đội A</label>
+                                <input type="text" id="ketquaA" name="ketquaA" class="form-control" placeholder="0"
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-form-label">Đội B</label>
+                                <input type="text" id="ketquaB" name="ketquaB" class="form-control" placeholder="0">
+                            </div>
+                        </div>
+                    </div>
+                    
+                  
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
 <div class="theme-config">
     <div class="theme-config-box show">
         <div class="spin-icon">
@@ -178,20 +252,21 @@
                     {
                         string flagi1 = @m.flagTeam1 + ".png";
                         string flagi2 = @m.flagTeam2 + ".png";
-                        <li class="list-group-item ">
+                        <li class="list-group-item">
                             <a href="/home/@m.MTCH_ID">
-                                <span class="mt-2">@m.MTCH_DATE lúc @m.MTCH_HH : @m.MTCH_MM</span>
+                                <span class="mt-2 float-right">@m.MTCH_DATE lúc @m.MTCH_HH : @m.MTCH_MM</span>
                                 <div class="choose-flag">
                                     <img src="~/Content/img/flags/32/@flagi1" alt="flag">
-                                    <span class="display-@m.KEO_1">+ @m.KEO_1</span>
+                                    <span class="team-left display-@m.KEO_1">+ @m.KEO_1</span>
                                     -
-                                    <span class="display-@m.KEO_2">+ @m.KEO_2</span>
+                                    <span class="team-right display-@m.KEO_2">+ @m.KEO_2</span>
                                     <img src="~/Content/img/flags/32/@flagi2" alt="flag">
                                 </div>
                             </a>
-                        </li>                     
+                        </li>
+
                     }
-                    </ul>
+                </ul>
             </div>
 
         </div>
@@ -203,7 +278,7 @@
             @foreach (var match in ViewBag.Match)
             {
 
-                string flagimg1 = @match.flagTeam1 +".png";
+                string flagimg1 = @match.flagTeam1 + ".png";
                 string flagimg2 = @match.flagTeam2 + ".png";
                 string avatar1 = ""; string avatar2 = "";
                 <div class="col-md-5 text-center">
@@ -232,6 +307,9 @@
                         <div class="number-nation mb-4">:</div>
                         <div class="number-nation">@match.TYSO_2<span class="label label-danger display-@match.KEO_2">@match.KEO_2</span></div>
                     </div>
+                    <div class="text-center">
+                        <button class="btn btn-success btn-lg m-2" type="button" data-toggle="modal" data-backdrop="static" data-target="#nhapketqua">Nhập kết quả</button>
+                    </div>
                 </div>
                 <div class="col-md-5 text-center">
                     <div class="flag-card" onclick="pickteam('@match.MTCH_ID','@match.idTeam2','@match.nameTeam2')">
@@ -256,7 +334,7 @@
                 </div>
             }
         </div>
-            
+
     </div>
 
 </div>
@@ -270,12 +348,24 @@
     <script src="https://system.immgroup.com/Scripts/plugins/slimscroll/jquery.slimscroll.min.js"></script>
     <script src="https://system.immgroup.com/Scripts/plugins/chosen/chosen.jquery.js"></script>
     <script src="https://system.immgroup.com/Scripts/plugins/validate/jquery.validate.min.js"></script>
+    <script src="https://system.immgroup.com/Scripts/plugins/datapicker/bootstrap-datepicker.js"></script>
     <script>
         $(document).ready(function () {
+            $('#data_5 .input-daterange').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "dd/mm/yyyy"
+            });
+
             $('.chosen-select').chosen({ width: "100%" });
+
             $(".spin-icon").click(function () {
                 $(".theme-config-box").toggleClass("show");
             });
+
             $(".frmsb").validate({
                 lang: 'vi',
                 ignore: [],
@@ -287,7 +377,7 @@
 
         function AddVS() {
             var form = new FormData();
-            form.append("_chooseA", $('#chooseA').val());  
+            form.append("_chooseA", $('#chooseA').val());
             form.append("_chooseB", $('#chooseB').val());
             form.append("_numberA", $("#numberA").val());
             form.append("_numberB", $("#numberB").val());
@@ -295,7 +385,7 @@
             form.append("_giothidau", $("#giothidau").val());
             form.append("_phutthidau", $("#phutthidau").val());
             form.append("_ghichu", $("#ghichu").val());
-        
+
             //AJAX REQUEST
             var xhr = new XMLHttpRequest();
             xhr.open("POST", "/home/add/submit", true);
@@ -320,7 +410,7 @@
         function pickteam(mtchid, idteam, nameteam) {
             swal({
                 title: "Xác nhận!",
-                text: "Bạn chắc chắn chọn đội " + nameteam + ".",                    
+                text: "Bạn chắc chắn chọn đội " + nameteam + ".",
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
                 confirmButtonText: "Chắc rồi!",
@@ -331,8 +421,8 @@
                 function (isConfirm) {
                     if (isConfirm) {
                         var form = new FormData();
-                        form.append("_idteam", idteam);  
-                        form.append("_mtchid", mtchid); 
+                        form.append("_idteam", idteam);
+                        form.append("_mtchid", mtchid);
                         //AJAX REQUEST
                         var xhr = new XMLHttpRequest();
                         xhr.open("POST", "/home/pickteam/submit", true);
@@ -340,7 +430,7 @@
                             if (xhr.readyState == 4 && xhr.status == 200) {
                                 var res = xhr.responseText;
                                 var j_res = JSON.parse(res);
-                                if (j_res.type === "success") {                                   
+                                if (j_res.type === "success") {
                                     swal({ title: "Thông báo", text: "Bạn vừa chọn đội " + nameteam, type: "success" },
                                         function () {
                                             location.reload();
@@ -356,7 +446,7 @@
                     } else {
                         swal("Huỷ", "Chọn sai mất tiền đó", "error");
                     }
-                });        
+                });
         }
     </script>
 
