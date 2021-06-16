@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Web;
@@ -91,7 +92,7 @@ namespace BongDa.Controllers
             string _token = CookieHelper.GetCookie("Token");           
             int MatchId = 0;
             string Mode = "ID";
-            if(id != "" && id != null)
+            if(id != "" && id != null && id != "Index")
             {
                 MatchId = Convert.ToInt32(id);
             }
@@ -102,8 +103,21 @@ namespace BongDa.Controllers
             }
             foreach(var item in bongda._0620_wc_GetStaff_ByRowId(_token))
             {
+                CookieHelper.ClearCookie();
+                CookieHelper.CreateCookie("Token", item.ROWID.ToString(), DateTime.Now.AddDays(90));
+                CookieHelper.CreateCookie("Email", item.STAFF_EMAIL, DateTime.Now.AddDays(90));
+                CookieHelper.CreateCookie("UserName", item.STAFF_NAME, DateTime.Now.AddDays(90));
                 ViewBag.UserName = item.STAFF_NAME;
                 ViewBag.UserMoney = item.USER_MONEY;
+                if(item.STAFF_ID != 84 && item.STAFF_ID != 55 && item.STAFF_ID != 57)
+                {
+                    ViewBag.NotAdmin = "d-none";
+                }
+                else
+                {
+                    ViewBag.NotAdmin = "d-block";
+                }
+                
             }
             
             ViewBag.Team = bongda._062021_bongda_Get_All_FCTeam().ToList();
@@ -220,6 +234,7 @@ namespace BongDa.Controllers
         {
             try
             {
+                DateTime dt = DateTime.ParseExact("24/06/2021", "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 string _email = CookieHelper.GetCookie("Email");               
                 string _idteam = data["_idteam"];
                 string _mtchid = data["_mtchid"];
@@ -228,10 +243,18 @@ namespace BongDa.Controllers
                 bool _flag = true;
                 foreach (var m in bongda._062021_bongda_Get_Match("ID",Convert.ToInt32(_mtchid)))
                 {
-                    if (hh >= Convert.ToInt32(m.MTCH_HH) && ((mm - Convert.ToInt32(m.MTCH_MM)) < 30))
-                    {
-                        _flag = false;
+                    string day = DateTime.Now.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    DateTime dtnow = DateTime.ParseExact(day, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    DateTime dtmatch = DateTime.ParseExact(m.MTCH_DATE, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+
+                    if (dtnow <= dtmatch) {
+                        if (hh >= Convert.ToInt32(m.MTCH_HH) && ((mm - Convert.ToInt32(m.MTCH_MM)) < 30))
+                        {
+                            _flag = false;
+                        }
                     }
+                    else { _flag = false; }
+                    
                 }
                 if(_flag == true)
                 {
