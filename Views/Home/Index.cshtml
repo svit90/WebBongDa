@@ -17,6 +17,11 @@
             height: 3.55rem !important;
         }
 
+        .user-friends img {
+            width: 60px !important;
+            height: 60px !important;
+        }
+
         .beginvs {
             min-height: 100px;
             max-height: 300px;
@@ -45,6 +50,12 @@
             font-weight: bold;
             padding: 0px 3px;
             font-size: 10px !important;
+        }
+
+        .tylekeo {
+            color: #fb1b1b;
+            font-size: 10px !important;
+            font-weight: 700;
         }
 
         .team-right {
@@ -81,6 +92,10 @@
             align-items: center;
             justify-content: center;
             font-family: 'Righteous', cursive;
+            background: #ffffffb3;
+            border-radius: 15px;
+            color: #000;
+            padding: 15px;
         }
 
         .flag-card img {
@@ -130,13 +145,28 @@
             display: none;
         }
 
+        .ibox-title, .ibox-content {
+            background-color: #4e4e4e99 !important;
+            border-color: #4e4e4e99 !important;
+            color: #fff !important;
+        }
+
+        .tdhover:hover {
+            background: #ffffff75;
+            color: #161515 !important;
+        }
+        .tdhover {
+            border-bottom: 1px #ccc solid !important;
+            border-top:0!important;
+        }
+
         @@media (min-width: 576px) and (max-width: 640px) {
             .fix-center {
                 padding-top: 2rem;
             }
 
             .flag-card img {
-                width: 58px;
+                width: 45px;
             }
 
             .number-nation {
@@ -170,6 +200,28 @@
                     font-size: 10px;
                     top: -11px;
                 }
+
+            .fbold {
+                font-weight: 500 !important;
+                font-size: 15px;
+            }
+
+            .fix-nation {
+                padding: 0
+            }
+
+            .gray-bg {
+                background-repeat: repeat !important;
+            }
+
+            .user-friends img {
+                width: 30px !important;
+                height: 30px !important;
+            }
+
+            #totaltienB img, #totaltienA img {
+                width: 15px;
+            }
         }
     </style>
 }
@@ -306,41 +358,41 @@
         <div class="modal-content">
             <form class="frmnhapketqua">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Đặt cược</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Chọn đội mình thích để xuống xác nào !!!</h5>
                 </div>
                 <div class="modal-body">
 
                     <input type="text" id="idteam_pick" name="idteam_pick" class="d-none" />
                     <input type="text" id="nameteam_pick" name="nameteam_pick" class="d-none" />
-                    <p>Bạn muốn đặt cược bao nhiêu ?</p>
+                    <p>Vì thể lệ năm 2022 thay đổi nên chỉ có một mức duy nhất</p>
                     <div class="px-4">
                         <div class="pl-0 radio radio-success">
-                            <input type="radio" id="radio_datcuoc1" value="10000" name="radio_datcuoc" checked="">
-                            <label for="radio_datcuoc1"> 10.000 coin</label>
+                            <input type="radio" id="radio_datcuoc1" value="20000" name="radio_datcuoc" checked="">
+                            <label for="radio_datcuoc1"> 20.000 </label>
                         </div>
-                        <div class="pl-0 radio radio-success">
+                        @*<div class="pl-0 radio radio-success d-none">
                             <input type="radio" id="radio_datcuoc2" value="20000" name="radio_datcuoc">
                             <label for="radio_datcuoc2"> 20.000 coin</label>
                         </div>
-                        <div class="pl-0 radio radio-success">
+                        <div class="pl-0 radio radio-success d-none">
                             <input type="radio" id="radio_datcuoc3" value="30000" name="radio_datcuoc">
                             <label for="radio_datcuoc3">30.000 coin</label>
                         </div>
-                        <div class="pl-0 radio radio-success">
+                        <div class="pl-0 radio radio-success d-none">
                             <input type="radio" id="radio_datcuoc4" value="40000" name="radio_datcuoc">
                             <label for="radio_datcuoc4">40.000 coin</label>
                         </div>
-                        <div class="pl-0 radio radio-success">
+                        <div class="pl-0 radio radio-success d-none">
                             <input type="radio" id="radio_datcuoc5" value="50000" name="radio_datcuoc">
                             <label for="radio_datcuoc5">50.000 coin</label>
-                        </div>
+                        </div>*@
                     </div>
 
                     @foreach (var match in ViewBag.Match)
                     {
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" onclick="pickteam('@match.MTCH_ID','@match.idTeam1','@match.nameTeam1')">Save changes</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Khoan chờ tý, hơi rén !</button>
+                            <button type="button" class="btn btn-primary" onclick="pickteam('@match.MTCH_ID','@match.idTeam1','@match.nameTeam1')">Không nói nhiều, Dứtttt</button>
                         </div>
 
                     }
@@ -362,15 +414,35 @@
 
                     <ul class="list-group clear-list p-2 border">
                         @foreach (var m in ViewBag.BXH)
-                        {                           
-                            <li class="list-group-item">
-                                
-                                    <span class="mt-2 float-right">@m.TOTALMONEY <img src="~/Content/img/money.png" width="16" /></span>
-                                    <div class="">
-                                        <img class="rounded-circle" width="35" title="@m.STAFF_NAME" src="~/Content/img/avatar/@m.Avatar" alt="flag">                                                                            
-                                    </div>
-                               
-                            </li>
+                        {
+                        <li class="list-group-item">
+
+                            @if (@m.TOPMAX.ToString() == @m.TOTALMONEY.ToString())
+                            {
+                                <span class="text-navy mt-2 float-right">@Function.FormatCurrency("VND", Convert.ToInt32(@m.TOTALMONEY)) </span>
+                                <div class="">
+                                    <img class="rounded-circle ml-2" width="45" title="@m.STAFF_NAME" src="https://system.immgroup.com/Content/img/avatar/@m.Avatar" alt="flag">
+                                    @m.STAFF_NAME
+                                </div>
+                            }
+                            else if (@m.TOPMIN.ToString() == @m.TOTALMONEY.ToString())
+                            { <span class="text-danger mt-2 float-right">@Function.FormatCurrency("VND", Convert.ToInt32(@m.TOTALMONEY)) </span>
+                            <div class="">
+                                <img class="rounded-circle  ml-2" width="45" title="@m.STAFF_NAME" src="https://system.immgroup.com/Content/img/avatar/@m.Avatar" alt="flag">
+                                <img class="rounded-circle" width="55" src="/Content/img/avatar-f.png" alt="flag" style="position: absolute;left: 0px; top: 5px;">
+                                @m.STAFF_NAME
+                            </div>
+
+                        }
+                        else
+                        {
+                            <span class="text-dark mt-2 float-right">@Function.FormatCurrency("VND", Convert.ToInt32(@m.TOTALMONEY)) </span>
+                            <div class="">
+                                <img class="rounded-circle ml-2" width="45" title="@m.STAFF_NAME" src="https://system.immgroup.com/Content/img/avatar/@m.Avatar" alt="flag">
+                                @m.STAFF_NAME
+                            </div>
+                        }
+                        </li>
 
                         }
                     </ul>
@@ -386,62 +458,7 @@
 </div>
 
 
-<div class="theme-config">
-    <div class="theme-config-box show">
-        <div class="spin-icon">
-            <i class="fa fa-cogs fa-spin"></i>
-        </div>
-        <div class="skin-settings">
-            <div class="title">Trận đấu kế tiếp</div>
-            <div class="beginvs">
-                <ul class="list-group clear-list p-2 border">
-                    @foreach (var m in ViewBag.MatchNext)
-                    {
-                        string flagi1 = @m.flagTeam1 + ".png";
-                        string flagi2 = @m.flagTeam2 + ".png";
-                        string flagticked = fc.CheckPicked(@m.MTCH_ID);
-                        <li class="list-group-item @flagticked">
-                            <a href="/home/@m.MTCH_ID">
-                                <span class="mt-2 float-right">@m.MTCH_DATE  @m.MTCH_HH : @m.MTCH_MM</span>
-                                <div class="choose-flag">
-                                    <img title="@m.nameTeam1" src="~/Content/img/flags/32/@flagi1" alt="flag">
-                                    <span class="team-left display-@m.KEO_1">+ @m.KEO_1</span>
-                                    -
-                                    <span class="team-right display-@m.KEO_2">+ @m.KEO_2</span>
-                                    <img title="@m.nameTeam2" src="~/Content/img/flags/32/@flagi2" alt="flag">
-                                </div>
-                            </a>
-                        </li>
 
-                    }
-                </ul>
-            </div>
-            <div class="title">Trận đấu đã kết thúc</div>
-            <div class="endvs">
-                <ul class="list-group clear-list p-2 border">
-                    @foreach (var m in ViewBag.MatchDone)
-                    {
-                        string flagi1 = @m.flagTeam1 + ".png";
-                        string flagi2 = @m.flagTeam2 + ".png";
-                        <li class="list-group-item text-center">
-                            <a href="/home/@m.MTCH_ID">
-                                <div class="choose-flag">
-                                    <img title="@m.nameTeam1" src="~/Content/img/flags/32/@flagi1" alt="flag"> @m.TYSO_1
-                                    <span class="team-left display-@m.KEO_1">+ @m.KEO_1</span>
-                                    -
-                                    <span class="team-right display-@m.KEO_2">+ @m.KEO_2</span>
-                                    @m.TYSO_2 <img title="@m.nameTeam2" src="~/Content/img/flags/32/@flagi2" alt="flag">
-                                </div>
-                            </a>
-                        </li>
-
-                    }
-                </ul>
-            </div>
-
-        </div>
-    </div>
-</div>
 <div class="fix-hieght animated fadeInDown">
     <div class="fix-center">
         <div class="row m-0">
@@ -453,17 +470,18 @@
                 string avatar1 = ""; string avatar2 = "";
                 <div class="col-12">
                     <div class="text-center">
-                        <button class="btn btn-success btn-lg m-2 display-@match.FLAG_ACTIVE" type="button" onclick="nhapketqua('@match.MTCH_ID','@match.nameTeam1','@flagimg1','@match.nameTeam2','@flagimg2');">Nhập kết quả</button>
+                        <button class="btn btn-success btn-lg m-2 @ViewBag.NotAdmin display-@match.FLAG_ACTIVE" type="button" onclick="nhapketqua('@match.MTCH_ID','@match.nameTeam1','@flagimg1','@match.nameTeam2','@flagimg2');">Nhập kết quả</button>
+                        <button class="btn btn-danger btn-lg m-2 @ViewBag.NotAdmin d-none" type="button" onclick="Khoacuoc('@match.MTCH_ID','@match.idTeam1','@match.idTeam2');">Khoá cược</button>
                     </div>
                 </div>
-                <div class="col-5 col-md-5 text-center">
+                <div class="col-4 col-md-5 text-center text-white" style="">
                     <div class="flag-card" onclick="pickteamfirst('@match.FLAG_ACTIVE','@match.idTeam1','@match.nameTeam1')">
                         <img src="~/Content/img/flags/64/@flagimg1" alt="flag">
                     </div>
-                    <div class="my-5">
-                        <h4>
+                    <div class="my-md-5">
+                        <h2 class="fbold">
                             @match.nameTeam1
-                        </h4>
+                        </h2>
                         <div class="user-friends">
                             @{
                                 int total1 = 0;
@@ -473,30 +491,30 @@
                                 avatar1 = md1.NOTE1 + ".jpg";
                                 if (md1.TEAM_ID == match.idTeam1)
                                 {
-                                    total1 += Convert.ToInt32(md1.MTCHD_NOTE);
-                                    <a href="#" title="@md1.USER_NAME  đã đặt cược @md1.MTCHD_NOTE coin"><img alt="image" class="rounded-circle" src="~/Content/img/avatar/@avatar1"></a>
+                                    //total1 += Convert.ToInt32(md1.MTCHD_NOTE);
+                                    <a href="#" title="@md1.USER_NAME"><img alt="image" class="rounded-circle" src="https://system.immgroup.com/Content/img/avatar/@avatar1" style="border: 2px #ffffffde solid;"></a>
                                 }
                             }
                         </div>
                     </div>
-                    <div id="totaltienA" name="totaltienA">@total1</div>
+                    <div id="totaltienA" name="totaltienA" class="d-none">@total1</div>
                 </div>
-                <div class="col-2 col-md-2">
-                    <div class="fix-nation">
+                <div class="col-4 col-md-2">
+                    <div class="fix-nation" style="background: #ffffffb3; border-radius: 15px; color: #000; padding: 15px; ">
                         <div class="number-nation">@match.TYSO_1<span class="label label-danger display-@match.KEO_1">+ @match.KEO_1</span></div>
                         <div class="number-nation mb-4">:</div>
                         <div class="number-nation">@match.TYSO_2<span class="label label-danger display-@match.KEO_2">+ @match.KEO_2</span></div>
                     </div>
 
                 </div>
-                <div class="col-5 col-md-5 text-center">
+                <div class="col-4 col-md-5 text-center text-white" style="">
                     <div class="flag-card" onclick="pickteamfirst('@match.FLAG_ACTIVE','@match.idTeam2','@match.nameTeam2')">
                         <img src="~/Content/img/flags/64/@flagimg2" alt="flag">
                     </div>
-                    <div class="my-5">
-                        <h4>
+                    <div class="my-md-5">
+                        <h2 class="fbold">
                             @match.nameTeam2
-                        </h4>
+                        </h2>
                         <div class="user-friends">
                             @{
                                 int total2 = 0;
@@ -506,14 +524,14 @@
                                 avatar2 = md2.NOTE1 + ".jpg";
                                 if (md2.TEAM_ID == match.idTeam2)
                                 {
-                                    total2 += Convert.ToInt32(md2.MTCHD_NOTE);
-                                    <a href="#" title="@md2.USER_NAME đã đặt cược @md2.MTCHD_NOTE coin"><img alt="image" class="rounded-circle" src="~/Content/img/avatar/@avatar2"></a>
+                                    //total2 += Convert.ToInt32(md2.MTCHD_NOTE);
+                                    <a href="#" title="@md2.USER_NAME"><img alt="image" class="rounded-circle" src="https://system.immgroup.com/Content/img/avatar/@avatar2" style="border: 2px #ffffffde solid;"></a>
                                 }
 
                             }
                         </div>
                     </div>
-                    <div id="totaltienB" name="totaltienB">@total2</div>
+                    <div id="totaltienB" name="totaltienB" class="d-none">@total2</div>
                 </div>
             }
         </div>
@@ -522,6 +540,217 @@
 
 </div>
 
+<div class="row mt-5" style="max-height:600px;">
+
+    <div class="col-md-6 offset-md-3">
+        <div class="ibox ">
+            <div class="ibox-title text-center">
+                @foreach (var m in ViewBag.BXH)
+                {
+                    string _totaltien = Function.FormatCurrency("VND", @m.TOTALTIEN);
+                    string _totalbuan = @m.TOTALBUAN.ToString();
+                    <h2>Tổng số tiền quyên góp <span class="text-danger">@_totaltien</span> tương đương <span class="text-danger">@_totalbuan</span> suất ăn cho em </h2>
+                    break;
+                }
+            </div>
+            <div class="ibox-content">
+
+                <div class="panel blank-panel">
+                    <div class="panel-heading">
+                        <div class="panel-options">
+                            <ul class="nav nav-tabs">
+                                <li><a class="nav-link active" href="#tab-1" data-toggle="tab">Sắp diễn ra</a></li>
+                                <li><a class="nav-link" href="#tab-2" data-toggle="tab">Đã kết thúc</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="panel-body">
+
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab-1">
+                                <div class="table-responsive" style=" overflow-x: hidden;">
+                                    <table class="table table-striped table-assessment">
+                                        <tbody>
+                                            @foreach (var m in ViewBag.MatchNext)
+                                            {
+                                                string flagi1 = @m.flagTeam1 + ".png";
+                                                string flagi2 = @m.flagTeam2 + ".png";
+                                                string flagticked = fc.CheckPicked(@m.MTCH_ID);
+                                                <tr>
+                                                    <td class="tdhover">
+                                                        <a href="/home/@m.MTCH_ID" class="text-white">
+                                                            <div class="row">
+                                                                <div class="col-12 text-center" style="border-left: 0px #ccc solid;">
+                                                                    <small>Lúc @m.MTCH_HH:@m.MTCH_MM ngày @m.MTCH_DATE</small>
+                                                                </div>
+                                                                <div class="col-5 p-0">
+                                                                    <div class="row">
+                                                                        <div class="col-12 text-right">
+                                                                            <span class="tylekeo display-@m.KEO_1">+ @m.KEO_1</span>
+                                                                            @m.nameTeam1
+                                                                            <img title="@m.nameTeam1" src="~/Content/img/flags/32/@flagi1" alt="flag">
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-2 text-center p-0">
+                                                                    @m.TYSO_1 - @m.TYSO_2
+                                                                </div>
+                                                                <div class="col-5 p-0">
+                                                                    <div class="row">
+                                                                        <div class="col-12 text-left">
+                                                                            <img title="@m.nameTeam2" src="~/Content/img/flags/32/@flagi2" alt="flag"> @m.nameTeam2
+                                                                            <span class="tylekeo display-@m.KEO_2">+ @m.KEO_2</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row d-none">
+                                                                <div class="col-md-6">
+                                                                    @{
+                                                                        string ava1 = "";
+                                                                        foreach (var md1 in ViewBag.MatchDetailsAll)
+                                                                        {
+                                                                            if (md1.MTCH_ID == m.MTCH_ID)
+                                                                            {
+                                                                                ava1 = md1.NOTE1 + ".jpg";
+                                                                                if (md1.TEAM_ID == m.idTeam1)
+                                                                                {
+                                                                                    <img alt="image" class="rounded-circle" src="https://system.immgroup.com/Content/img/avatar/@ava1" style="height: 20px;">
+                                                                                }
+                                                                            }
+
+
+                                                                        }
+                                                                    }
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    @{
+                                                                        string ava2 = "";
+                                                                        foreach (var md2 in ViewBag.MatchDetailsAll)
+                                                                        {
+                                                                            if (md2.MTCH_ID == m.MTCH_ID)
+                                                                            {
+                                                                                ava2 = md2.NOTE1 + ".jpg";
+                                                                                if (md2.TEAM_ID == m.idTeam2)
+                                                                                {
+                                                                                    <img alt="image" class="rounded-circle" src="https://system.immgroup.com/Content/img/avatar/@ava2" style="height: 20px;">
+                                                                                }
+                                                                            }
+
+
+                                                                        }
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                        </a>
+
+                                                    </td>
+                                                </tr>
+
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab-2">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-assessment">
+                                        <tbody>
+                                            @foreach (var m in ViewBag.MatchDone)
+                                            {
+                                                string flagi1 = @m.flagTeam1 + ".png";
+                                                string flagi2 = @m.flagTeam2 + ".png";
+                                                string flagticked = fc.CheckPicked(@m.MTCH_ID);
+                                                <tr>
+                                                    <td class="tdhover">
+                                                        <a href="/home/@m.MTCH_ID" class="text-white">
+                                                            <div class="row">
+                                                                <div class="col-12 text-center" style="border-left: 0px #ccc solid;">
+                                                                    <small>Lúc @m.MTCH_HH:@m.MTCH_MM ngày @m.MTCH_DATE</small>
+                                                                </div>
+                                                                <div class="col-5 p-0">
+                                                                    <div class="row">
+                                                                        <div class="col-12 text-right">
+                                                                            <span class="tylekeo display-@m.KEO_1">+ @m.KEO_1</span>
+                                                                            @m.nameTeam1
+                                                                            <img title="@m.nameTeam1" src="~/Content/img/flags/32/@flagi1" alt="flag">
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-2 text-center p-0">
+                                                                    @m.TYSO_1 - @m.TYSO_2
+                                                                </div>
+                                                                <div class="col-5 p-0">
+                                                                    <div class="row">
+                                                                        <div class="col-12 text-left">
+                                                                            <img title="@m.nameTeam2" src="~/Content/img/flags/32/@flagi2" alt="flag"> @m.nameTeam2
+                                                                            <span class="tylekeo display-@m.KEO_2">+ @m.KEO_2</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row d-none">
+                                                                <div class="col-5">
+                                                                    @{
+                                                                        string ava1 = "";
+                                                                        foreach (var md1 in ViewBag.MatchDetailsAll)
+                                                                        {
+                                                                            if (md1.MTCH_ID == m.MTCH_ID)
+                                                                            {
+                                                                                ava1 = md1.NOTE1 + ".jpg";
+                                                                                if (md1.TEAM_ID == m.idTeam1)
+                                                                                {
+                                                                                    <img alt="image" class="rounded-circle" src="https://system.immgroup.com/Content/img/avatar/@ava1" style="height: 20px;">
+                                                                                }
+                                                                            }
+
+
+                                                                        }
+                                                                    }
+                                                                </div>
+                                                                <div class="col-2 text-center">|</div>
+                                                                <div class="col-5">
+                                                                    @{
+                                                                        string ava2 = "";
+                                                                        foreach (var md2 in ViewBag.MatchDetailsAll)
+                                                                        {
+                                                                            if (md2.MTCH_ID == m.MTCH_ID)
+                                                                            {
+                                                                                ava2 = md2.NOTE1 + ".jpg";
+                                                                                if (md2.TEAM_ID == m.idTeam2)
+                                                                                {
+                                                                                    <img alt="image" class="rounded-circle" src="https://system.immgroup.com/Content/img/avatar/@ava2" style="height: 20px;">
+                                                                                }
+                                                                            }
+
+
+                                                                        }
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                        </a>
+
+                                                    </td>
+                                                </tr>
+
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
 @section jslib_footer {
 
     <script src="https://system.immgroup.com/Scripts/jquery-3.1.1.min.js"></script>
@@ -637,7 +866,7 @@
                                 var res = xhr.responseText;
                                 var j_res = JSON.parse(res);
                                 if (j_res.type === "success") {
-                                    swal({ title: "Thông báo", text: "Bạn vừa đặt cược đội " + $("#nameteam_pick").val() + " " + $("input[name='radio_datcuoc']:checked").val() + " coin. Nhà cái sẽ thua tan nát.", type: "success" },
+                                    swal({ title: "Thông báo", text: "Bạn vừa đặt cược đội " + $("#nameteam_pick").val() + " . Hi vọng phước đức bạn đủ lớn.", type: "success" },
                                         function () {
                                             location.reload();
                                         }
@@ -650,7 +879,7 @@
                         };
                         xhr.send(form);
                     } else {
-                        swal("Huỷ", "Chính xác, Đừng làm giàu cho nhà cái.", "error");
+                        swal("Huỷ", "Chính xác, Rén thì chơi banh đũa đi.", "error");
                     }
                 });
         }
@@ -716,6 +945,33 @@
                 swal("Lỗi", "Sai ở chỗ nào rồi", "error");
             }
         }
+        function Khoacuoc(matchId, _team1, _team2) {
+            var form = new FormData();
+            form.append("_mtchid", matchId);
+            form.append("_team1", _team1);
+            form.append("_team2", _team2);
+            //AJAX REQUEST
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/home/blockmatch/submit", true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var res = xhr.responseText;
+                    var j_res = JSON.parse(res);
+                    if (j_res.type === "success") {
+                        swal({ title: "Thông báo", text: "Xong rồi", type: "success" },
+                            function () {
+                                location.reload();
+                            }
+                        );
+                    } else {
+                        swal({ title: j_res.header, text: j_res.mess, type: j_res.type });
+                    }
+
+                }
+            };
+            xhr.send(form);
+        }
+
         function formatNumber(n) {
             // format number 1000000 to 1,234,567
             return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")

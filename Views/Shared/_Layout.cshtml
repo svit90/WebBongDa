@@ -1,11 +1,13 @@
 ﻿@using Library;
-
+@{
+    Function fc = new Function();
+}
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Dự đoán vui mùa dịch</title>
+    <title>@ViewBag.Title - Dự đoán vui mùa world cup 2022</title>
     @Styles.Render("~/Content/bootstrap.css")
     @Styles.Render("~/Content/site.css")
     @Styles.Render("~/Content/fonts/font-awesome/css/font-awesome.css")
@@ -16,7 +18,7 @@
     @Styles.Render("~/Content/css/plugins/toastr/toastr.min.css")
     @Styles.Render("~/Content/css/style.css")
 </head>
-<body class="gray-bg p-0">
+<body class="gray-bg p-0" style=" background: url(/Content/img/bg/wc_bg2.jpg); background-size: cover; background-position: center; ">
     <div class="navbar navbar-inverse rounded-0">
         <div class="container">
             <div class="navbar-header">
@@ -27,9 +29,10 @@
                 </button>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav text-white">
+                    <li><a href="/home">Trang chủ | </a></li>
                     <li id="username" name="username"><a href="#">Xin chào, @ViewBag.UserName</a></li>
-                    <li><a id="youraccount" name="youraccount" href="#">Tài khoản của bạn : @ViewBag.UserMoney  <img src="~/Content/img/money.png" width="16" /></a></li>
+                    <li><a id="youraccount" name="youraccount" href="#">Tài khoản của bạn : @Function.FormatCurrency("VND", Convert.ToInt32(@ViewBag.UserMoney)) </a></li>
                     <li>@Html.ActionLink("Thoát", "Logout", "Home")</li>
                 </ul>
             </div>

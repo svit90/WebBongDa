@@ -9,33 +9,42 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="https://immgroup.com/wp-content/uploads/2021/03/63x63.imm_.png" sizes="32x32" />
+    <title>@ViewBag.Title - Dự đoán vui mùa world cup 2022</title>
     <title>Đăng nhập</title>
     @Styles.Render("~/Content/css/bootstrap.min.css")
     @Styles.Render("~/Content/fonts/font-awesome/css/font-awesome.css")
     @Styles.Render("~/Content/css/plugins/sweetalert/sweetalert.css")
     @Styles.Render("~/Content/css/style.css")
     @Styles.Render("~/Content/css/animate.css")
+    <style>
+        .middle-box {
+            max-width: 500px!important;
+        }
+    </style>
 </head>
 
-<body class="" style="background-color: #ffffff;">
+<body class="" style="
+    background: url(/Content/img/bg/home1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+">
 
-    <div class="middle-box text-center p-3 p-md-0 animated fadeInDown">
+    <div class="middle-box text-center p-3 animated fadeInDown">
         <div>
             <form id="nextlogin" class="m-t" role="form" method="post">
                 <div class="mb-1 m-md-5">
-                    <a href="https://immgroup.com/" title="Về website"><img class="mt-2" src="~/Content/img/bg/bongda.jpg" alt="Logo" style="height: 300px;padding: 5px;"></a>
+                    <a href="/" title="Về website"><img class="mt-2" src="~/Content/img/bg/sticker_5.png" alt="Logo" style="height: 300px;padding: 5px;"></a>
                 </div>
                 <div class="form-group">
                     <input type="email" id="email" class="form-control" placeholder="Email của bạn" required="">
                 </div>
 
-                <button type="submit" class="btn btn-success block full-width m-b">Đăng nhập</button>
+                <button type="submit" class="btn btn-primary block full-width m-b">Xả láng</button>
 
             </form>
-           
+
         </div>
-        
+
     </div>
 
 
@@ -48,7 +57,7 @@
         $("#nextlogin").submit(function (event) {
             var form = new FormData();
             var _email = $("#email").val();
-            form.append("_e", _email);          
+            form.append("_e", _email);
             var xhr = new XMLHttpRequest();
             xhr.open("POST", "/login/", true);
             xhr.onreadystatechange = function () {

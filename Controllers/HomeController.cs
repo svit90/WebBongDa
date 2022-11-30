@@ -15,7 +15,7 @@ namespace BongDa.Controllers
     {
         LinQtoSqlClassDataContext db = new LinQtoSqlClassDataContext();
         DataBongDaDataContext bongda = new DataBongDaDataContext();
-        Library.Message mes = new Library.Message();
+        Message mes = new Message();
         Function fc = new Function();
         Res res = new Res();
         public ActionResult Wellcome()
@@ -34,7 +34,8 @@ namespace BongDa.Controllers
         {
             string userid = "";string token = "";
             string sql = "";
-            userid = DBHelper.GetColumnVal("SELECT [NOTE1] FROM [wcweb].[dbo].[M_USER] WHERE NOTE1 = '" + code + "'", "NOTE1");
+            string _token = fc.DecryptString(code);
+            userid = DBHelper.GetColumnVal("SELECT [NOTE1] FROM [wcweb].[dbo].[M_USER] WHERE NOTE1 = '" + _token + "'", "NOTE1");
             if(userid != "" && userid != null)
             {
                 if (CookieHelper.CookieExist("Token") == true) 
@@ -43,7 +44,7 @@ namespace BongDa.Controllers
                 }
                 else
                 {
-                    foreach (var u in db._0620_Workbase_Api_GetStaff_ByRowId(code))
+                    foreach (var u in db._0620_Workbase_Api_GetStaff_ByRowId(_token))
                     {
                         CookieHelper.ClearCookie();
                         CookieHelper.CreateCookie("Token", u.ROWID.ToString(), DateTime.Now.AddDays(90));
@@ -56,7 +57,7 @@ namespace BongDa.Controllers
             }
             else
             {
-                foreach (var u in db._0620_Workbase_Api_GetStaff_ByRowId(code))
+                foreach (var u in db._0620_Workbase_Api_GetStaff_ByRowId(_token))
                 {
                     sql += "INSERT INTO [wcweb].[dbo].[M_USER] ";
                     sql += "([USER_NAME] ";
@@ -87,43 +88,74 @@ namespace BongDa.Controllers
             CookieHelper.ClearCookie();
             return RedirectToAction("Wellcome", "Home");
         }
+
+
         public ActionResult Index(string id)
         {
-            string _token = CookieHelper.GetCookie("Token");           
-            int MatchId = 0;
-            string Mode = "ID";
-            if(id != "" && id != null && id != "Index")
-            {
-                MatchId = Convert.ToInt32(id);
+            if (CookieHelper.CookieExist("Token") != true)
+            { 
+                return RedirectToAction("Wellcome", "Home");
             }
             else
             {
-                string _id = DBHelper.GetColumnVal("SELECT TOP 1 MTCH_ID FROM [wcweb].[dbo].M_MATCH WHERE FLAG_ACTIVE = 1 ORDER BY MTCH_ID ASC" , "MTCH_ID");
-                MatchId = Convert.ToInt32(_id);
-            }
-            foreach(var item in bongda._0620_wc_GetStaff_ByRowId(_token))
-            {               
-                ViewBag.UserName = item.STAFF_NAME;
-                ViewBag.UserMoney = item.USER_MONEY;
-                if(item.STAFF_ID != 84 && item.STAFF_ID != 55 && item.STAFF_ID != 57)
+                string _token = CookieHelper.GetCookie("Token");
+                int MatchId = 0;
+                string Mode = "ID";
+
+                if (id != "" && id != null && id != "Index")
                 {
-                    ViewBag.NotAdmin = "d-none";
+                    MatchId = Convert.ToInt32(id);
                 }
                 else
                 {
-                    ViewBag.NotAdmin = "d-block";
+                    string _id = DBHelper.GetColumnVal("SELECT TOP 1 MTCH_ID FROM [wcweb].[dbo].M_MATCH WHERE FLAG_ACTIVE = 1 ORDER BY CONVERT(DATETIME,MTCH_DATE + ' ' + MTCH_HH + ':' + MTCH_MM + ':00',105) ASC", "MTCH_ID");
+                    if(_id != null && _id != "")
+                    {
+                        MatchId = Convert.ToInt32(_id);
+                    }                    
                 }
-                
+                foreach (var item in bongda._0620_wc_GetStaff_ByRowId(_token))
+                {
+                    ViewBag.UserName = item.STAFF_NAME;
+                    ViewBag.UserMoney = item.USER_MONEY;
+                    if (item.STAFF_ID != 84 && item.STAFF_ID != 55 && item.STAFF_ID != 57)
+                    {
+                        ViewBag.NotAdmin = "d-none";
+                    }
+                    else
+                    {
+                        ViewBag.NotAdmin = "";
+                    }
+
+                }
+                ViewBag.BXH = bongda._0620_wc_Get_All_BXH().ToList();
+                ViewBag.Team = bongda._062021_bongda_Get_All_FCTeam().ToList();
+                ViewBag.Match = bongda._062021_bongda_Get_Match(Mode, MatchId).ToList();
+                ViewBag.MatchNext = bongda._062021_bongda_Get_Match("ALL", MatchId).ToList();
+                ViewBag.MatchDone = bongda._062021_bongda_Get_Match("DONE", MatchId).ToList();
+                ViewBag.MatchDetails = bongda._062021_bongda_Get_Match_Details(Mode, MatchId).ToList();
+                ViewBag.MatchDetailsAll = bongda._062021_bongda_Get_Match_Details("ALL", MatchId).ToList();
             }
-            ViewBag.BXH = bongda._0620_wc_Get_All_BXH().ToList();
-            ViewBag.Team = bongda._062021_bongda_Get_All_FCTeam().ToList();
-            ViewBag.Match = bongda._062021_bongda_Get_Match(Mode, MatchId).ToList();
-            ViewBag.MatchNext = bongda._062021_bongda_Get_Match("ALL", MatchId).ToList();
-            ViewBag.MatchDone = bongda._062021_bongda_Get_Match("DONE", MatchId).ToList();
-            ViewBag.MatchDetails = bongda._062021_bongda_Get_Match_Details(Mode, MatchId).ToList();
+            
             return View();
         }
-
+        public ActionResult AutoBlockRandom(string id)
+        {
+            int MatchId = 0;
+            if (id != "" && id != null && id != "Index")
+            {
+                MatchId = Convert.ToInt32(id);
+            }
+            ViewBag.MatchNext = bongda._062021_bongda_Get_Match("ID", MatchId).ToList();
+            ViewBag.MatchTime = ""; string _MatchTime = "";int curentMtach = 0;
+            foreach (var item in bongda._062021_bongda_Get_Match("ID", MatchId))
+            {
+                _MatchTime = item.TIMEMATCH.ToString();
+            }
+            ViewBag.Current = MatchId;
+            ViewBag.MatchTime = _MatchTime;
+            return View();
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -154,9 +186,10 @@ namespace BongDa.Controllers
                 {
                     foreach (var row in db._0620_Workbase_GetStaff_byEmail(_email))
                     {
-                        _url = "https://bongda.immgroup.com/verify/" + row.ROWID;
-                        string _body = "Xin chào " + row.STAFF_NAME + ", Vui lòng <a href='"+_url+"'>Click vào đây</a> để xác nhận đăng nhập.";
-                        fc.SendMessageMailKit("[Football Match]", "crm@immgroup.com", "xnmpyehltkznxedc", _email, "","paul@immgroup.com", " Xác nhận truy cập web bóng đá của IMM GROUP", _body);
+                        string _vercode = fc.EncryptString(row.ROWID.ToString());
+                        _url = "https://wc2022.immproject.site/verify/" + _vercode;
+                        string _body = "Xin chào " + row.STAFF_NAME + ", </br> Vui lòng xác nhận bằng cách click vào <a href='"+_url+"'>Tôi đã đọc vào xác nhận tham gia</a> chương trình dự đoán worldcup 2022.</br> Bằng việc click xác nhận tham gia bạn đã chấp nhận các điều khoản mà ban tổ chức đã thông báo";
+                        fc.SendMessageMailKit("[World cup 2022]", "system@immgroup.com", "lhqoiqxowclesdtt", _email, "","", " Xác nhận tham gia worldcup của IMM GROUP", _body);
 
                         return mes.Success("Vui lòng kiểm tra email để xác nhận đăng nhập");
                     }
@@ -176,7 +209,101 @@ namespace BongDa.Controllers
                 return mes.Error(e.Message);
             }
         }
+        //BlockmatchSubmit
+        [HttpPost]
+        public ActionResult BlockmatchSubmit(FormCollection data)
+        {
+            try
+            {
 
+                string _token = CookieHelper.GetCookie("Token"); 
+                string flag = "staff";
+                foreach (var item in bongda._0620_wc_GetStaff_ByRowId(_token))
+                {
+                    if (item.STAFF_ID != 84 && item.STAFF_ID != 55 && item.STAFF_ID != 57)
+                    {
+                        flag = "admin";
+                    }
+                }
+                if (flag == "staff")
+                {
+                    int _mtchid = Convert.ToInt32(data["_mtchid"]);
+                    int _team1 = Convert.ToInt32(data["_team1"]);
+                    int _team2 = Convert.ToInt32(data["_team2"]);
+                    int[] names = new int[] { _team1, _team2 };
+                    Random rnd = new Random();
+
+                    string sql = "";
+                    foreach (var row in bongda._0620_wc_GetStaff_Torandom(_mtchid))
+                    {
+                        int index = rnd.Next(names.Length);
+                        string teamRandom = names[index].ToString();
+                        sql += "INSERT INTO [wcweb].[dbo].[M_MATCH_D] ";
+                        sql += "([MTCH_ID] ";
+                        sql += ",[USER_EMAIL] ";
+                        sql += ",[TEAM_ID] ";
+                        sql += ",[MTCHD_NOTE] ";
+                        sql += ",[FLAG_ACTIVE] ";
+                        sql += ",[Voted]) ";
+                        sql += "SELECT " + _mtchid + ", '" + row.USER_EMAIL + "', " + teamRandom + " ,'20000',1  ,''; ";
+                    }
+                    if (sql != "") { DBHelper.ExecuteQuery(sql); }
+                }
+                return mes.Success();
+            }
+            catch (Exception e)
+            {
+                return mes.Error(e.Message);
+            }
+        }
+        [HttpPost]
+        public ActionResult AutoBlockmatchSubmit(FormCollection data)
+        {
+            try
+            {
+                JsonResult response = new JsonResult();
+                int _mtchid = Convert.ToInt32(data["_mtchid"]);
+                int _team1 = Convert.ToInt32(data["_team1"]);
+                int _team2 = Convert.ToInt32(data["_team2"]);
+                int[] names = new int[] { _team1, _team2 };
+                Random rnd = new Random();
+                
+                string sql = "";string _IdMatchNext = "";string _url = "";
+                foreach (var row in bongda._0620_wc_GetStaff_Torandom(_mtchid))
+                {
+                    int index = rnd.Next(names.Length);
+                    string teamRandom = names[index].ToString();
+                    sql += "INSERT INTO [wcweb].[dbo].[M_MATCH_D] ";
+                    sql += "([MTCH_ID] ";
+                    sql += ",[USER_EMAIL] ";
+                    sql += ",[TEAM_ID] ";
+                    sql += ",[MTCHD_NOTE] ";
+                    sql += ",[FLAG_ACTIVE] ";
+                    sql += ",[Voted]) ";
+                    sql += "SELECT " + _mtchid + ", '" + row.USER_EMAIL + "', " + teamRandom + " ,'20000',1  ,''; ";
+                }
+                if (sql != "") { DBHelper.ExecuteQuery(sql); }
+
+                foreach (var item in bongda._062021_bongda_Get_Match("COUNTNEXT", _mtchid))
+                {
+                    _IdMatchNext = item.MTCH_ID.ToString() ;
+                }
+                if (_IdMatchNext != "")
+                {
+                    _url = "/tools/autorandom/"+ _IdMatchNext;
+                }
+                response.Data = new
+                {
+                    type = "success",
+                    url = _url
+                };
+                return response;
+            }
+            catch (Exception e)
+            {
+                return mes.Error(e.Message);
+            }
+        }
         [HttpPost]
         public ActionResult AddSubmit(FormCollection data)
         {
@@ -302,28 +429,41 @@ namespace BongDa.Controllers
         public ActionResult EndmatchSubmit(FormCollection data)
         {
             try
-            {               
-                string _tysot1 = data["_tysot1"];
-                string _tysot2 = data["_tysot2"];
-                string _mtchid = data["_mtchid"];
-                string sql = "";
-                sql += " UPDATE [wcweb].[dbo].[M_MATCH] ";
-                sql += " SET ";
-                sql += " [TYSO_1] = " + _tysot1;
-                sql += " ,[TYSO_2] = " + _tysot2;
-                sql += " ,[FLAG_ACTIVE] = 0 ";
-                sql += " WHERE MTCH_ID = " + _mtchid + "; ";
-                DBHelper.ExecuteQuery(sql);
-                sql = "";
-                foreach (var m in bongda._062021_bongda_Get_After_Match(Convert.ToInt32(_mtchid)))
+            {
+                string _token = CookieHelper.GetCookie("Token"); 
+                string flag = "staff";
+                foreach (var item in bongda._0620_wc_GetStaff_ByRowId(_token))
                 {
-                    int user = m.USER_ID;
-                    int curmoney = Convert.ToInt32(m.USER_MONEY);
-                    int wlmoney = Convert.ToInt32(m.WLMONEY);
-                    int totalmoney = curmoney + wlmoney;
-                    sql += " UPDATE [wcweb].[dbo].[M_USER] SET USER_MONEY = " + totalmoney + " WHERE USER_ID = " + user + " ; ";
+                    if (item.STAFF_ID != 84 && item.STAFF_ID != 55 && item.STAFF_ID != 57)
+                    {
+                        flag = "admin";
+                    }
                 }
-                DBHelper.ExecuteQuery(sql);
+                if (flag == "staff")
+                {
+                    string _tysot1 = data["_tysot1"];
+                    string _tysot2 = data["_tysot2"];
+                    string _mtchid = data["_mtchid"];
+                    string sql = "";
+                    sql += " UPDATE [wcweb].[dbo].[M_MATCH] ";
+                    sql += " SET ";
+                    sql += " [TYSO_1] = " + _tysot1;
+                    sql += " ,[TYSO_2] = " + _tysot2;
+                    sql += " ,[FLAG_ACTIVE] = 0 ";
+                    sql += " WHERE MTCH_ID = " + _mtchid + "; ";
+                    DBHelper.ExecuteQuery(sql);
+                    sql = "";
+                    foreach (var m in bongda._062021_bongda_Get_After_Match(Convert.ToInt32(_mtchid)))
+                    {
+                        int user = m.USER_ID;
+                        int curmoney = Convert.ToInt32(m.USER_MONEY);
+                        int wlmoney = Convert.ToInt32(m.WLMONEY);
+                        int totalmoney = curmoney + wlmoney;
+                        sql += " UPDATE [wcweb].[dbo].[M_USER] SET USER_MONEY = " + totalmoney + " WHERE USER_ID = " + user + " ; ";
+                    }
+                    DBHelper.ExecuteQuery(sql);
+                }
+                
                 return mes.Success();
 
             }

@@ -58,6 +58,21 @@ namespace BongDa
              url: "home/endmatch/submit",
              defaults: new { controller = "Home", action = "EndmatchSubmit" }
             );
+            routes.MapRoute(
+            name: "sb_blockmatch",
+             url: "home/blockmatch/submit",
+             defaults: new { controller = "Home", action = "BlockmatchSubmit" }
+            );
+            routes.MapRoute(
+            name: "sb_autoblockmatch",
+             url: "tools/autorandom/{id}",
+             defaults: new { controller = "Home", action = "AutoBlockRandom", id = UrlParameter.Optional }
+            );
+            routes.MapRoute(
+            name: "sb_autoblockmatchsubmit",
+             url: "tools/autorandom-submit/{id}",
+             defaults: new { controller = "Home", action = "AutoBlockmatchSubmit", id = UrlParameter.Optional }
+            );
         }
     }
 }

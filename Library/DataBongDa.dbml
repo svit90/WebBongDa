@@ -81,6 +81,64 @@
       <Column Name="NOTE1" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.[_062021_bongda_Get_After_Match]" Method="_062021_bongda_Get_After_Match">
+    <Parameter Name="MacthId" Parameter="macthId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="_062021_bongda_Get_After_MatchResult">
+      <Column Name="USER_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="USER_NAME" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="USER_MONEY" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="USER_EMAIL" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="KQCC1" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="KQCC2" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="MTCHD_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MTCH_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TIENCUOC" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="KETQUAATRUB" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="TEAMDACHON" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="WLMONEY" Type="System.String" DbType="NVarChar(201)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.[_0620_wc_GetStaff_Torandom]" Method="_0620_wc_GetStaff_Torandom">
+    <Parameter Name="matchId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="_0620_wc_GetStaff_TorandomResult">
+      <Column Name="STAFF_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="STAFF_NAME" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="STAFF_NAME_OTHER" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="STAFF_BIRTH" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="STAFF_EMAIL" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="STAFF_PASS_CRM" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="STAFF_PASS_EMAIL" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="STAFF_PERMISSION" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="STAFF_AVATAR_LINK" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="STAFF_PHONE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="STAFF_NOTE" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="STAFF_POSITION" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="EMAIL_HEADER" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SIGNATURE_EMAIL" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="STAFF_OFFICE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="STAFF_GROUP" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="STAFF_GROUP_ON" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="FLAG_ACTIVE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="INSERT_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UPDATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="PRODUCT_SALE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="STAFF_TEAM" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ROWID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="RE_LINK" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="APP_PASS" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TWOSTEP_ENROLL" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="STAFF_GENDER" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="DATE_SYNC" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="STAFF_KPI" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="USER_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="USER_NAME" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="USER_EMAIL" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="USER_PASS" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="USER_MONEY" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="FLAG_ACTIVE1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NOTE1" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
   <Function Name="dbo.[_062021_bongda_Get_Match]" Method="_062021_bongda_Get_Match">
     <Parameter Name="Mode" Parameter="mode" Type="System.String" DbType="NVarChar(100)" />
     <Parameter Name="MacthId" Parameter="macthId" Type="System.Int32" DbType="Int" />
@@ -103,23 +161,7 @@
       <Column Name="idTeam2" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="nameTeam2" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
       <Column Name="flagTeam2" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.[_062021_bongda_Get_After_Match]" Method="_062021_bongda_Get_After_Match">
-    <Parameter Name="MacthId" Parameter="macthId" Type="System.Int32" DbType="Int" />
-    <ElementType Name="_062021_bongda_Get_After_MatchResult">
-      <Column Name="USER_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="USER_NAME" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="USER_MONEY" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
-      <Column Name="USER_EMAIL" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="KQCC1" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="KQCC2" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="MTCHD_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="MTCH_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="TIENCUOC" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="KETQUAATRUB" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="TEAMDACHON" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
-      <Column Name="WLMONEY" Type="System.String" DbType="NVarChar(201)" CanBeNull="true" />
+      <Column Name="TIMEMATCH" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
     </ElementType>
   </Function>
   <Function Name="dbo.[_0620_wc_Get_All_BXH]" Method="_0620_wc_Get_All_BXH">
@@ -127,6 +169,10 @@
       <Column Name="STAFF_NAME" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
       <Column Name="Avatar" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="TOTALMONEY" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="TOPMIN" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TOPMAX" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TOTALTIEN" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TOTALBUAN" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

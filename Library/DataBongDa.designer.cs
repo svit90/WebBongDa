@@ -83,18 +83,25 @@ namespace Library
 			return ((ISingleResult<_062021_bongda_Get_Match_DetailsResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_062021_bongda_Get_Match]")]
-		public ISingleResult<_062021_bongda_Get_MatchResult> _062021_bongda_Get_Match([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Mode", DbType="NVarChar(100)")] string mode, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MacthId", DbType="Int")] System.Nullable<int> macthId)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), mode, macthId);
-			return ((ISingleResult<_062021_bongda_Get_MatchResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_062021_bongda_Get_After_Match]")]
 		public ISingleResult<_062021_bongda_Get_After_MatchResult> _062021_bongda_Get_After_Match([global::System.Data.Linq.Mapping.ParameterAttribute(Name="MacthId", DbType="Int")] System.Nullable<int> macthId)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), macthId);
 			return ((ISingleResult<_062021_bongda_Get_After_MatchResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_0620_wc_GetStaff_Torandom]")]
+		public ISingleResult<_0620_wc_GetStaff_TorandomResult> _0620_wc_GetStaff_Torandom([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> matchId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), matchId);
+			return ((ISingleResult<_0620_wc_GetStaff_TorandomResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_062021_bongda_Get_Match]")]
+		public ISingleResult<_062021_bongda_Get_MatchResult> _062021_bongda_Get_Match([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Mode", DbType="NVarChar(100)")] string mode, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MacthId", DbType="Int")] System.Nullable<int> macthId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), mode, macthId);
+			return ((ISingleResult<_062021_bongda_Get_MatchResult>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_0620_wc_Get_All_BXH]")]
@@ -1317,6 +1324,886 @@ namespace Library
 		}
 	}
 	
+	public partial class _062021_bongda_Get_After_MatchResult
+	{
+		
+		private int _USER_ID;
+		
+		private string _USER_NAME;
+		
+		private string _USER_MONEY;
+		
+		private string _USER_EMAIL;
+		
+		private System.Nullable<double> _KQCC1;
+		
+		private System.Nullable<double> _KQCC2;
+		
+		private int _MTCHD_ID;
+		
+		private int _MTCH_ID;
+		
+		private string _TIENCUOC;
+		
+		private System.Nullable<double> _KETQUAATRUB;
+		
+		private string _TEAMDACHON;
+		
+		private string _WLMONEY;
+		
+		public _062021_bongda_Get_After_MatchResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_USER_ID", DbType="Int NOT NULL")]
+		public int USER_ID
+		{
+			get
+			{
+				return this._USER_ID;
+			}
+			set
+			{
+				if ((this._USER_ID != value))
+				{
+					this._USER_ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_USER_NAME", DbType="NVarChar(200)")]
+		public string USER_NAME
+		{
+			get
+			{
+				return this._USER_NAME;
+			}
+			set
+			{
+				if ((this._USER_NAME != value))
+				{
+					this._USER_NAME = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_USER_MONEY", DbType="NVarChar(150)")]
+		public string USER_MONEY
+		{
+			get
+			{
+				return this._USER_MONEY;
+			}
+			set
+			{
+				if ((this._USER_MONEY != value))
+				{
+					this._USER_MONEY = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_USER_EMAIL", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string USER_EMAIL
+		{
+			get
+			{
+				return this._USER_EMAIL;
+			}
+			set
+			{
+				if ((this._USER_EMAIL != value))
+				{
+					this._USER_EMAIL = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KQCC1", DbType="Float")]
+		public System.Nullable<double> KQCC1
+		{
+			get
+			{
+				return this._KQCC1;
+			}
+			set
+			{
+				if ((this._KQCC1 != value))
+				{
+					this._KQCC1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KQCC2", DbType="Float")]
+		public System.Nullable<double> KQCC2
+		{
+			get
+			{
+				return this._KQCC2;
+			}
+			set
+			{
+				if ((this._KQCC2 != value))
+				{
+					this._KQCC2 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MTCHD_ID", DbType="Int NOT NULL")]
+		public int MTCHD_ID
+		{
+			get
+			{
+				return this._MTCHD_ID;
+			}
+			set
+			{
+				if ((this._MTCHD_ID != value))
+				{
+					this._MTCHD_ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MTCH_ID", DbType="Int NOT NULL")]
+		public int MTCH_ID
+		{
+			get
+			{
+				return this._MTCH_ID;
+			}
+			set
+			{
+				if ((this._MTCH_ID != value))
+				{
+					this._MTCH_ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TIENCUOC", DbType="NVarChar(200)")]
+		public string TIENCUOC
+		{
+			get
+			{
+				return this._TIENCUOC;
+			}
+			set
+			{
+				if ((this._TIENCUOC != value))
+				{
+					this._TIENCUOC = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KETQUAATRUB", DbType="Float")]
+		public System.Nullable<double> KETQUAATRUB
+		{
+			get
+			{
+				return this._KETQUAATRUB;
+			}
+			set
+			{
+				if ((this._KETQUAATRUB != value))
+				{
+					this._KETQUAATRUB = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TEAMDACHON", DbType="VarChar(5)")]
+		public string TEAMDACHON
+		{
+			get
+			{
+				return this._TEAMDACHON;
+			}
+			set
+			{
+				if ((this._TEAMDACHON != value))
+				{
+					this._TEAMDACHON = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WLMONEY", DbType="NVarChar(201)")]
+		public string WLMONEY
+		{
+			get
+			{
+				return this._WLMONEY;
+			}
+			set
+			{
+				if ((this._WLMONEY != value))
+				{
+					this._WLMONEY = value;
+				}
+			}
+		}
+	}
+	
+	public partial class _0620_wc_GetStaff_TorandomResult
+	{
+		
+		private int _STAFF_ID;
+		
+		private string _STAFF_NAME;
+		
+		private string _STAFF_NAME_OTHER;
+		
+		private System.Nullable<System.DateTime> _STAFF_BIRTH;
+		
+		private string _STAFF_EMAIL;
+		
+		private string _STAFF_PASS_CRM;
+		
+		private string _STAFF_PASS_EMAIL;
+		
+		private string _STAFF_PERMISSION;
+		
+		private string _STAFF_AVATAR_LINK;
+		
+		private string _STAFF_PHONE;
+		
+		private string _STAFF_NOTE;
+		
+		private string _STAFF_POSITION;
+		
+		private string _EMAIL_HEADER;
+		
+		private string _SIGNATURE_EMAIL;
+		
+		private string _STAFF_OFFICE;
+		
+		private string _STAFF_GROUP;
+		
+		private string _STAFF_GROUP_ON;
+		
+		private System.Nullable<int> _FLAG_ACTIVE;
+		
+		private System.Nullable<System.DateTime> _INSERT_DATE;
+		
+		private System.Nullable<System.DateTime> _UPDATE_DATE;
+		
+		private string _PRODUCT_SALE;
+		
+		private string _STAFF_TEAM;
+		
+		private System.Guid _ROWID;
+		
+		private string _RE_LINK;
+		
+		private string _APP_PASS;
+		
+		private string _TWOSTEP_ENROLL;
+		
+		private string _STAFF_GENDER;
+		
+		private System.Nullable<System.DateTime> _DATE_SYNC;
+		
+		private System.Nullable<long> _STAFF_KPI;
+		
+		private int _USER_ID;
+		
+		private string _USER_NAME;
+		
+		private string _USER_EMAIL;
+		
+		private string _USER_PASS;
+		
+		private string _USER_MONEY;
+		
+		private System.Nullable<int> _FLAG_ACTIVE1;
+		
+		private string _NOTE1;
+		
+		public _0620_wc_GetStaff_TorandomResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STAFF_ID", DbType="Int NOT NULL")]
+		public int STAFF_ID
+		{
+			get
+			{
+				return this._STAFF_ID;
+			}
+			set
+			{
+				if ((this._STAFF_ID != value))
+				{
+					this._STAFF_ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STAFF_NAME", DbType="NVarChar(200)")]
+		public string STAFF_NAME
+		{
+			get
+			{
+				return this._STAFF_NAME;
+			}
+			set
+			{
+				if ((this._STAFF_NAME != value))
+				{
+					this._STAFF_NAME = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STAFF_NAME_OTHER", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string STAFF_NAME_OTHER
+		{
+			get
+			{
+				return this._STAFF_NAME_OTHER;
+			}
+			set
+			{
+				if ((this._STAFF_NAME_OTHER != value))
+				{
+					this._STAFF_NAME_OTHER = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STAFF_BIRTH", DbType="DateTime")]
+		public System.Nullable<System.DateTime> STAFF_BIRTH
+		{
+			get
+			{
+				return this._STAFF_BIRTH;
+			}
+			set
+			{
+				if ((this._STAFF_BIRTH != value))
+				{
+					this._STAFF_BIRTH = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STAFF_EMAIL", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string STAFF_EMAIL
+		{
+			get
+			{
+				return this._STAFF_EMAIL;
+			}
+			set
+			{
+				if ((this._STAFF_EMAIL != value))
+				{
+					this._STAFF_EMAIL = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STAFF_PASS_CRM", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string STAFF_PASS_CRM
+		{
+			get
+			{
+				return this._STAFF_PASS_CRM;
+			}
+			set
+			{
+				if ((this._STAFF_PASS_CRM != value))
+				{
+					this._STAFF_PASS_CRM = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STAFF_PASS_EMAIL", DbType="NVarChar(200)")]
+		public string STAFF_PASS_EMAIL
+		{
+			get
+			{
+				return this._STAFF_PASS_EMAIL;
+			}
+			set
+			{
+				if ((this._STAFF_PASS_EMAIL != value))
+				{
+					this._STAFF_PASS_EMAIL = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STAFF_PERMISSION", DbType="NVarChar(50)")]
+		public string STAFF_PERMISSION
+		{
+			get
+			{
+				return this._STAFF_PERMISSION;
+			}
+			set
+			{
+				if ((this._STAFF_PERMISSION != value))
+				{
+					this._STAFF_PERMISSION = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STAFF_AVATAR_LINK", DbType="NVarChar(MAX)")]
+		public string STAFF_AVATAR_LINK
+		{
+			get
+			{
+				return this._STAFF_AVATAR_LINK;
+			}
+			set
+			{
+				if ((this._STAFF_AVATAR_LINK != value))
+				{
+					this._STAFF_AVATAR_LINK = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STAFF_PHONE", DbType="NVarChar(50)")]
+		public string STAFF_PHONE
+		{
+			get
+			{
+				return this._STAFF_PHONE;
+			}
+			set
+			{
+				if ((this._STAFF_PHONE != value))
+				{
+					this._STAFF_PHONE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STAFF_NOTE", DbType="NVarChar(MAX)")]
+		public string STAFF_NOTE
+		{
+			get
+			{
+				return this._STAFF_NOTE;
+			}
+			set
+			{
+				if ((this._STAFF_NOTE != value))
+				{
+					this._STAFF_NOTE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STAFF_POSITION", DbType="NVarChar(50)")]
+		public string STAFF_POSITION
+		{
+			get
+			{
+				return this._STAFF_POSITION;
+			}
+			set
+			{
+				if ((this._STAFF_POSITION != value))
+				{
+					this._STAFF_POSITION = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EMAIL_HEADER", DbType="NVarChar(MAX)")]
+		public string EMAIL_HEADER
+		{
+			get
+			{
+				return this._EMAIL_HEADER;
+			}
+			set
+			{
+				if ((this._EMAIL_HEADER != value))
+				{
+					this._EMAIL_HEADER = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SIGNATURE_EMAIL", DbType="NVarChar(MAX)")]
+		public string SIGNATURE_EMAIL
+		{
+			get
+			{
+				return this._SIGNATURE_EMAIL;
+			}
+			set
+			{
+				if ((this._SIGNATURE_EMAIL != value))
+				{
+					this._SIGNATURE_EMAIL = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STAFF_OFFICE", DbType="NVarChar(50)")]
+		public string STAFF_OFFICE
+		{
+			get
+			{
+				return this._STAFF_OFFICE;
+			}
+			set
+			{
+				if ((this._STAFF_OFFICE != value))
+				{
+					this._STAFF_OFFICE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STAFF_GROUP", DbType="NVarChar(50)")]
+		public string STAFF_GROUP
+		{
+			get
+			{
+				return this._STAFF_GROUP;
+			}
+			set
+			{
+				if ((this._STAFF_GROUP != value))
+				{
+					this._STAFF_GROUP = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STAFF_GROUP_ON", DbType="NVarChar(50)")]
+		public string STAFF_GROUP_ON
+		{
+			get
+			{
+				return this._STAFF_GROUP_ON;
+			}
+			set
+			{
+				if ((this._STAFF_GROUP_ON != value))
+				{
+					this._STAFF_GROUP_ON = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FLAG_ACTIVE", DbType="Int")]
+		public System.Nullable<int> FLAG_ACTIVE
+		{
+			get
+			{
+				return this._FLAG_ACTIVE;
+			}
+			set
+			{
+				if ((this._FLAG_ACTIVE != value))
+				{
+					this._FLAG_ACTIVE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_INSERT_DATE", DbType="DateTime")]
+		public System.Nullable<System.DateTime> INSERT_DATE
+		{
+			get
+			{
+				return this._INSERT_DATE;
+			}
+			set
+			{
+				if ((this._INSERT_DATE != value))
+				{
+					this._INSERT_DATE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UPDATE_DATE", DbType="DateTime")]
+		public System.Nullable<System.DateTime> UPDATE_DATE
+		{
+			get
+			{
+				return this._UPDATE_DATE;
+			}
+			set
+			{
+				if ((this._UPDATE_DATE != value))
+				{
+					this._UPDATE_DATE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PRODUCT_SALE", DbType="NVarChar(50)")]
+		public string PRODUCT_SALE
+		{
+			get
+			{
+				return this._PRODUCT_SALE;
+			}
+			set
+			{
+				if ((this._PRODUCT_SALE != value))
+				{
+					this._PRODUCT_SALE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STAFF_TEAM", DbType="NVarChar(50)")]
+		public string STAFF_TEAM
+		{
+			get
+			{
+				return this._STAFF_TEAM;
+			}
+			set
+			{
+				if ((this._STAFF_TEAM != value))
+				{
+					this._STAFF_TEAM = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ROWID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid ROWID
+		{
+			get
+			{
+				return this._ROWID;
+			}
+			set
+			{
+				if ((this._ROWID != value))
+				{
+					this._ROWID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RE_LINK", DbType="NVarChar(MAX)")]
+		public string RE_LINK
+		{
+			get
+			{
+				return this._RE_LINK;
+			}
+			set
+			{
+				if ((this._RE_LINK != value))
+				{
+					this._RE_LINK = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_APP_PASS", DbType="NVarChar(MAX)")]
+		public string APP_PASS
+		{
+			get
+			{
+				return this._APP_PASS;
+			}
+			set
+			{
+				if ((this._APP_PASS != value))
+				{
+					this._APP_PASS = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TWOSTEP_ENROLL", DbType="NVarChar(MAX)")]
+		public string TWOSTEP_ENROLL
+		{
+			get
+			{
+				return this._TWOSTEP_ENROLL;
+			}
+			set
+			{
+				if ((this._TWOSTEP_ENROLL != value))
+				{
+					this._TWOSTEP_ENROLL = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STAFF_GENDER", DbType="NVarChar(10)")]
+		public string STAFF_GENDER
+		{
+			get
+			{
+				return this._STAFF_GENDER;
+			}
+			set
+			{
+				if ((this._STAFF_GENDER != value))
+				{
+					this._STAFF_GENDER = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DATE_SYNC", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DATE_SYNC
+		{
+			get
+			{
+				return this._DATE_SYNC;
+			}
+			set
+			{
+				if ((this._DATE_SYNC != value))
+				{
+					this._DATE_SYNC = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STAFF_KPI", DbType="BigInt")]
+		public System.Nullable<long> STAFF_KPI
+		{
+			get
+			{
+				return this._STAFF_KPI;
+			}
+			set
+			{
+				if ((this._STAFF_KPI != value))
+				{
+					this._STAFF_KPI = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_USER_ID", DbType="Int NOT NULL")]
+		public int USER_ID
+		{
+			get
+			{
+				return this._USER_ID;
+			}
+			set
+			{
+				if ((this._USER_ID != value))
+				{
+					this._USER_ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_USER_NAME", DbType="NVarChar(200)")]
+		public string USER_NAME
+		{
+			get
+			{
+				return this._USER_NAME;
+			}
+			set
+			{
+				if ((this._USER_NAME != value))
+				{
+					this._USER_NAME = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_USER_EMAIL", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string USER_EMAIL
+		{
+			get
+			{
+				return this._USER_EMAIL;
+			}
+			set
+			{
+				if ((this._USER_EMAIL != value))
+				{
+					this._USER_EMAIL = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_USER_PASS", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string USER_PASS
+		{
+			get
+			{
+				return this._USER_PASS;
+			}
+			set
+			{
+				if ((this._USER_PASS != value))
+				{
+					this._USER_PASS = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_USER_MONEY", DbType="NVarChar(150)")]
+		public string USER_MONEY
+		{
+			get
+			{
+				return this._USER_MONEY;
+			}
+			set
+			{
+				if ((this._USER_MONEY != value))
+				{
+					this._USER_MONEY = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FLAG_ACTIVE1", DbType="Int")]
+		public System.Nullable<int> FLAG_ACTIVE1
+		{
+			get
+			{
+				return this._FLAG_ACTIVE1;
+			}
+			set
+			{
+				if ((this._FLAG_ACTIVE1 != value))
+				{
+					this._FLAG_ACTIVE1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NOTE1", DbType="NVarChar(MAX)")]
+		public string NOTE1
+		{
+			get
+			{
+				return this._NOTE1;
+			}
+			set
+			{
+				if ((this._NOTE1 != value))
+				{
+					this._NOTE1 = value;
+				}
+			}
+		}
+	}
+	
 	public partial class _062021_bongda_Get_MatchResult
 	{
 		
@@ -1355,6 +2242,8 @@ namespace Library
 		private string _nameTeam2;
 		
 		private string _flagTeam2;
+		
+		private string _TIMEMATCH;
 		
 		public _062021_bongda_Get_MatchResult()
 		{
@@ -1647,227 +2536,19 @@ namespace Library
 				}
 			}
 		}
-	}
-	
-	public partial class _062021_bongda_Get_After_MatchResult
-	{
 		
-		private int _USER_ID;
-		
-		private string _USER_NAME;
-		
-		private string _USER_MONEY;
-		
-		private string _USER_EMAIL;
-		
-		private System.Nullable<double> _KQCC1;
-		
-		private System.Nullable<double> _KQCC2;
-		
-		private int _MTCHD_ID;
-		
-		private int _MTCH_ID;
-		
-		private string _TIENCUOC;
-		
-		private System.Nullable<double> _KETQUAATRUB;
-		
-		private string _TEAMDACHON;
-		
-		private string _WLMONEY;
-		
-		public _062021_bongda_Get_After_MatchResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_USER_ID", DbType="Int NOT NULL")]
-		public int USER_ID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TIMEMATCH", DbType="VarChar(30)")]
+		public string TIMEMATCH
 		{
 			get
 			{
-				return this._USER_ID;
+				return this._TIMEMATCH;
 			}
 			set
 			{
-				if ((this._USER_ID != value))
+				if ((this._TIMEMATCH != value))
 				{
-					this._USER_ID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_USER_NAME", DbType="NVarChar(200)")]
-		public string USER_NAME
-		{
-			get
-			{
-				return this._USER_NAME;
-			}
-			set
-			{
-				if ((this._USER_NAME != value))
-				{
-					this._USER_NAME = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_USER_MONEY", DbType="NVarChar(150)")]
-		public string USER_MONEY
-		{
-			get
-			{
-				return this._USER_MONEY;
-			}
-			set
-			{
-				if ((this._USER_MONEY != value))
-				{
-					this._USER_MONEY = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_USER_EMAIL", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string USER_EMAIL
-		{
-			get
-			{
-				return this._USER_EMAIL;
-			}
-			set
-			{
-				if ((this._USER_EMAIL != value))
-				{
-					this._USER_EMAIL = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KQCC1", DbType="Float")]
-		public System.Nullable<double> KQCC1
-		{
-			get
-			{
-				return this._KQCC1;
-			}
-			set
-			{
-				if ((this._KQCC1 != value))
-				{
-					this._KQCC1 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KQCC2", DbType="Float")]
-		public System.Nullable<double> KQCC2
-		{
-			get
-			{
-				return this._KQCC2;
-			}
-			set
-			{
-				if ((this._KQCC2 != value))
-				{
-					this._KQCC2 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MTCHD_ID", DbType="Int NOT NULL")]
-		public int MTCHD_ID
-		{
-			get
-			{
-				return this._MTCHD_ID;
-			}
-			set
-			{
-				if ((this._MTCHD_ID != value))
-				{
-					this._MTCHD_ID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MTCH_ID", DbType="Int NOT NULL")]
-		public int MTCH_ID
-		{
-			get
-			{
-				return this._MTCH_ID;
-			}
-			set
-			{
-				if ((this._MTCH_ID != value))
-				{
-					this._MTCH_ID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TIENCUOC", DbType="NVarChar(200)")]
-		public string TIENCUOC
-		{
-			get
-			{
-				return this._TIENCUOC;
-			}
-			set
-			{
-				if ((this._TIENCUOC != value))
-				{
-					this._TIENCUOC = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KETQUAATRUB", DbType="Float")]
-		public System.Nullable<double> KETQUAATRUB
-		{
-			get
-			{
-				return this._KETQUAATRUB;
-			}
-			set
-			{
-				if ((this._KETQUAATRUB != value))
-				{
-					this._KETQUAATRUB = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TEAMDACHON", DbType="VarChar(5)")]
-		public string TEAMDACHON
-		{
-			get
-			{
-				return this._TEAMDACHON;
-			}
-			set
-			{
-				if ((this._TEAMDACHON != value))
-				{
-					this._TEAMDACHON = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WLMONEY", DbType="NVarChar(201)")]
-		public string WLMONEY
-		{
-			get
-			{
-				return this._WLMONEY;
-			}
-			set
-			{
-				if ((this._WLMONEY != value))
-				{
-					this._WLMONEY = value;
+					this._TIMEMATCH = value;
 				}
 			}
 		}
@@ -1881,6 +2562,14 @@ namespace Library
 		private string _Avatar;
 		
 		private System.Nullable<double> _TOTALMONEY;
+		
+		private System.Nullable<int> _TOPMIN;
+		
+		private System.Nullable<int> _TOPMAX;
+		
+		private System.Nullable<int> _TOTALTIEN;
+		
+		private System.Nullable<int> _TOTALBUAN;
 		
 		public _0620_wc_Get_All_BXHResult()
 		{
@@ -1930,6 +2619,70 @@ namespace Library
 				if ((this._TOTALMONEY != value))
 				{
 					this._TOTALMONEY = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TOPMIN", DbType="Int")]
+		public System.Nullable<int> TOPMIN
+		{
+			get
+			{
+				return this._TOPMIN;
+			}
+			set
+			{
+				if ((this._TOPMIN != value))
+				{
+					this._TOPMIN = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TOPMAX", DbType="Int")]
+		public System.Nullable<int> TOPMAX
+		{
+			get
+			{
+				return this._TOPMAX;
+			}
+			set
+			{
+				if ((this._TOPMAX != value))
+				{
+					this._TOPMAX = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TOTALTIEN", DbType="Int")]
+		public System.Nullable<int> TOTALTIEN
+		{
+			get
+			{
+				return this._TOTALTIEN;
+			}
+			set
+			{
+				if ((this._TOTALTIEN != value))
+				{
+					this._TOTALTIEN = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TOTALBUAN", DbType="Int")]
+		public System.Nullable<int> TOTALBUAN
+		{
+			get
+			{
+				return this._TOTALBUAN;
+			}
+			set
+			{
+				if ((this._TOTALBUAN != value))
+				{
+					this._TOTALBUAN = value;
 				}
 			}
 		}
