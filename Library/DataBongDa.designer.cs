@@ -2561,6 +2561,8 @@ namespace Library
 		
 		private string _Avatar;
 		
+		private string _USER_EMAIL;
+		
 		private System.Nullable<double> _TOTALMONEY;
 		
 		private System.Nullable<int> _TOPMIN;
@@ -2570,6 +2572,8 @@ namespace Library
 		private System.Nullable<int> _TOTALTIEN;
 		
 		private System.Nullable<int> _TOTALBUAN;
+		
+		private string _WLTYLE;
 		
 		public _0620_wc_Get_All_BXHResult()
 		{
@@ -2603,6 +2607,22 @@ namespace Library
 				if ((this._Avatar != value))
 				{
 					this._Avatar = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_USER_EMAIL", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string USER_EMAIL
+		{
+			get
+			{
+				return this._USER_EMAIL;
+			}
+			set
+			{
+				if ((this._USER_EMAIL != value))
+				{
+					this._USER_EMAIL = value;
 				}
 			}
 		}
@@ -2683,6 +2703,22 @@ namespace Library
 				if ((this._TOTALBUAN != value))
 				{
 					this._TOTALBUAN = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WLTYLE", DbType="NVarChar(MAX)")]
+		public string WLTYLE
+		{
+			get
+			{
+				return this._WLTYLE;
+			}
+			set
+			{
+				if ((this._WLTYLE != value))
+				{
+					this._WLTYLE = value;
 				}
 			}
 		}

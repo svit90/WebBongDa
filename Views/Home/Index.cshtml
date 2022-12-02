@@ -411,41 +411,76 @@
                     <h5 class="modal-title" id="exampleModalLabel">Bảng Xếp Hạng</h5>
                 </div>
                 <div class="modal-body">
+                    <div class="table-responsive" style=" overflow-x: hidden;">
+                        <table class="table table-striped table-assessment">
+                            <thead>
+                            <th></th>
+                            <th>Win/Lose</th>
+                            <th></th>
+                            </thead>
+                            <tbody>
+                                @foreach (var m in ViewBag.BXH)
+                                {
+                                    if (@m.TOPMAX.ToString() == @m.TOTALMONEY.ToString())
+                                    {
+                                        <tr>
+                                            <td>
+                                                <div class="">
+                                                    <img class="rounded-circle  ml-2" width="45" title="@m.STAFF_NAME" src="https://system.immgroup.com/Content/img/avatar/@m.Avatar" alt="flag">
 
-                    <ul class="list-group clear-list p-2 border">
-                        @foreach (var m in ViewBag.BXH)
-                        {
-                        <li class="list-group-item">
+                                                    @m.STAFF_NAME
+                                                </div>
+                                            </td>
+                                            <td>
+                                                @Html.Raw(m.WLTYLE)
+                                            </td>
+                                            <td>
+                                                <span class="text-navy mt-2 float-right">@Function.FormatCurrency("VND", Convert.ToInt32(@m.TOTALMONEY)) </span>
+                                            </td>
+                                        </tr>
 
-                            @if (@m.TOPMAX.ToString() == @m.TOTALMONEY.ToString())
-                            {
-                                <span class="text-navy mt-2 float-right">@Function.FormatCurrency("VND", Convert.ToInt32(@m.TOTALMONEY)) </span>
-                                <div class="">
-                                    <img class="rounded-circle ml-2" width="45" title="@m.STAFF_NAME" src="https://system.immgroup.com/Content/img/avatar/@m.Avatar" alt="flag">
-                                    @m.STAFF_NAME
-                                </div>
-                            }
-                            else if (@m.TOPMIN.ToString() == @m.TOTALMONEY.ToString())
-                            { <span class="text-danger mt-2 float-right">@Function.FormatCurrency("VND", Convert.ToInt32(@m.TOTALMONEY)) </span>
-                            <div class="">
-                                <img class="rounded-circle  ml-2" width="45" title="@m.STAFF_NAME" src="https://system.immgroup.com/Content/img/avatar/@m.Avatar" alt="flag">
-                                <img class="rounded-circle" width="55" src="/Content/img/avatar-f.png" alt="flag" style="position: absolute;left: 0px; top: 5px;">
-                                @m.STAFF_NAME
-                            </div>
+                                    }
+                                    else if (@m.TOPMIN.ToString() == @m.TOTALMONEY.ToString())
+                                    {
+                                        <tr>
+                                            <td>
+                                                <div class="">
+                                                    <img class="rounded-circle  ml-2" width="45" title="@m.STAFF_NAME" src="https://system.immgroup.com/Content/img/avatar/@m.Avatar" alt="flag">
+                                                    <img class="rounded-circle d-none" width="55" src="/Content/img/avatar-f.png" alt="flag" style="position: absolute;left: 0px; top: 5px;">
+                                                    @m.STAFF_NAME
+                                                </div>
+                                            </td>
+                                            <td>
+                                                @Html.Raw(m.WLTYLE)
+                                            </td>
+                                            <td>
+                                                <span class="text-danger mt-2 float-right">@Function.FormatCurrency("VND", Convert.ToInt32(@m.TOTALMONEY)) </span>
+                                            </td>
+                                        </tr>
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td>
+                                                <div class="">
+                                                    <img class="rounded-circle  ml-2" width="45" title="@m.STAFF_NAME" src="https://system.immgroup.com/Content/img/avatar/@m.Avatar" alt="flag">
 
-                        }
-                        else
-                        {
-                            <span class="text-dark mt-2 float-right">@Function.FormatCurrency("VND", Convert.ToInt32(@m.TOTALMONEY)) </span>
-                            <div class="">
-                                <img class="rounded-circle ml-2" width="45" title="@m.STAFF_NAME" src="https://system.immgroup.com/Content/img/avatar/@m.Avatar" alt="flag">
-                                @m.STAFF_NAME
-                            </div>
-                        }
-                        </li>
+                                                    @m.STAFF_NAME
+                                                </div>
+                                            </td>
+                                            <td>
+                                                @Html.Raw(m.WLTYLE)
+                                            </td>
+                                            <td>
+                                                <span class="text-dark mt-2 float-right">@Function.FormatCurrency("VND", Convert.ToInt32(@m.TOTALMONEY)) </span>
+                                            </td>
+                                        </tr>
+                                    }
 
-                        }
-                    </ul>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -543,8 +578,8 @@
 <div class="row mt-5" style="max-height:600px;">
 
     <div class="col-md-6 offset-md-3">
-        <div class="ibox ">
-            <div class="ibox-title text-center">
+        <div class="ibox">
+            <div class="ibox-title text-center p-0">
                 @foreach (var m in ViewBag.BXH)
                 {
                     string _totaltien = Function.FormatCurrency("VND", @m.TOTALTIEN);
