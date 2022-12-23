@@ -411,55 +411,94 @@
                     <h5 class="modal-title" id="exampleModalLabel">Bảng Xếp Hạng</h5>
                 </div>
                 <div class="modal-body">
-
-                    <ul class="list-group clear-list p-2 border">
-                        @foreach (var m in ViewBag.BXH)
-                        {
-                        <li class="list-group-item">
-
-                            @if (@m.TOPMAX.ToString() == @m.TOTALMONEY.ToString())
-                            {
-                                if (@m.NOTE2 != "")
+                    <div class="table-responsive" style=" overflow-x: hidden;">
+                        <table class="table table-striped table-assessment">
+                            <thead>
+                                <th></th>
+                                <th>Win/Lose</th>
+                                <th></th>
+                                <th></th>
+                            </thead>
+                            <tbody>
+                                @foreach (var m in ViewBag.BXH)
                                 {
-                                    <span class="badge badge-success mt-2 ml-2">@m.NOTE2 </span>
-                                }
-                                <span class="text-navy mt-2 float-right">@Function.FormatCurrency("VND", Convert.ToInt32(@m.TOTALMONEY)) </span>
-                                <div class="">
-                                    <img class="rounded-circle ml-2" width="45" title="@m.STAFF_NAME" src="https://system.immgroup.com/Content/img/avatar/@m.Avatar" alt="flag">
-                                    @m.STAFF_NAME
-                                </div>
-                            }
-                            else if (@m.TOPMIN.ToString() == @m.TOTALMONEY.ToString())
-                            {
-                                if (@m.NOTE2 != "")
-                                {
-                                    <span class="badge badge-success mt-2 ml-2">@m.NOTE2 </span>
-                                }
-                                <span class="text-danger mt-2 float-right">@Function.FormatCurrency("VND", Convert.ToInt32(@m.TOTALMONEY)) </span>
-                                <div class="">
-                                    <img class="rounded-circle  ml-2" width="45" title="@m.STAFF_NAME" src="https://system.immgroup.com/Content/img/avatar/@m.Avatar" alt="flag">
-                                    <img class="rounded-circle" width="55" src="/Content/img/avatar-f.png" alt="flag" style="position: absolute;left: 0px; top: 5px;">
-                                    @m.STAFF_NAME
-                                </div>
+                                    if (@m.TOPMAX.ToString() == @m.TOTALMONEY.ToString())
+                                    {
+                                        <tr>
+                                            <td>
+                                                <div class="">
+                                                    <img class="rounded-circle  ml-2" width="45" title="@m.STAFF_NAME" src="https://system.immgroup.com/Content/img/avatar/@m.Avatar" alt="flag">
 
-                            }
-                            else
-                            {
-                                if (@m.NOTE2 != "")
-                                {
-                                    <span class="badge badge-success mt-2 ml-2">@m.NOTE2 </span>
+                                                    @m.STAFF_NAME
+                                                </div>
+                                            </td>
+                                            <td>
+                                                @Html.Raw(m.WLTYLE)
+                                            </td>
+                                            <td>
+                                                <span class="text-navy mt-2 float-right">@Function.FormatCurrency("VND", Convert.ToInt32(@m.TOTALMONEY)) </span>
+                                            </td>
+                                            <td>
+                                                @if (@m.NOTE2 != "")
+                                                {
+                                                <span class="badge badge-success mt-2 ml-2">@m.NOTE2 </span>
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                    else if (@m.TOPMIN.ToString() == @m.TOTALMONEY.ToString())
+                                    {
+                                        <tr>
+                                            <td>
+                                                <div class="">
+                                                    <img class="rounded-circle  ml-2" width="45" title="@m.STAFF_NAME" src="https://system.immgroup.com/Content/img/avatar/@m.Avatar" alt="flag">
+                                                    <img class="rounded-circle d-none" width="55" src="/Content/img/avatar-f.png" alt="flag" style="position: absolute;left: 0px; top: 5px;">
+                                                    @m.STAFF_NAME
+                                                </div>
+                                            </td>
+                                            <td>
+                                                @Html.Raw(m.WLTYLE)
+                                            </td>
+                                            <td>
+                                                <span class="text-danger mt-2 float-right">@Function.FormatCurrency("VND", Convert.ToInt32(@m.TOTALMONEY)) </span>
+                                            </td>
+                                             <td>
+                                                @if (@m.NOTE2 != "")
+                                                {
+                                                <span class="badge badge-success mt-2 ml-2">@m.NOTE2 </span>
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td>
+                                                <div class="">
+                                                    <img class="rounded-circle  ml-2" width="45" title="@m.STAFF_NAME" src="https://system.immgroup.com/Content/img/avatar/@m.Avatar" alt="flag">
+
+                                                    @m.STAFF_NAME
+                                                </div>
+                                            </td>
+                                            <td>
+                                                @Html.Raw(m.WLTYLE)
+                                            </td>
+                                            <td>
+                                                <span class="text-dark mt-2 float-right">@Function.FormatCurrency("VND", Convert.ToInt32(@m.TOTALMONEY)) </span>
+                                            </td>
+                                             <td>
+                                                @if (@m.NOTE2 != "")
+                                                {
+                                                <span class="badge badge-success mt-2 ml-2">@m.NOTE2 </span>
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+
                                 }
-                                <span class="text-dark mt-2 float-right">@Function.FormatCurrency("VND", Convert.ToInt32(@m.TOTALMONEY)) </span>
-
-                                <div class="">
-                                    <img class="rounded-circle ml-2" width="45" title="@m.STAFF_NAME" src="https://system.immgroup.com/Content/img/avatar/@m.Avatar" alt="flag">
-                                    @m.STAFF_NAME
-                                </div>
-                            }
-                        </li>
-
-                        }
-                    </ul>
+                            </tbody>
+                        </table>
+                    </div>
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -557,8 +596,8 @@
 <div class="row mt-5" style="max-height:600px;">
 
     <div class="col-md-6 offset-md-3">
-        <div class="ibox ">
-            <div class="ibox-title text-center">
+        <div class="ibox">
+            <div class="ibox-title text-center p-0">
                 @foreach (var m in ViewBag.BXH)
                 {
                     string _totaltien = Function.FormatCurrency("VND", @m.TOTALTIEN);
