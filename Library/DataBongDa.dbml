@@ -168,11 +168,15 @@
     <ElementType Name="_0620_wc_Get_All_BXHResult">
       <Column Name="STAFF_NAME" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
       <Column Name="Avatar" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="USER_EMAIL" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="NOTE2" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="TOTALMONEY" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="TOPMIN" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="TOPMAX" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="TOTALTIEN" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="TOTALBUAN" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="WLTYLE" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NOTE21" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
 </Database>

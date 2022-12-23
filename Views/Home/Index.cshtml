@@ -404,7 +404,7 @@
 </div>
 
 <div class="modal inmodal" id="bangxephang">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <form class="frmnhapketqua">
                 <div class="modal-header">
@@ -419,6 +419,10 @@
 
                             @if (@m.TOPMAX.ToString() == @m.TOTALMONEY.ToString())
                             {
+                                if (@m.NOTE2 != "")
+                                {
+                                    <span class="badge badge-success mt-2 ml-2">@m.NOTE2 </span>
+                                }
                                 <span class="text-navy mt-2 float-right">@Function.FormatCurrency("VND", Convert.ToInt32(@m.TOTALMONEY)) </span>
                                 <div class="">
                                     <img class="rounded-circle ml-2" width="45" title="@m.STAFF_NAME" src="https://system.immgroup.com/Content/img/avatar/@m.Avatar" alt="flag">
@@ -426,22 +430,32 @@
                                 </div>
                             }
                             else if (@m.TOPMIN.ToString() == @m.TOTALMONEY.ToString())
-                            { <span class="text-danger mt-2 float-right">@Function.FormatCurrency("VND", Convert.ToInt32(@m.TOTALMONEY)) </span>
-                            <div class="">
-                                <img class="rounded-circle  ml-2" width="45" title="@m.STAFF_NAME" src="https://system.immgroup.com/Content/img/avatar/@m.Avatar" alt="flag">
-                                <img class="rounded-circle" width="55" src="/Content/img/avatar-f.png" alt="flag" style="position: absolute;left: 0px; top: 5px;">
-                                @m.STAFF_NAME
-                            </div>
+                            {
+                                if (@m.NOTE2 != "")
+                                {
+                                    <span class="badge badge-success mt-2 ml-2">@m.NOTE2 </span>
+                                }
+                                <span class="text-danger mt-2 float-right">@Function.FormatCurrency("VND", Convert.ToInt32(@m.TOTALMONEY)) </span>
+                                <div class="">
+                                    <img class="rounded-circle  ml-2" width="45" title="@m.STAFF_NAME" src="https://system.immgroup.com/Content/img/avatar/@m.Avatar" alt="flag">
+                                    <img class="rounded-circle" width="55" src="/Content/img/avatar-f.png" alt="flag" style="position: absolute;left: 0px; top: 5px;">
+                                    @m.STAFF_NAME
+                                </div>
 
-                        }
-                        else
-                        {
-                            <span class="text-dark mt-2 float-right">@Function.FormatCurrency("VND", Convert.ToInt32(@m.TOTALMONEY)) </span>
-                            <div class="">
-                                <img class="rounded-circle ml-2" width="45" title="@m.STAFF_NAME" src="https://system.immgroup.com/Content/img/avatar/@m.Avatar" alt="flag">
-                                @m.STAFF_NAME
-                            </div>
-                        }
+                            }
+                            else
+                            {
+                                if (@m.NOTE2 != "")
+                                {
+                                    <span class="badge badge-success mt-2 ml-2">@m.NOTE2 </span>
+                                }
+                                <span class="text-dark mt-2 float-right">@Function.FormatCurrency("VND", Convert.ToInt32(@m.TOTALMONEY)) </span>
+
+                                <div class="">
+                                    <img class="rounded-circle ml-2" width="45" title="@m.STAFF_NAME" src="https://system.immgroup.com/Content/img/avatar/@m.Avatar" alt="flag">
+                                    @m.STAFF_NAME
+                                </div>
+                            }
                         </li>
 
                         }
@@ -794,6 +808,7 @@
             $('#totaltienA').append(formatNumber(tien1) + " <img src='/Content/img/money.png'  width='30' />");
             $('#totaltienB').append(formatNumber(tien2) + " <img src='/Content/img/money.png'  width='30'  />");
             // $("#youraccount").text("Số dư tài khoản của bạn là : " + formatNumber(yourtien) + " đ");
+            $("#bangxephang").modal("show");
         });
 
         function AddVS() {

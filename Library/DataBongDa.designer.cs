@@ -2561,6 +2561,10 @@ namespace Library
 		
 		private string _Avatar;
 		
+		private string _USER_EMAIL;
+		
+		private string _NOTE2;
+		
 		private System.Nullable<double> _TOTALMONEY;
 		
 		private System.Nullable<int> _TOPMIN;
@@ -2570,6 +2574,10 @@ namespace Library
 		private System.Nullable<int> _TOTALTIEN;
 		
 		private System.Nullable<int> _TOTALBUAN;
+		
+		private string _WLTYLE;
+		
+		private string _NOTE21;
 		
 		public _0620_wc_Get_All_BXHResult()
 		{
@@ -2603,6 +2611,38 @@ namespace Library
 				if ((this._Avatar != value))
 				{
 					this._Avatar = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_USER_EMAIL", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string USER_EMAIL
+		{
+			get
+			{
+				return this._USER_EMAIL;
+			}
+			set
+			{
+				if ((this._USER_EMAIL != value))
+				{
+					this._USER_EMAIL = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NOTE2", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string NOTE2
+		{
+			get
+			{
+				return this._NOTE2;
+			}
+			set
+			{
+				if ((this._NOTE2 != value))
+				{
+					this._NOTE2 = value;
 				}
 			}
 		}
@@ -2683,6 +2723,38 @@ namespace Library
 				if ((this._TOTALBUAN != value))
 				{
 					this._TOTALBUAN = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WLTYLE", DbType="NVarChar(MAX)")]
+		public string WLTYLE
+		{
+			get
+			{
+				return this._WLTYLE;
+			}
+			set
+			{
+				if ((this._WLTYLE != value))
+				{
+					this._WLTYLE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NOTE21", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string NOTE21
+		{
+			get
+			{
+				return this._NOTE21;
+			}
+			set
+			{
+				if ((this._NOTE21 != value))
+				{
+					this._NOTE21 = value;
 				}
 			}
 		}
